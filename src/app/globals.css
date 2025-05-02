@@ -19,3 +19,33 @@
   }
 }
 
+@layer base {
+  html {
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+.swiper-pagination-bullet {
+  width: 13px !important;  /* override with !important */
+  height: 13px !important;
+  background-color: white !important;
+  opacity: 1 !important;
+  margin: 0 6px !important;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #0071e3 !important;
+}
+
+@layer utilities {
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-out both;
+  }
+}
