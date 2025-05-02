@@ -1,0 +1,77 @@
+"use client";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import Image from "next/image";
+import { useState } from "react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+const slides = [
+  {
+    image: "/assets/chef.jpeg",
+    title: "True Love is a Homecooked Meal",
+    subtitle:
+      "Meet Chef Jose Ramirez, Culinary Director of Vineland Post Acute",
+    description:
+      "With decades of experience and a heart for healing, Chef Jose brings warmth to the table with every dish he prepares.",
+  },
+  {
+    image: "/assets/outside1.jpeg",
+    title: "A Place to Enjoy",
+    subtitle:
+      "Our beautifully renovated facility offers peace, safety, and comfort.",
+    description:
+      "Vineland Post Acute is committed to providing exceptional skilled nursing and rehabilitation services in a serene environment.",
+  },
+];
+
+const HeroSlider = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <div className="relative w-full h-[70vh]">
+      <Swiper
+        modules={[Autoplay, Navigation, Pagination]}
+        autoplay={{ delay: 7000, disableOnInteraction: false }}
+        loop={true}
+        navigation={true}
+        pagination={{ clickable: true }}
+        speed={1000}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        className="w-full h-full"
+      >
+        {slides.map((slide, idx) => (
+          <SwiperSlide key={idx}>
+            <Image
+              src={slide.image}
+              alt={`Slide ${idx + 1}`}
+              fill
+              className="object-cover"
+              priority
+            />
+
+            {/* Caption overlay */}
+            <div className="absolute inset-0 flex flex-col items-center text-white text-center bg-black/30 px-4 pt-150">
+              <p className="text-xl tracking-widest uppercase text-white-300 mb-2 font-semibold">
+                FIRST CLASS CARE
+              </p>
+              <h2 className="text-3xl md:text-5xl font-bold mb-2 drop-shadow">
+                {slide.title}
+              </h2>
+              <h3 className="text-xl md:text-2xl font-medium mb-2 drop-shadow">
+                {slide.subtitle}
+              </h3>
+              <p className="max-w-2xl text-md md:text-lg drop-shadow">
+                {slide.description}
+              </p>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+};
+
+export default HeroSlider;
