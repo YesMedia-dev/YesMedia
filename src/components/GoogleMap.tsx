@@ -51,27 +51,23 @@ const GoogleMap = () => {
 
           marker.addListener("gmp-click", () => {
             infoWindow.close();
-            // Destructure facility fields
+
             const { name, address, city, state, zip, phone, website } =
               facility;
 
-            // Ensure the website starts with http:// or https://
             const formattedWebsite = website.startsWith("http")
               ? website
               : `https://${website}`;
 
-            // Build HTML content
             const content = `
-                            <div>
-                                ${address}<br/>
-                                ${city}, ${state} ${zip}<br/>
-                                <a href="tel:${phone.replace(
-                                  /\D/g,
-                                  ""
-                                )}">${phone}</a><br/>
-                                <a href="${formattedWebsite}" target="_blank" rel="noopener noreferrer">${website}</a>
-                            </div>
-                        `;
+              <div>
+                ${address}<br/>
+                ${city}, ${state} ${zip}<br/>
+                <a href="tel:${phone.replace(/\D/g, "")}">${phone}</a><br/>
+                <a href="${formattedWebsite}" target="_blank" rel="noopener noreferrer">${website}</a>
+              </div>
+            `;
+
             infoWindow.setHeaderContent(name);
             infoWindow.setContent(content);
             infoWindow.open(marker.map, marker);
@@ -79,6 +75,7 @@ const GoogleMap = () => {
         });
       }
     };
+
     initMap();
   }, []);
 

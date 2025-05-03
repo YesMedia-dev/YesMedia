@@ -1,10 +1,12 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
+import React, { useState } from "react";
 
 const testimonials = [
   {
@@ -18,9 +20,15 @@ const testimonials = [
 ];
 
 const Family = () => {
+  // Use proper typing for the Swiper instance
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  
+  // These classes will be applied to our custom navigation buttons
+  const navigationButtonClasses = "absolute top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-md z-10 cursor-pointer text-blue-800 hover:bg-gray-100";
+
   return (
     <section className="py-24 bg-gray-50 text-center animate-fadeIn">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6 relative">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
           Your Loved Ones Deserve the Best Care
         </h2>
@@ -28,31 +36,53 @@ const Family = () => {
           Everyone is family here at Vineland Post Acute
         </p>
 
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          navigation
-          autoplay={{ delay: 6000 }}
-          loop={true}
-          className="w-full"
-        >
-          {testimonials.map((item, idx) => (
-            <SwiperSlide key={idx}>
-              <div className="flex flex-col md:flex-row items-center gap-10 justify-center">
-                <div className="w-full md:w-[400px] h-[300px] relative rounded-xl overflow-hidden shadow-lg">
-                  <Image
-                    src={item.image}
-                    alt={`Resident ${idx + 1}`}
-                    fill
-                    className="object-cover"
-                  />
+        <div className="relative">
+          {/* Custom previous button - position as needed */}
+          <div 
+            className={`${navigationButtonClasses} left-[100px] md:left-[-100px]`}
+            onClick={() => swiperInstance?.slidePrev()}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+          </div>
+
+          {/* Custom next button - position as needed */}
+          <div 
+            className={`${navigationButtonClasses} right-4 md:right-[-80px]`}
+            onClick={() => swiperInstance?.slideNext()}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </div>
+
+          <Swiper
+            modules={[Autoplay]}
+            loop={true}
+            autoplay={{ delay: 6000 }}
+            onSwiper={(swiper) => setSwiperInstance(swiper)}
+            className="mySwiper"
+          >
+            {testimonials.map((item, idx) => (
+              <SwiperSlide key={idx}>
+                <div className="flex flex-col md:flex-row items-center gap-10 justify-center py-8">
+                  <div className="w-full md:w-[400px] h-[300px] relative rounded-xl overflow-hidden shadow-lg">
+                    <Image
+                      src={item.image}
+                      alt={`Resident ${idx + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="max-w-xl text-gray-700 text-md md:text-lg leading-relaxed">
+                    "{item.text}"
+                  </p>
                 </div>
-                <p className="max-w-xl text-gray-700 text-md md:text-lg leading-relaxed">
-                  "{item.text}"
-                </p>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
         <div className="mt-12">
           <button className="px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition">
