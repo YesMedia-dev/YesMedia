@@ -9,13 +9,11 @@ import "swiper/css/navigation";
 const testimonials = [
   {
     image: "/assets/placeholder1.jpeg",
-    text:
-      "My sister always had positive comments regarding this facility. She said the food was very good. The nurses were great. The staff was also very much involved and willing to give her all the answers that she needed on top of the Physical Therapy that she said was the best she had ever received, her physical therapy was customized for her needs for the areas of her body that needed to be strengthened. She said she was very happy with this facility. And would happily return if she needed this type of therapy.",
+    text: "My sister always had positive comments regarding this facility. She said the food was very good. The nurses were great. The staff was also very much involved and willing to give her all the answers that she needed on top of the Physical Therapy that she said was the best she had ever received, her physical therapy was customized for her needs for the areas of her body that needed to be strengthened. She said she was very happy with this facility. And would happily return if she needed this type of therapy.",
   },
   {
     image: "/assets/placeholder2.jpeg",
-    text:
-      "My respect for all CNAs at Vineland Post Acute. They work very hard to take care of their patients and accommodate their needs. They take pride in helping the elderly like one of their family. Thank you Maria Pena, Jackie, Norma Martínez, Marcey, Elba, Alma, Flor, Cithalie, Osmen, Greatest CNA at Vineland Post Acute to date.",
+    text: "My respect for all CNAs at Vineland Post Acute. They work very hard to take care of their patients and accommodate their needs. They take pride in helping the elderly like one of their family. Thank you Maria Pena, Jackie, Norma Martínez, Marcey, Elba, Alma, Flor, Cithalie, Osmen, Greatest CNA at Vineland Post Acute to date.",
   },
 ];
 

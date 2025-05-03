@@ -1,4 +1,5 @@
 import React from "react";
+import GoogleMap from "@/components/GoogleMap";
 
 const ServicesGrid = () => {
   return (
@@ -8,7 +9,7 @@ const ServicesGrid = () => {
           Find a Sun Mar health care provider near you
         </h2>
         <div className="h-[400px] w-full border border-gray-300 bg-gray-50 shadow-md rounded-xl flex items-center justify-center">
-          <span className="text-gray-500 text-lg">Insert map function here</span>
+          <GoogleMap />
         </div>
       </div>
     </section>
