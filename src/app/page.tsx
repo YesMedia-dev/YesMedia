@@ -3,6 +3,8 @@ import ServicesGrid from "@/components/ServicesGrid";
 import FeaturedNews from "@/components/FeaturedNews";
 import Banner from "@/components/Banner";
 import Family from "@/components/Family";
+import Video from "@/components/Video";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -12,6 +14,8 @@ export default function Home() {
       <FeaturedNews />
       <Banner />
       <Family />
+      <Video />
+      <Footer />
     </main>
   );
 }
