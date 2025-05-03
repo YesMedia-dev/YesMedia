@@ -5,13 +5,6 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -25,8 +18,9 @@
   }
 }
 
+/* Swiper pagination styling */
 .swiper-pagination-bullet {
-  width: 13px !important;  /* override with !important */
+  width: 13px !important;
   height: 13px !important;
   background-color: white !important;
   opacity: 1 !important;
@@ -39,10 +33,17 @@
   background-color: #0071e3 !important;
 }
 
+/* Animation utility */
 @layer utilities {
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .animate-fadeIn {
