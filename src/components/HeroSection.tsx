@@ -7,6 +7,9 @@ import { useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import dynamic from "next/dynamic";
+
+const GoogleMap = dynamic(() => import("./GoogleMap"), { ssr: false });
 
 const slides = [
   {
@@ -29,7 +32,7 @@ const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative w-full h-[70vh]">
+    <section className="relative w-full h-[75vh]">
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         autoplay={{ delay: 7000, disableOnInteraction: false }}
@@ -53,7 +56,7 @@ const HeroSection = () => {
                 priority
               />
 
-              {/* TEXT OVERLAY - adjust `top-[%]` to move up/down */}
+              {/* TEXT OVERLAY */}
               <div className="absolute top-[75%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4">
                 <p className="text-xl tracking-widest uppercase font-semibold mb-2">
                   FIRST CLASS CARE
@@ -72,6 +75,11 @@ const HeroSection = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* Map in bottom-right corner */}
+      <div className="absolute bottom-4 right-4 w-[450px] h-[250px] rounded-lg overflow-hidden border border-white shadow-lg z-20">
+        <GoogleMap />
+      </div>
     </section>
   );
 };

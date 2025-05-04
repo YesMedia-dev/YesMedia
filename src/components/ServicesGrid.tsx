@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import GoogleMap from "@/components/GoogleMap";
 
 const ServicesGrid = () => {
   return (
@@ -13,9 +12,10 @@ const ServicesGrid = () => {
           </span>
           Find a Sun Mar health care provider near you
         </h2>
-        <div className="h-[400px] w-full border border-gray-300 bg-gray-50 shadow-md rounded-xl flex items-center justify-center">
-          <GoogleMap />
-        </div>
+        {/* Optional: You can add something else here later */}
+        <p className="text-gray-600 mt-4">
+          Use the map in the hero section above to find your nearest facility.
+        </p>
       </div>
     </section>
   );

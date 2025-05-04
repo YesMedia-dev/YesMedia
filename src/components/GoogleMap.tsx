@@ -14,12 +14,9 @@ const GoogleMap = () => {
       });
 
       const { Map, InfoWindow } = await google.importLibrary("maps");
-      const { AdvancedMarkerElement, PinElement } = await google.importLibrary(
-        "marker"
-      );
+      const { AdvancedMarkerElement, PinElement } = await google.importLibrary("marker");
       const { ColorScheme } = await google.importLibrary("core");
 
-      // Los Angeles Center
       const defaultCenter = {
         lat: 34.0522,
         lng: -118.2437,
@@ -36,13 +33,11 @@ const GoogleMap = () => {
         const map = new Map(mapRef.current as HTMLDivElement, mapOptions);
         const infoWindow = new InfoWindow();
 
-        FACILITIES.map((facility, index) => {
-          const pin = new PinElement({
-            scale: 1,
-          });
+        FACILITIES.forEach((facility) => {
+          const pin = new PinElement({ scale: 1 });
 
           const marker = new AdvancedMarkerElement({
-            map: map,
+            map,
             position: facility.pos,
             title: facility.name,
             content: pin.element,
@@ -51,24 +46,15 @@ const GoogleMap = () => {
 
           marker.addListener("gmp-click", () => {
             infoWindow.close();
-
-            const { name, address, city, state, zip, phone, website } =
-              facility;
-
-            const formattedWebsite = website.startsWith("http")
-              ? website
-              : `https://${website}`;
-
             const content = `
               <div>
-                ${address}<br/>
-                ${city}, ${state} ${zip}<br/>
-                <a href="tel:${phone.replace(/\D/g, "")}">${phone}</a><br/>
-                <a href="${formattedWebsite}" target="_blank" rel="noopener noreferrer">${website}</a>
+                ${facility.address}<br/>
+                ${facility.city}, ${facility.state} ${facility.zip}<br/>
+                <a href="tel:${facility.phone.replace(/\D/g, "")}">${facility.phone}</a><br/>
+                <a href="${facility.website}" target="_blank" rel="noopener noreferrer">${facility.website}</a>
               </div>
             `;
-
-            infoWindow.setHeaderContent(name);
+            infoWindow.setHeaderContent(facility.name);
             infoWindow.setContent(content);
             infoWindow.open(marker.map, marker);
           });
@@ -79,7 +65,7 @@ const GoogleMap = () => {
     initMap();
   }, []);
 
-  return <div style={{ width: "100%", height: "400px" }} ref={mapRef}></div>;
+  return <div ref={mapRef} className="w-full h-full" />;
 };
 
 export default GoogleMap;
