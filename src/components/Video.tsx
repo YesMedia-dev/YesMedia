@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
 
 const Video = () => {
@@ -6,7 +7,6 @@ const Video = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  // Ensure video fills the container while maintaining aspect ratio
   useEffect(() => {
     function setVideoDimensions() {
       const container = containerRef.current;
@@ -34,10 +34,7 @@ const Video = () => {
 
     setVideoDimensions();
     window.addEventListener("resize", setVideoDimensions);
-
-    return () => {
-      window.removeEventListener("resize", setVideoDimensions);
-    };
+    return () => window.removeEventListener("resize", setVideoDimensions);
   }, []);
 
   return (
@@ -51,7 +48,7 @@ const Video = () => {
         <div className="absolute inset-0 w-full h-full z-0">
           <video
             ref={videoRef}
-            src="/assets/golf.mp4"
+            src="/assets/vineland_tour.mp4"
             autoPlay
             loop
             muted
@@ -63,11 +60,11 @@ const Video = () => {
           />
         </div>
 
-        {/* Overlay (not shown during popup) */}
-        {!isPopupOpen && <div className="absolute inset-0 bg-black/20 z-10" />}
+        {/* Overlay */}
+        {!isPopupOpen && <div className="absolute inset-0 bg-black/50 z-10" />}
 
         {/* Text & Play Button */}
-        <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
+        <div className="relative z-20 flex flex-col items-center justify-end pb-8 h-full text-center text-white px-4">
           <h2 className="text-2xl md:text-4xl font-bold mb-4 max-w-3xl">
             Vineland is a place to call home.
             <br />
@@ -101,11 +98,11 @@ const Video = () => {
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
           <div className="relative w-full max-w-5xl aspect-video">
             <iframe
-              src="https://player.vimeo.com/video/1062604156?autoplay=1&loop=1&muted=0&controls=1"
+              src="https://player.vimeo.com/video/1055051324?h=98ceea2b33&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&muted=0"
               className="w-full h-full"
               allow="autoplay; fullscreen"
               allowFullScreen
-              title="Vineland VR Modal Player"
+              title="Vineland Tour Video"
             ></iframe>
             <button
               onClick={() => setIsPopupOpen(false)}
@@ -121,4 +118,3 @@ const Video = () => {
 };
 
 export default Video;
-

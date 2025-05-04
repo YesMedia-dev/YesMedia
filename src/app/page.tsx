@@ -4,7 +4,7 @@ import FeaturedNews from "@/components/FeaturedNews";
 import Banner from "@/components/Banner";
 import Family from "@/components/Family";
 import Video from "@/components/Video";
-import Footer from "@/components/Footer";
+import Photos from "@/components/Photos";
 
 export default function Home() {
   return (
@@ -12,10 +12,10 @@ export default function Home() {
       <HeroSection />
       <ServicesGrid />
       <FeaturedNews />
-      <Banner />
-      <Family />
       <Video />
-      <Footer />
+      <Family />
+      <Banner />
+      <Photos />
     </main>
   );
 }

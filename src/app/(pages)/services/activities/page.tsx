@@ -1,0 +1,82 @@
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+const activityPoints = [
+  "Musical performances",
+  "Fitness activities",
+  "Stretching exercises",
+  "Religious meetings",
+  "Outside entertainment",
+  "Trivia & history",
+  "Gardening",
+  "Field trips/outings",
+];
+
+export default function ActivitiesPage() {
+  return (
+    <main className="max-w-screen-xl mx-auto px-4 py-16">
+      {/* Title */}
+      <motion.section
+        className="text-center mb-12"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-5xl font-bold text-[#428f47] mb-2">Activities</h1>
+        <p className="text-gray-600 text-lg italic">Vineland Post Acute</p>
+      </motion.section>
+
+      {/* Image */}
+      <motion.div
+        className="mb-12 rounded-xl overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+      >
+        <Image
+          src="/assets/activities.jpg"
+          alt="Activities Outdoor Area"
+          width={1400}
+          height={400}
+          className="w-full object-cover h-[350px]"
+        />
+      </motion.div>
+
+      {/* Paragraph */}
+      <motion.p
+        className="text-gray-700 max-w-2xl mx-auto mb-8 text-left text-[17px] leading-relaxed"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+      >
+        We create positive and uplifting social programs and individualized activities to match patient needs and capabilities.
+      </motion.p>
+
+      {/* Bullet point header */}
+      <motion.p
+        className="text-lg font-semibold mb-4 max-w-2xl mx-auto text-left"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+      >
+        Specific activities can include:
+      </motion.p>
+
+      {/* Bullet List */}
+      <ul className="max-w-2xl mx-auto text-gray-700 text-left space-y-2 pl-5 list-disc">
+        {activityPoints.map((point, index) => (
+          <motion.li
+            key={index}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
+          >
+            {point}
+          </motion.li>
+        ))}
+      </ul>
+    </main>
+  );
+}
