@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const ANIMATION_DURATION = 0.6; // ⏱️ Adjust this value for slower or faster animations
+const ANIMATION_DURATION = 0.6; // Adjust this value for slower or faster animations
 
 const services = [
   {
