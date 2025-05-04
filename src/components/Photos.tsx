@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -27,8 +28,19 @@ const Photos = () => {
   const closeModal = () => setShowModal(false);
 
   return (
-    <section className="py-20 pb-24 bg-white px-6 animate-fadeIn relative z-0">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 pb-10 bg-white px-6 animate-fadeIn relative z-0 overflow-hidden">
+      {/* Decorative Green Bubbles — 3 left, 3 right */}
+      {/* Left side */}
+      <div className="absolute w-[100px] h-[100px] bg-green-100 rounded-full top-[-40px] left-[-30px] z-0 opacity-40" />
+      <div className="absolute w-[80px] h-[80px] bg-green-200 rounded-full top-[30%] left-[0px] z-0 opacity-30" />
+      <div className="absolute w-[90px] h-[90px] bg-green-100 rounded-full bottom-[10%] left-[5%] z-0 opacity-30" />
+
+      {/* Right side */}
+      <div className="absolute w-[100px] h-[100px] bg-green-200 rounded-full top-[5%] right-[80px] z-0 opacity-25" />
+      <div className="absolute w-[90px] h-[90px] bg-green-100 rounded-full top-[50%] right-[0px] z-0 opacity-30" />
+      <div className="absolute w-[110px] h-[110px] bg-green-200 rounded-full bottom-[5%] right-[5%] z-0 opacity-20" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
           Life at Vineland
         </h2>
@@ -84,12 +96,12 @@ const Photos = () => {
         </div>
 
         <div className="text-center mt-10">
-          <button
-            onClick={() => openModal(0)}
-            className="px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition"
+          <Link
+            href="/photos"
+            className="inline-block px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition"
           >
             View Photo Collage
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -120,8 +132,8 @@ const Photos = () => {
                       onClick={closeModal}
                       className="absolute bg-white text-gray-700 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200 z-50"
                       style={{
-                        top: "230px",   // Modify this to move up/down
-                        right: "5px", // Modify this to move left/right
+                        top: "230px",
+                        right: "5px",
                       }}
                     >
                       &times;

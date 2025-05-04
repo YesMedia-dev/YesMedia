@@ -11,7 +11,7 @@ export default function Home() {
     <main>
       <HeroSection />
       <ServicesGrid />
-      <FeaturedNews />
+     {/*<FeaturedNews */}
       <Video />
       <Family />
       <Banner />

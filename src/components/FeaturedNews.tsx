@@ -25,7 +25,7 @@ const newsSlides = [
 
 const FeaturedNews = () => {
   return (
-    <section className="pt-32 pb-32 bg-white text-center animate-fadeIn">
+    <section className="pt-20 pb-32 bg-white text-center animate-fadeIn">
       <div className="max-w-6xl mx-auto px-6">
         <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-2">
           Featured News

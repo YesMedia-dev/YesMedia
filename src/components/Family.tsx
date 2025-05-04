@@ -5,7 +5,6 @@ import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import Image from "next/image";
 import "swiper/css";
-import "swiper/css/navigation";
 import React, { useState } from "react";
 
 const testimonials = [
@@ -20,15 +19,19 @@ const testimonials = [
 ];
 
 const Family = () => {
-  // Use proper typing for the Swiper instance
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
-  
-  // These classes will be applied to our custom navigation buttons
   const navigationButtonClasses = "absolute top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-md z-10 cursor-pointer text-blue-800 hover:bg-gray-100";
 
   return (
-    <section className="py-24 bg-gray-50 text-center animate-fadeIn">
-      <div className="max-w-5xl mx-auto px-6 relative">
+    <section className="pt-24 pb-0 bg-white text-center animate-fadeIn relative overflow-hidden">
+     {/* Decorative Bubbles */}
+      <div className="absolute w-[120px] h-[120px] bg-green-100 rounded-full top-[-40px] left-[-30px] z-0 opacity-40" />
+      <div className="absolute w-[100px] h-[100px] bg-green-200 rounded-full bottom-[px] left-[10%] z-0 opacity-30" />
+      <div className="absolute w-[90px] h-[90px] bg-green-100 rounded-full top-[20%] right-[5%] z-0 opacity-30" />
+      <div className="absolute w-[110px] h-[110px] bg-green-200 rounded-full bottom-[20px] right-[15%] z-0 opacity-20" />
+
+
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
           Your Loved Ones Deserve the Best Care
         </h2>
@@ -37,7 +40,6 @@ const Family = () => {
         </p>
 
         <div className="relative">
-          {/* Custom previous button - position as needed */}
           <div 
             className={`${navigationButtonClasses} left-[100px] md:left-[-100px]`}
             onClick={() => swiperInstance?.slidePrev()}
@@ -47,7 +49,6 @@ const Family = () => {
             </svg>
           </div>
 
-          {/* Custom next button - position as needed */}
           <div 
             className={`${navigationButtonClasses} right-4 md:right-[-80px]`}
             onClick={() => swiperInstance?.slideNext()}
