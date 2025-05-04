@@ -64,7 +64,7 @@ const Video = () => {
         {!isPopupOpen && <div className="absolute inset-0 bg-black/50 z-10" />}
 
         {/* Text & Play Button */}
-        <div className="relative z-20 flex flex-col items-center justify-end pb-8 h-full text-center text-white px-4">
+        <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4 pb-6">
           <h2 className="text-2xl md:text-4xl font-bold mb-4 max-w-3xl">
             Vineland is a place to call home.
             <br />

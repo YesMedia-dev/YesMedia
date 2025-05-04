@@ -14,17 +14,24 @@ const GoogleMap = () => {
       });
 
       const { Map, InfoWindow } = await google.importLibrary("maps");
-      const { AdvancedMarkerElement, PinElement } = await google.importLibrary("marker");
+      const { AdvancedMarkerElement, PinElement } = await google.importLibrary(
+        "marker"
+      );
       const { ColorScheme } = await google.importLibrary("core");
 
-      const defaultCenter = {
-        lat: 34.0522,
-        lng: -118.2437,
+      // const defaultCenter = {
+      //   lat: 34.0522,
+      //   lng: -118.2437,
+      // };
+
+      const vinelandCenter = {
+        lat: 34.17913653778753,
+        lng: -118.36711955880061,
       };
 
       const mapOptions: google.maps.MapOptions = {
-        center: defaultCenter,
-        zoom: 8,
+        center: vinelandCenter,
+        zoom: 11,
         mapId: "cd229f410e543e1b",
         colorScheme: ColorScheme.LIGHT,
       };
@@ -34,7 +41,12 @@ const GoogleMap = () => {
         const infoWindow = new InfoWindow();
 
         FACILITIES.forEach((facility) => {
-          const pin = new PinElement({ scale: 1 });
+          const pin = new PinElement({
+            scale: 0.75,
+            background: "#428F47",
+            borderColor: "#26792C",
+            glyphColor: "#26792C",
+          });
 
           const marker = new AdvancedMarkerElement({
             map,
@@ -50,8 +62,14 @@ const GoogleMap = () => {
               <div>
                 ${facility.address}<br/>
                 ${facility.city}, ${facility.state} ${facility.zip}<br/>
-                <a href="tel:${facility.phone.replace(/\D/g, "")}">${facility.phone}</a><br/>
-                <a href="${facility.website}" target="_blank" rel="noopener noreferrer">${facility.website}</a>
+                <a href="tel:${facility.phone.replace(/\D/g, "")}">${
+              facility.phone
+            }</a><br/>
+                <a href="${
+                  facility.website
+                }" target="_blank" rel="noopener noreferrer">${
+              facility.website
+            }</a>
               </div>
             `;
             infoWindow.setHeaderContent(facility.name);

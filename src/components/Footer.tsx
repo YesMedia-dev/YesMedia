@@ -1,28 +1,57 @@
 "use client";
 import React from "react";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import GoogleMap from "./GoogleMap";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-100 text-gray-800 py-12 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 place-items-center">
         {/* Left: Logo & Address */}
         <div>
-        <img src="/assets/vinelandlogo.png" alt="Vineland Logo" className="h-10 mb-4" />
-          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Address</h4>
-          <p>10830 Oxnard St<br />North Hollywood, CA 91606</p>
+          <img
+            src="/assets/vinelandlogo.png"
+            alt="Vineland Logo"
+            className="h-10 mb-4"
+          />
+          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">
+            Address
+          </h4>
+          <p>
+            10830 Oxnard St
+            <br />
+            North Hollywood, CA 91606
+          </p>
         </div>
 
         {/* Middle: Contact + Social */}
         <div>
-          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Contact Us</h4>
-          <p>Tel: 818-763-8247<br />Fax: 818-279-7385</p>
-          <h4 className="text-sm font-bold uppercase mt-4 mb-1 text-gray-600">Social Media</h4>
+          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">
+            Contact Us
+          </h4>
+          <p>
+            Tel: 818-763-8247
+            <br />
+            Fax: 818-279-7385
+          </p>
+          <h4 className="text-sm font-bold uppercase mt-4 mb-1 text-gray-600">
+            Social Media
+          </h4>
           <div className="flex gap-4 text-xl">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
               <FaFacebookF />
             </a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
               <FaLinkedinIn />
             </a>
           </div>
@@ -30,7 +59,9 @@ const Footer = () => {
 
         {/* Right: CNA School + CTA */}
         <div>
-          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Free CNA School</h4>
+          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">
+            Free CNA School
+          </h4>
           <img src="/assets/edutrack.jpg" alt="EDUTRACK" className="h-8 mb-4" />
           <a
             href="#"
