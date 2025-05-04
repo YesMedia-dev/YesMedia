@@ -8,6 +8,7 @@ const FACILITIES = [
     phone: "(323) 737-2000",
     website: "www.AlcottRehabilitation.com",
     pos: { lat: 34.0530714373979, lng: -118.31714091349116 },
+    color: "#FFFFFF",
   },
   {
     name: "ANAHEIM HEALTHCARE",
@@ -18,6 +19,7 @@ const FACILITIES = [
     phone: "(714) 816-0540",
     website: "www.AnaheimHealthcare.com",
     pos: { lat: 33.826426389994985, lng: -117.99362442997688 },
+    color: "#FFFFFF",
   },
   {
     name: "CITRUS NURSING",
@@ -28,6 +30,7 @@ const FACILITIES = [
     phone: "(909) 823-3481",
     website: "www.CitrusNursing.com",
     pos: { lat: 34.082596534431, lng: -117.45489240298542 },
+    color: "#FFFFFF",
   },
   {
     name: "COLLEGE VISTA",
@@ -38,6 +41,7 @@ const FACILITIES = [
     phone: "(323) 257-8151",
     website: "www.CollegeVistaCare.com",
     pos: { lat: 34.12973649713725, lng: -118.21755235880238 },
+    color: "#FFFFFF",
   },
   {
     name: "COMMUNITY CARE & REHABILITATION",
@@ -48,6 +52,7 @@ const FACILITIES = [
     phone: "(951) 680-6500",
     website: "www.CommunityCareandRehab.com",
     pos: { lat: 33.96085594619692, lng: -117.39656813182603 },
+    color: "#FFFFFF",
   },
   {
     name: "COUNTRY OAKS",
@@ -58,6 +63,7 @@ const FACILITIES = [
     phone: "(909) 622-1067",
     website: "www.CountryOaksCareCenter.us",
     pos: { lat: 34.10102199178756, lng: -117.7697045196175 },
+    color: "#FFFFFF",
   },
   {
     name: "DEL MAR",
@@ -68,6 +74,7 @@ const FACILITIES = [
     phone: "(626) 288-8353",
     website: "www.DelMarHospital.com",
     pos: { lat: 34.065811182713524, lng: -118.09888368094715 },
+    color: "#FFFFFF",
   },
   {
     name: "EXTENDED CARE",
@@ -78,6 +85,7 @@ const FACILITIES = [
     phone: "(951) 687-3842",
     website: "www.extendedcarehospital.com",
     pos: { lat: 33.935388520247535, lng: -117.42230264531813 },
+    color: "#FFFFFF",
   },
   {
     name: "FRENCH PARK",
@@ -88,6 +96,7 @@ const FACILITIES = [
     phone: "(714) 973-1656",
     website: "www.FrenchParkCareCenter.com",
     pos: { lat: 33.75568905896885, lng: -117.86229453368718 },
+    color: "#FFFFFF",
   },
   {
     name: "GARDEN PARK",
@@ -98,6 +107,7 @@ const FACILITIES = [
     phone: "(714) 971-2153",
     website: "www.GardenParkCareCenter.com",
     pos: { lat: 33.77884968194595, lng: -117.9066984606688 },
+    color: "#FFFFFF",
   },
   {
     name: "GORDON LANE",
@@ -108,6 +118,7 @@ const FACILITIES = [
     phone: "(714) 879-7301",
     website: "www.GordonLaneCareCenter.com",
     pos: { lat: 33.8747795128682, lng: -117.89693602626751 },
+    color: "#FFFFFF",
   },
   {
     name: "HERITAGE MANOR",
@@ -118,6 +129,7 @@ const FACILITIES = [
     phone: "(626) 573-3141",
     website: "www.HeritageManorCare.com",
     pos: { lat: 34.06899949566121, lng: -118.12242754716723 },
+    color: "#FFFFFF",
   },
   {
     name: "MISSION CARE (SUB-ACUTE)",
@@ -128,6 +140,7 @@ const FACILITIES = [
     phone: "(951) 688-2222",
     website: "www.MissionCareCenter.com",
     pos: { lat: 33.93183670817216, lng: -117.42838224531833 },
+    color: "#FFFFFF",
   },
   {
     name: "MONTEREY PARK",
@@ -138,6 +151,7 @@ const FACILITIES = [
     phone: "(626) 280-0280",
     website: "www.MontereyParkCare.com",
     pos: { lat: 34.06706832660523, lng: -118.12268132760052 },
+    color: "#FFFFFF",
   },
   {
     name: "NORTH VALLEY",
@@ -148,6 +162,7 @@ const FACILITIES = [
     phone: "(818) 352-1454",
     website: "www.NorthValleyNursingCenter.com",
     pos: { lat: 34.257484740916304, lng: -118.29987771832427 },
+    color: "#FFFFFF",
   },
   {
     name: "PACIFIC POST-ACUTE",
@@ -158,6 +173,7 @@ const FACILITIES = [
     phone: "(310) 453-5456",
     website: "www.PacificPostAcute.com",
     pos: { lat: 34.027794875674765, lng: -118.48366931833253 },
+    color: "#FFFFFF",
   },
   {
     name: "PARAMOUNT",
@@ -168,6 +184,7 @@ const FACILITIES = [
     phone: "(562) 634-6877",
     website: "www.ParamountConvalescent.com",
     pos: { lat: 33.90333452043277, lng: -118.14951901648297 },
+    color: "#FFFFFF",
   },
   {
     name: "PARK REGENCY CARE",
@@ -178,6 +195,7 @@ const FACILITIES = [
     phone: "(714) 773-0750",
     website: "www.ParkRegencyCare.com",
     pos: { lat: 33.931507383860996, lng: -117.9660402741546 },
+    color: "#FFFFFF",
   },
   {
     name: "PARK REGENCY RETIREMENT",
@@ -188,6 +206,7 @@ const FACILITIES = [
     phone: "(562) 691-3822",
     website: "www.ParkRegencyRetirement.com",
     pos: { lat: 33.93190125387858, lng: -117.96517419928311 },
+    color: "#FFFFFF",
   },
   {
     name: "PELICAN RIDGE POST-ACUTE",
@@ -198,6 +217,7 @@ const FACILITIES = [
     phone: "(949) 642-8044",
     website: "www.PelicanRidgePostAcute.com",
     pos: { lat: 33.62808424037945, lng: -117.92802817231146 },
+    color: "#FFFFFF",
   },
   {
     name: "POMONA VISTA",
@@ -208,6 +228,7 @@ const FACILITIES = [
     phone: "(909) 623-2481",
     website: "www.PomonaVistaCareCenter.com",
     pos: { lat: 34.06429893706353, lng: -117.7522927146234 },
+    color: "#FFFFFF",
   },
   {
     name: "SIERRA VIEW",
@@ -218,6 +239,7 @@ const FACILITIES = [
     phone: "(626) 960-1971",
     website: "www.SierraViewCareCenter.com",
     pos: { lat: 34.09504916771106, lng: -117.96221172625945 },
+    color: "#FFFFFF",
   },
   {
     name: "SUN MAR NURSING",
@@ -228,6 +250,7 @@ const FACILITIES = [
     phone: "(714) 776-1720",
     website: "www.SunMarNursing.com",
     pos: { lat: 33.82463041338142, lng: -117.94209114161428 },
+    color: "#FFFFFF",
   },
   {
     name: "SUNSET MANOR",
@@ -238,6 +261,7 @@ const FACILITIES = [
     phone: "(626) 443-9425",
     website: "www.SunsetManorCare.com",
     pos: { lat: 34.06116996697163, lng: -118.03628055695107 },
+    color: "#FFFFFF",
   },
   {
     name: "TARZANA",
@@ -248,6 +272,7 @@ const FACILITIES = [
     phone: "(818) 881-4261",
     website: "www.TarzanaHealthandRehab.com",
     pos: { lat: 34.174087018289555, lng: -118.5357255011283 },
+    color: "#FFFFFF",
   },
   {
     name: "VICTORIA CARE",
@@ -258,6 +283,7 @@ const FACILITIES = [
     phone: "(626) 962-1043",
     website: "www.TheVictoriaCareCenter.com",
     pos: { lat: 34.13403597694026, lng: -117.96014660957887 },
+    color: "#FFFFFF",
   },
   {
     name: "VILLA RANCHO BERNARDO",
@@ -268,6 +294,7 @@ const FACILITIES = [
     phone: "(858) 672-3900",
     website: "www.VillaRanchoBernardo.com",
     pos: { lat: 33.006118757187835, lng: -117.09403874164322 },
+    color: "#FFFFFF",
   },
   {
     name: "VINELAND POST ACUTE",
@@ -278,6 +305,7 @@ const FACILITIES = [
     phone: "(818) 763-8247",
     website: "www.VinelandPostAcute.com",
     pos: { lat: 34.17913653778753, lng: -118.36711955880061 },
+    color: "#428F47",
   },
 ];
 

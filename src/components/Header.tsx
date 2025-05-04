@@ -35,7 +35,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 w-full shadow-sm z-50">
+    <header className="fixed top-0 w-full shadow-sm z-50 bg-transparent">
       {/* Colored strip */}
       <div className="w-full h-4 bg-[#428f47]" />
 
@@ -210,4 +210,3 @@ const Header = () => {
 };
 
 export default Header;
-

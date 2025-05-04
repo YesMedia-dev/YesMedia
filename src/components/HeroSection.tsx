@@ -15,14 +15,16 @@ const slides = [
   {
     image: "/assets/chef.jpeg",
     title: "True Love is a Homecooked Meal",
-    subtitle: "Meet Chef Jose Ramirez, Culinary Director of Vineland Post Acute",
+    subtitle:
+      "Meet Chef Jose Ramirez, Culinary Director of Vineland Post Acute",
     description:
       "With decades of experience and a heart for healing, Chef Jose brings warmth to the table with every dish he prepares.",
   },
   {
     image: "/assets/outside1.jpeg",
     title: "A Place to Enjoy",
-    subtitle: "Our beautifully renovated facility offers peace, safety, and comfort.",
+    subtitle:
+      "Our beautifully renovated facility offers peace, safety, and comfort.",
     description:
       "Vineland Post Acute is committed to providing exceptional skilled nursing and rehabilitation services in a serene environment.",
   },
@@ -32,7 +34,7 @@ const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative w-full h-[75vh]">
+    <section className="relative w-full h-screen">
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         autoplay={{ delay: 7000, disableOnInteraction: false }}
@@ -45,7 +47,7 @@ const HeroSection = () => {
       >
         {slides.map((slide, idx) => (
           <SwiperSlide key={idx}>
-            <div className="relative w-full h-[75vh]">
+            <div className="relative w-full h-screen">
               <Image
                 src={slide.image}
                 alt={`Slide ${idx + 1}`}
@@ -76,9 +78,18 @@ const HeroSection = () => {
         ))}
       </Swiper>
 
-      {/* Map in bottom-right corner */}
-      <div className="absolute bottom-4 right-4 w-[450px] h-[250px] rounded-lg overflow-hidden border border-white shadow-lg z-20">
-        <GoogleMap />
+      <div className="hidden 2xl:block absolute bottom-4 right-4 w-[450px] h-[250px] z-20">
+        {/* Text above the map, centered and constrained */}
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white text-center px-2 w-[450px]">
+          <p className="text-md md:text-lg drop-shadow font-bold break-words">
+            Find a Sun Mar Facility Near You
+          </p>
+        </div>
+
+        {/* Map container */}
+        <div className="w-full h-full rounded-lg overflow-hidden border border-white shadow-lg">
+          <GoogleMap />
+        </div>
       </div>
     </section>
   );
