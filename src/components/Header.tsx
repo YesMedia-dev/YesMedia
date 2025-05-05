@@ -7,26 +7,31 @@ import Link from "next/link";
 const Header = () => {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const aboutRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
 
     function handleClickOutside(event: MouseEvent) {
       if (
-        aboutRef.current &&
-        !aboutRef.current.contains(event.target as Node)
+        aboutRef.current && !aboutRef.current.contains(event.target as Node)
       ) {
         setAboutOpen(false);
       }
       if (
-        servicesRef.current &&
-        !servicesRef.current.contains(event.target as Node)
+        servicesRef.current && !servicesRef.current.contains(event.target as Node)
       ) {
         setServicesOpen(false);
+      }
+      if (
+        contactRef.current && !contactRef.current.contains(event.target as Node)
+      ) {
+        setContactOpen(false);
       }
     }
 
@@ -55,10 +60,7 @@ const Header = () => {
 
           {/* Center Nav Links */}
           <nav className="hidden md:flex gap-6 text-base font-medium text-gray-700 relative">
-            <Link
-              href="/"
-              className="hover:underline underline-offset-4 transition duration-200"
-            >
+            <Link href="/" className="hover:underline underline-offset-4 transition duration-200">
               Home
             </Link>
 
@@ -68,6 +70,7 @@ const Header = () => {
                 onClick={() => {
                   setAboutOpen(!aboutOpen);
                   setServicesOpen(false);
+                  setContactOpen(false);
                 }}
                 className="hover:underline underline-offset-4 transition duration-200"
               >
@@ -114,6 +117,7 @@ const Header = () => {
                 onClick={() => {
                   setServicesOpen(!servicesOpen);
                   setAboutOpen(false);
+                  setContactOpen(false);
                 }}
                 className="hover:underline underline-offset-4 transition duration-200"
               >
@@ -172,31 +176,53 @@ const Header = () => {
               )}
             </div>
 
-            {/* Other Pages */}
-            <Link
-              href="/photos"
-              className="hover:underline underline-offset-4 transition duration-200"
-            >
+            <Link href="/photos" className="hover:underline underline-offset-4 transition duration-200">
               Photos
             </Link>
-            <Link
-              href="/location"
-              className="hover:underline underline-offset-4 transition duration-200"
-            >
+            <Link href="/location" className="hover:underline underline-offset-4 transition duration-200">
               Location
             </Link>
-            <Link
-              href="/careers"
-              className="hover:underline underline-offset-4 transition duration-200"
-            >
+            <Link href="/careers" className="hover:underline underline-offset-4 transition duration-200">
               Careers
             </Link>
-            <Link
-              href="/contact-us"
-              className="hover:underline underline-offset-4 transition duration-200"
-            >
-              Contact Us
-            </Link>
+
+            {/* Contact Us Dropdown */}
+            <div className="relative" ref={contactRef}>
+              <button
+                onClick={() => {
+                  setContactOpen(!contactOpen);
+                  setAboutOpen(false);
+                  setServicesOpen(false);
+                }}
+                className="hover:underline underline-offset-4 transition duration-200"
+              >
+                Contact Us
+              </button>
+              {mounted && contactOpen && (
+                <div className="absolute top-full left-0 mt-2 bg-white border shadow-md rounded-md w-64 p-4 z-50">
+                  <ul className="flex flex-col gap-2 text-sm text-gray-800">
+                    <li>
+                      <Link
+                        href="/contact-us/email"
+                        className="hover:underline"
+                        onClick={() => setContactOpen(false)}
+                      >
+                        Email Us
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/contact-us/tour"
+                        className="hover:underline"
+                        onClick={() => setContactOpen(false)}
+                      >
+                        Schedule a Tour
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Right placeholder */}

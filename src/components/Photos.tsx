@@ -8,7 +8,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
+  
 const photos = [
   { image: "/assets/house.jpeg", alt: "Facility Exterior" },
   { image: "/assets/bear.jpeg", alt: "Bear on Table" },

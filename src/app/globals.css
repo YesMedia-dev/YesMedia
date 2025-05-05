@@ -50,3 +50,52 @@
     animation: fadeIn 1s ease-out both;
   }
 }
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(200%) rotate(25deg);
+  }
+}
+
+.sparkle-container {
+  position: relative;
+  display: inline-block;
+}
+
+.sparkle-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.sparkle-container:hover::after {
+  opacity: 1;
+  animation: sparkle-pulse 0.8s ease-out forwards;
+}
+
+@keyframes sparkle-pulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.4) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.6) rotate(90deg);
+  }
+}
+

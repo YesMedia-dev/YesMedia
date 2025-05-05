@@ -14,10 +14,10 @@ const Banner = () => {
 
       <div className="relative z-10 text-white max-w-3xl">
         <h2 className="text-2xl md:text-3xl font-semibold mb-2">
-          “Southern California's Greatest Elder Care facility.”
+        "Proudly Rated Five Stars"
         </h2>
         <p className="text-sm md:text-base font-light">
-          — U.S. News & World Report, 2024–2025
+          — Centers for Medicaid and Medicare Services
         </p>
       </div>
     </section>
