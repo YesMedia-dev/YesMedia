@@ -39,8 +39,17 @@ const services = [
 const ServicesGrid = () => {
   return (
     <section className="bg-white text-center animate-fadeIn relative overflow-visible">
-      <div className="py-20 max-w-6xl mx-auto px-8 relative">
-        {/* Header Text (replacing the image) */}
+      {/* Decorative Green Bubbles */}
+      <div className="absolute w-[100px] h-[100px] bg-green-100 rounded-full top-[-30px] left-[-30px] z-0 opacity-30" />
+      <div className="absolute w-[80px] h-[80px] bg-green-200 rounded-full bottom-[10%] left-[5%] z-0 opacity-25" />
+      <div className="absolute w-[90px] h-[90px] bg-green-100 rounded-full top-[35%] left-[250px] z-0 opacity-30" />
+      <div className="absolute w-[70px] h-[70px] bg-green-200 rounded-full bottom-[25%] left-[20%] z-0 opacity-20" />
+
+      <div className="absolute w-[110px] h-[110px] bg-green-100 rounded-full top-[20%] right-[-40px] z-0 opacity-30" />
+      <div className="absolute w-[90px] h-[90px] bg-green-200 rounded-full bottom-[5%] right-[10%] z-0 opacity-20" />
+
+      <div className="py-20 max-w-6xl mx-auto px-8 relative z-10">
+        {/* Header Text */}
         <div className="mb-14">
           <p className="text-[#428f47] text-2xl font-semibold uppercase tracking-widest mb-2">
             SERVICES
@@ -95,3 +104,4 @@ const ServicesGrid = () => {
 };
 
 export default ServicesGrid;
+

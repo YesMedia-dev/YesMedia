@@ -15,10 +15,8 @@ const slides = [
   {
     image: "/assets/chef.jpeg",
     title: "True Love is a Homecooked Meal",
-    subtitle:
-      "Meet Chef Jose Ramirez, Culinary Director of Vineland Post Acute",
     description:
-      "With decades of experience and a heart for healing, Chef Jose brings warmth to the table with every dish he prepares.",
+      "Our chefs bring decades of experience and culinary expertise, preparing the finest healthy meals with care and dedication for our residents.",
   },
   {
     image: "/assets/outside1.jpeg",
@@ -26,7 +24,7 @@ const slides = [
     subtitle:
       "Our beautifully renovated facility offers peace, safety, and comfort.",
     description:
-      "Vineland Post Acute is committed to providing exceptional skilled nursing and rehabilitation services in a serene environment.",
+      "We are committed to providing exceptional skilled nursing and rehabilitation services in a serene environment.",
   },
 ];
 
@@ -59,7 +57,7 @@ const HeroSection = () => {
               />
 
               {/* TEXT OVERLAY */}
-              <div className="absolute top-[75%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4">
+              <div className="absolute top-[85%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4">
                 <p className="text-xl tracking-widest uppercase font-semibold mb-2">
                   FIRST CLASS CARE
                 </p>
