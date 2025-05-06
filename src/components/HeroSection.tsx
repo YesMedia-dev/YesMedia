@@ -28,7 +28,7 @@ const slides = [
 ];
 
 const HeroSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [, setActiveIndex] = useState(0);
 
   return (
     <section className="relative w-full h-screen">

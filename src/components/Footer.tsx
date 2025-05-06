@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -8,7 +9,13 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 place-items-start md:place-items-center">
         {/* Left: Logo & Address */}
         <div className="col-span-1">
-          <img src="/assets/vinelandlogo.png" alt="Vineland Logo" className="h-10 mb-4" />
+          <Image
+            src="/assets/vinelandlogo.png"
+            alt="Vineland Logo"
+            width={120}
+            height={40}
+            className="object-contain mb-4"
+          />
           <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Address</h4>
           <p>
             10830 Oxnard St
@@ -49,7 +56,7 @@ const Footer = () => {
         {/* Middle Right: CNA School */}
         <div className="col-span-1">
           <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Free CNA School</h4>
-          <img src="/assets/edutrack.jpg" alt="EDUTRACK" className="h-8 mb-4" />
+          <Image src="/assets/edutrack.jpg" alt="EDUTRACK" width={180} height={40} className="h-8 mb-4" />
           <a
             href="https://suncloudtraining.com/"
             target="_blank"
@@ -63,7 +70,13 @@ const Footer = () => {
         {/* Right: Five Star Badge with sparkle animation */}
         <div className="col-span-1 flex justify-center items-center">
           <div className="sparkle-container transform -translate-x-10 -translate-y-2">
-            <img src="/assets/fivestar.png" alt="Five Star Rating" className="h-36 object-contain" />
+            <Image
+              src="/assets/fivestar.png"
+              alt="Five Star Rating"
+              width={350}
+              height={350}
+              className="h-36 object-contain"
+            />
           </div>
         </div>
       </div>

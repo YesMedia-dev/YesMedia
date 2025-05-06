@@ -53,7 +53,7 @@ const Family = () => {
 
                   {/* Right: Testimonial */}
                   <div className="w-full md:w-[45%] bg-green-50 p-6 md:p-8 rounded-2xl shadow-sm text-left">
-                    <p className="text-gray-800 text-lg leading-relaxed italic">"{item.text}"</p>
+                    <p className="text-gray-800 text-lg leading-relaxed italic">&quot;{item.text}&quot;</p>
                   </div>
                 </div>
               </SwiperSlide>
