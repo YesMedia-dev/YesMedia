@@ -35,9 +35,10 @@ const Contact = () => {
       });
 
       let result = null;
+      const clone = res.clone(); // ✅ Clone to avoid consuming the body
 
       try {
-        result = await res.json();
+        result = await clone.json();
         console.log("📬 Server response:", result);
       } catch (jsonError) {
         console.error("❌ Failed to parse JSON response:", jsonError);
@@ -100,13 +101,7 @@ const Contact = () => {
           className="rounded-xl overflow-hidden shadow-lg mb-12"
         >
           <div className="relative w-full h-[400px] md:h-[350px]">
-            <Image
-              src="/assets/outside3.jpeg"
-              alt="Facility"
-              fill
-              className="object-cover rounded-xl"
-              priority
-            />
+            <Image src="/assets/outside3.jpeg" alt="Facility" fill className="object-cover rounded-xl" priority />
           </div>
         </motion.div>
 
@@ -221,6 +216,7 @@ const Contact = () => {
 };
 
 export default Contact;
+
 
 
 
