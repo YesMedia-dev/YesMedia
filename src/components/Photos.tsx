@@ -8,7 +8,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-  
+
 const photos = [
   { image: "/assets/house.jpeg", alt: "Facility Exterior" },
   { image: "/assets/bear.jpeg", alt: "Bear on Table" },
@@ -41,57 +41,35 @@ const Photos = () => {
       <div className="absolute w-[110px] h-[110px] bg-green-200 rounded-full bottom-[5%] right-[5%] z-0 opacity-20" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
-          Life at Vineland
-        </h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Life at Vineland</h2>
 
         <div className="grid grid-cols-6 gap-4 auto-rows-[200px]">
           <div
             className="col-span-4 row-span-2 relative rounded-xl overflow-hidden shadow-lg cursor-pointer"
             onClick={() => openModal(0)}
           >
-            <Image
-              src="/assets/house.jpeg"
-              alt="Facility Exterior"
-              fill
-              className="rounded-xl object-cover"
-            />
+            <Image src="/assets/house.jpeg" alt="Facility Exterior" fill className="rounded-xl object-cover" />
           </div>
 
           <div
             className="col-span-2 row-span-1 relative rounded-xl overflow-hidden shadow-md cursor-pointer"
             onClick={() => openModal(1)}
           >
-            <Image
-              src="/assets/bear.jpeg"
-              alt="Bear on Table"
-              fill
-              className="rounded-xl object-cover"
-            />
+            <Image src="/assets/bear.jpeg" alt="Bear on Table" fill className="rounded-xl object-cover" />
           </div>
 
           <div
             className="col-span-2 row-span-1 relative rounded-xl overflow-hidden shadow-md cursor-pointer"
             onClick={() => openModal(2)}
           >
-            <Image
-              src="/assets/room.jpeg"
-              alt="Therapy Room"
-              fill
-              className="rounded-xl object-cover"
-            />
+            <Image src="/assets/room.jpeg" alt="Therapy Room" fill className="rounded-xl object-cover" />
           </div>
 
           <div
             className="col-span-6 row-span-2 relative rounded-xl overflow-hidden shadow-md mt-4 cursor-pointer"
             onClick={() => openModal(3)}
           >
-            <Image
-              src="/assets/outside2.jpeg"
-              alt="Courtyard"
-              fill
-              className="rounded-xl object-cover"
-            />
+            <Image src="/assets/outside2.jpeg" alt="Courtyard" fill className="rounded-xl object-cover" />
           </div>
         </div>
 
@@ -116,18 +94,9 @@ const Photos = () => {
               className="h-full"
             >
               {photos.map((photo, idx) => (
-                <SwiperSlide
-                  key={idx}
-                  className="flex items-center justify-center bg-transparent"
-                >
+                <SwiperSlide key={idx} className="flex items-center justify-center bg-transparent">
                   <div className="relative w-full h-full flex items-center justify-center">
-                    <Image
-                      src={photo.image}
-                      alt={photo.alt}
-                      fill
-                      className="object-contain rounded-lg"
-                      priority
-                    />
+                    <Image src={photo.image} alt={photo.alt} fill className="object-contain rounded-lg" priority />
                     <button
                       onClick={closeModal}
                       className="absolute bg-white text-gray-700 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200 z-50"

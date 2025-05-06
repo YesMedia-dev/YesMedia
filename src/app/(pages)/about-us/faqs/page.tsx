@@ -47,13 +47,11 @@ const faqs: FAQ[] = [
   },
   {
     question: "Can my loved one receive mail?",
-    answer:
-      `Definitely. Mail is delivered to patients personally on a daily basis except for weekends and holidays.\n\nVineland Post Acute\nAttn: ____________ Room No.\n10830 Oxnard St\nNorth Hollywood, CA 91606`,
+    answer: `Definitely. Mail is delivered to patients personally on a daily basis except for weekends and holidays.\n\nVineland Post Acute\nAttn: ____________ Room No.\n10830 Oxnard St\nNorth Hollywood, CA 91606`,
   },
   {
     question: "Is smoking permitted in the facility?",
-    answer:
-      "For the safety and welfare of all patients and staff, this facility is a non-smoking facility.",
+    answer: "For the safety and welfare of all patients and staff, this facility is a non-smoking facility.",
   },
   {
     question: "My loved one has a favorite chair that I’d like to bring to the facility. Can you accommodate this?",
@@ -82,8 +80,7 @@ const faqs: FAQ[] = [
   },
   {
     question: "What articles of clothing should I bring?",
-    answer:
-      `We recommend approximately five changes of clothing and a pair of comfortable rubber-soled shoes. All articles should be washed, clearly labeled with the resident’s name in permanent ink, and entered into the patients’ personal inventory log in the medical chart. Other personal items should be marked or engraved for identification.\n\nWe advise that patients do not keep valuable jewelry or large amounts of cash in the facility.\n\nLADIES\n• Dresses\n• Pants\n• Blouses (with front snaps)\n• Socks/Nylons\n• Walking shoes (non-skid soles; velcro)\n• Undergarments\n• Nightgown/Pajamas\n• Robe\n• Sweaters (with large buttons)\n\nGENTLEMEN\n• Shirts (button down suggested)\n• Pants\n• Belts/Suspenders\n• Socks\n• Walking Shoes (non-skid soles; velcro)\n• Undergarments\n• Pajamas\n• Robe\n• Electric Razor`,
+    answer: `We recommend approximately five changes of clothing and a pair of comfortable rubber-soled shoes. All articles should be washed, clearly labeled with the resident’s name in permanent ink, and entered into the patients’ personal inventory log in the medical chart. Other personal items should be marked or engraved for identification.\n\nWe advise that patients do not keep valuable jewelry or large amounts of cash in the facility.\n\nLADIES\n• Dresses\n• Pants\n• Blouses (with front snaps)\n• Socks/Nylons\n• Walking shoes (non-skid soles; velcro)\n• Undergarments\n• Nightgown/Pajamas\n• Robe\n• Sweaters (with large buttons)\n\nGENTLEMEN\n• Shirts (button down suggested)\n• Pants\n• Belts/Suspenders\n• Socks\n• Walking Shoes (non-skid soles; velcro)\n• Undergarments\n• Pajamas\n• Robe\n• Electric Razor`,
   },
   {
     question: "Personal Laundry:",
@@ -92,8 +89,7 @@ const faqs: FAQ[] = [
   },
   {
     question: "Clothing and Laundry Tips:",
-    answer:
-      `All personal clothing is washed in an industrial washing machine at a temperature of 180-degrees. Make sure your loved ones’ clothing is appropriate for washing and drying in these hot temperatures. Clothing that requires cold or warm water or special care is subject to damage and fading.\n\nAll clothing must be labeled. Please label the clothing with the resident name, NOT the room number or initials. Mark clearly and in large letters on the inside neckline or waistband. All items must be marked including socks, shoes, and other personal items.`,
+    answer: `All personal clothing is washed in an industrial washing machine at a temperature of 180-degrees. Make sure your loved ones’ clothing is appropriate for washing and drying in these hot temperatures. Clothing that requires cold or warm water or special care is subject to damage and fading.\n\nAll clothing must be labeled. Please label the clothing with the resident name, NOT the room number or initials. Mark clearly and in large letters on the inside neckline or waistband. All items must be marked including socks, shoes, and other personal items.`,
   },
   {
     question: "Will my loved one have telephone access?",
@@ -112,8 +108,7 @@ const faqs: FAQ[] = [
   },
   {
     question: "How often will the Rehabilitation staff work with my loved one?",
-    answer:
-      "Our Rehabilitation staff will work with our residents 6 days a week up to 2 hours a day!",
+    answer: "Our Rehabilitation staff will work with our residents 6 days a week up to 2 hours a day!",
   },
   {
     question: "Will Medicare Part A cover my stay in the facility?",
@@ -122,8 +117,7 @@ const faqs: FAQ[] = [
   },
   {
     question: "Links to other helpful senior sites",
-    answer:
-      `Compare skilled nursing facilities in your area\nMedicare mainpage\nMedicare Eligibility\nFrequently asked Medicare questions\nMedicaid mainpage\nFrequently asked Medi-Cal questions\nAARP\nAmerican Diabetes Association\nAlzheimer’s Association\nFind a physician\nJoint Commission (JCAHO)\nMaking the Move to Assisted Living\nMoving Tips for Seniors\nSenior Health Resources\nNutrition Guide for the Aging and Elderly\nBoomer’s Roadmap to Aging in Place\nFinancial Resources for Seniors\nVeterans Benefits for Seniors\nLegal Planning for Alzheimer’s and Dementia`,
+    answer: `Compare skilled nursing facilities in your area\nMedicare mainpage\nMedicare Eligibility\nFrequently asked Medicare questions\nMedicaid mainpage\nFrequently asked Medi-Cal questions\nAARP\nAmerican Diabetes Association\nAlzheimer’s Association\nFind a physician\nJoint Commission (JCAHO)\nMaking the Move to Assisted Living\nMoving Tips for Seniors\nSenior Health Resources\nNutrition Guide for the Aging and Elderly\nBoomer’s Roadmap to Aging in Place\nFinancial Resources for Seniors\nVeterans Benefits for Seniors\nLegal Planning for Alzheimer’s and Dementia`,
   },
 ];
 
@@ -170,8 +164,8 @@ export default function GeneralFAQsPage() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        You’ve got questions. We’ve got answers. If this page doesn’t solve your concerns,
-        please call us and we’ll do our best to help you.
+        You’ve got questions. We’ve got answers. If this page doesn’t solve your concerns, please call us and we’ll do
+        our best to help you.
       </motion.p>
 
       {/* FAQ List with Staggered Animation */}

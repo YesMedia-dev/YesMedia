@@ -32,12 +32,8 @@ const Family = () => {
       <div className="absolute w-[110px] h-[110px] bg-green-200 rounded-full bottom-[20px] right-[15%] z-0 opacity-20" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Your Loved Ones Deserve the Best Care
-        </h2>
-        <p className="text-lg text-gray-700 mb-12">
-          Everyone is family here at Vineland Post Acute
-        </p>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Your Loved Ones Deserve the Best Care</h2>
+        <p className="text-lg text-gray-700 mb-12">Everyone is family here at Vineland Post Acute</p>
 
         <div className="relative">
           <Swiper
@@ -52,19 +48,12 @@ const Family = () => {
                 <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
                   {/* Left: Image */}
                   <div className="w-full md:w-[55%] h-[400px] relative rounded-2xl overflow-hidden shadow-xl">
-                    <Image
-                      src={item.image}
-                      alt={`Testimonial ${idx + 1}`}
-                      fill
-                      className="object-cover"
-                    />
+                    <Image src={item.image} alt={`Testimonial ${idx + 1}`} fill className="object-cover" />
                   </div>
 
                   {/* Right: Testimonial */}
                   <div className="w-full md:w-[45%] bg-green-50 p-6 md:p-8 rounded-2xl shadow-sm text-left">
-                    <p className="text-gray-800 text-lg leading-relaxed italic">
-                      "{item.text}"
-                    </p>
+                    <p className="text-gray-800 text-lg leading-relaxed italic">"{item.text}"</p>
                   </div>
                 </div>
               </SwiperSlide>
@@ -119,5 +108,3 @@ const Family = () => {
 };
 
 export default Family;
-
-

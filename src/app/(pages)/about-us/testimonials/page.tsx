@@ -114,9 +114,7 @@ export default function TestimonialsPage() {
               <div className="flex justify-center mb-4">
                 <Image src="/assets/quotes.png" alt="Quotes" width={80} height={80} />
               </div>
-              <p className="text-gray-700 text-sm mb-4">
-                {t.full.split(" ").slice(0, 40).join(" ")}...
-              </p>
+              <p className="text-gray-700 text-sm mb-4">{t.full.split(" ").slice(0, 40).join(" ")}...</p>
               <p className="font-semibold">{t.name}</p>
               <p className="text-sm text-gray-500">{t.source}</p>
             </motion.div>
@@ -150,9 +148,7 @@ export default function TestimonialsPage() {
               <Image src="/assets/quotes.png" alt="Quotes" width={60} height={60} />
             </div>
 
-            <p className="text-gray-700 mb-4">
-              {testimonials[modalIndex].full}
-            </p>
+            <p className="text-gray-700 mb-4">{testimonials[modalIndex].full}</p>
 
             <p className="font-semibold">{testimonials[modalIndex].name}</p>
             <p className="text-sm text-gray-500">{testimonials[modalIndex].source}</p>

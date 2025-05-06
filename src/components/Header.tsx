@@ -18,19 +18,13 @@ const Header = () => {
     setMounted(true);
 
     function handleClickOutside(event: MouseEvent) {
-      if (
-        aboutRef.current && !aboutRef.current.contains(event.target as Node)
-      ) {
+      if (aboutRef.current && !aboutRef.current.contains(event.target as Node)) {
         setAboutOpen(false);
       }
-      if (
-        servicesRef.current && !servicesRef.current.contains(event.target as Node)
-      ) {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
         setServicesOpen(false);
       }
-      if (
-        contactRef.current && !contactRef.current.contains(event.target as Node)
-      ) {
+      if (contactRef.current && !contactRef.current.contains(event.target as Node)) {
         setContactOpen(false);
       }
     }
@@ -80,11 +74,7 @@ const Header = () => {
                 <div className="absolute top-full left-0 mt-2 bg-white border shadow-md rounded-md w-64 p-4 z-50">
                   <ul className="flex flex-col gap-2 text-sm text-gray-800">
                     <li>
-                      <Link
-                        href="/about-us/who-we-are"
-                        className="hover:underline"
-                        onClick={() => setAboutOpen(false)}
-                      >
+                      <Link href="/about-us/who-we-are" className="hover:underline" onClick={() => setAboutOpen(false)}>
                         Who We Are
                       </Link>
                     </li>
@@ -98,11 +88,7 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/about-us/faqs"
-                        className="hover:underline"
-                        onClick={() => setAboutOpen(false)}
-                      >
+                      <Link href="/about-us/faqs" className="hover:underline" onClick={() => setAboutOpen(false)}>
                         General FAQs
                       </Link>
                     </li>
@@ -136,11 +122,7 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/services/nursing"
-                        className="hover:underline"
-                        onClick={() => setServicesOpen(false)}
-                      >
+                      <Link href="/services/nursing" className="hover:underline" onClick={() => setServicesOpen(false)}>
                         Nursing
                       </Link>
                     </li>
@@ -154,11 +136,7 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/services/social"
-                        className="hover:underline"
-                        onClick={() => setServicesOpen(false)}
-                      >
+                      <Link href="/services/social" className="hover:underline" onClick={() => setServicesOpen(false)}>
                         Social Services
                       </Link>
                     </li>
@@ -202,20 +180,12 @@ const Header = () => {
                 <div className="absolute top-full left-0 mt-2 bg-white border shadow-md rounded-md w-64 p-4 z-50">
                   <ul className="flex flex-col gap-2 text-sm text-gray-800">
                     <li>
-                      <Link
-                        href="/contact-us/email"
-                        className="hover:underline"
-                        onClick={() => setContactOpen(false)}
-                      >
+                      <Link href="/contact-us/email" className="hover:underline" onClick={() => setContactOpen(false)}>
                         Email Us
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/contact-us/tour"
-                        className="hover:underline"
-                        onClick={() => setContactOpen(false)}
-                      >
+                      <Link href="/contact-us/tour" className="hover:underline" onClick={() => setContactOpen(false)}>
                         Schedule a Tour
                       </Link>
                     </li>

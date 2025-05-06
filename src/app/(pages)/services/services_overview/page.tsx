@@ -33,9 +33,7 @@ const services = [
 ];
 
 export default function ServicesOverviewPage() {
-  const [openStates, setOpenStates] = useState<boolean[]>(
-    Array(services.length).fill(false)
-  );
+  const [openStates, setOpenStates] = useState<boolean[]>(Array(services.length).fill(false));
 
   const toggleCard = (index: number) => {
     setOpenStates((prev) => {
@@ -54,9 +52,7 @@ export default function ServicesOverviewPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: ANIMATION_DURATION }}
       >
-        <h1 className="text-5xl font-bold text-[#428f47] mb-2">
-          Services Overview
-        </h1>
+        <h1 className="text-5xl font-bold text-[#428f47] mb-2">Services Overview</h1>
         <p className="text-gray-600 text-lg italic">Vineland Post Acute</p>
       </motion.section>
 
@@ -100,9 +96,7 @@ export default function ServicesOverviewPage() {
                 layout
                 transition={{ duration: ANIMATION_DURATION }}
                 className={`text-[#428f47] font-bold transition-all duration-300 ${
-                  isOpen
-                    ? "text-sm absolute top-4 left-6"
-                    : "text-2xl text-center w-full"
+                  isOpen ? "text-sm absolute top-4 left-6" : "text-2xl text-center w-full"
                 }`}
               >
                 {service.title}
@@ -120,10 +114,7 @@ export default function ServicesOverviewPage() {
                   className="text-gray-700 text-sm mt-6"
                 >
                   {service.description}{" "}
-                  <a
-                    href={service.link}
-                    className="font-semibold text-[#428f47] underline"
-                  >
+                  <a href={service.link} className="font-semibold text-[#428f47] underline">
                     Learn More Here.
                   </a>
                 </motion.p>
