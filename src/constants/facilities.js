@@ -9,6 +9,7 @@ const FACILITIES = [
     website: "www.AlcottRehabilitation.com",
     pos: { lat: 34.0530714373979, lng: -118.31714091349116 },
     color: "#FFFFFF",
+    logo: "/logos/Alcott.png",
   },
   {
     name: "ANAHEIM HEALTHCARE",
@@ -20,6 +21,7 @@ const FACILITIES = [
     website: "www.AnaheimHealthcare.com",
     pos: { lat: 33.826426389994985, lng: -117.99362442997688 },
     color: "#FFFFFF",
+    logo: "/logos/Anaheim.png",
   },
   {
     name: "CITRUS NURSING",
@@ -31,6 +33,7 @@ const FACILITIES = [
     website: "www.CitrusNursing.com",
     pos: { lat: 34.082596534431, lng: -117.45489240298542 },
     color: "#FFFFFF",
+    logo: "/logos/Citrus.png",
   },
   {
     name: "COLLEGE VISTA",
@@ -42,6 +45,7 @@ const FACILITIES = [
     website: "www.CollegeVistaCare.com",
     pos: { lat: 34.12973649713725, lng: -118.21755235880238 },
     color: "#FFFFFF",
+    logo: "/logos/College.png",
   },
   {
     name: "COMMUNITY CARE & REHABILITATION",
@@ -53,6 +57,7 @@ const FACILITIES = [
     website: "www.CommunityCareandRehab.com",
     pos: { lat: 33.96085594619692, lng: -117.39656813182603 },
     color: "#FFFFFF",
+    logo: "/logos/CCRC.png",
   },
   {
     name: "COUNTRY OAKS",
@@ -64,6 +69,7 @@ const FACILITIES = [
     website: "www.CountryOaksCareCenter.us",
     pos: { lat: 34.10102199178756, lng: -117.7697045196175 },
     color: "#FFFFFF",
+    logo: "/logos/Country Oaks.png",
   },
   {
     name: "DEL MAR",
@@ -75,6 +81,7 @@ const FACILITIES = [
     website: "www.DelMarHospital.com",
     pos: { lat: 34.065811182713524, lng: -118.09888368094715 },
     color: "#FFFFFF",
+    logo: "/logos/Del Mar.png",
   },
   {
     name: "EXTENDED CARE",
@@ -86,6 +93,7 @@ const FACILITIES = [
     website: "www.extendedcarehospital.com",
     pos: { lat: 33.935388520247535, lng: -117.42230264531813 },
     color: "#FFFFFF",
+    logo: "/logos/Extended Care.png",
   },
   {
     name: "FRENCH PARK",
@@ -97,6 +105,7 @@ const FACILITIES = [
     website: "www.FrenchParkCareCenter.com",
     pos: { lat: 33.75568905896885, lng: -117.86229453368718 },
     color: "#FFFFFF",
+    logo: "/logos/French Park.png",
   },
   {
     name: "GARDEN PARK",
@@ -108,6 +117,7 @@ const FACILITIES = [
     website: "www.GardenParkCareCenter.com",
     pos: { lat: 33.77884968194595, lng: -117.9066984606688 },
     color: "#FFFFFF",
+    logo: "/logos/Garden Park.png",
   },
   {
     name: "GORDON LANE",
@@ -119,6 +129,7 @@ const FACILITIES = [
     website: "www.GordonLaneCareCenter.com",
     pos: { lat: 33.8747795128682, lng: -117.89693602626751 },
     color: "#FFFFFF",
+    logo: "/logos/Gordon Lane.png",
   },
   {
     name: "HERITAGE MANOR",
@@ -130,6 +141,7 @@ const FACILITIES = [
     website: "www.HeritageManorCare.com",
     pos: { lat: 34.06899949566121, lng: -118.12242754716723 },
     color: "#FFFFFF",
+    logo: "/logos/Heritage Manor.png",
   },
   {
     name: "MISSION CARE (SUB-ACUTE)",
@@ -141,6 +153,7 @@ const FACILITIES = [
     website: "www.MissionCareCenter.com",
     pos: { lat: 33.93183670817216, lng: -117.42838224531833 },
     color: "#FFFFFF",
+    logo: "/logos/Mission Care.png",
   },
   {
     name: "MONTEREY PARK",
@@ -152,6 +165,7 @@ const FACILITIES = [
     website: "www.MontereyParkCare.com",
     pos: { lat: 34.06706832660523, lng: -118.12268132760052 },
     color: "#FFFFFF",
+    logo: "/logos/Monterey Park.png",
   },
   {
     name: "NORTH VALLEY",
@@ -163,6 +177,7 @@ const FACILITIES = [
     website: "www.NorthValleyNursingCenter.com",
     pos: { lat: 34.257484740916304, lng: -118.29987771832427 },
     color: "#FFFFFF",
+    logo: "/logos/North Valley.png",
   },
   {
     name: "PACIFIC POST-ACUTE",
@@ -174,6 +189,7 @@ const FACILITIES = [
     website: "www.PacificPostAcute.com",
     pos: { lat: 34.027794875674765, lng: -118.48366931833253 },
     color: "#FFFFFF",
+    logo: "/logos/Pacific.png",
   },
   {
     name: "PARAMOUNT",
@@ -185,6 +201,7 @@ const FACILITIES = [
     website: "www.ParamountConvalescent.com",
     pos: { lat: 33.90333452043277, lng: -118.14951901648297 },
     color: "#FFFFFF",
+    logo: "/logos/Paramount.png",
   },
   {
     name: "PARK REGENCY CARE",
@@ -196,6 +213,7 @@ const FACILITIES = [
     website: "www.ParkRegencyCare.com",
     pos: { lat: 33.931507383860996, lng: -117.9660402741546 },
     color: "#FFFFFF",
+    logo: "/logos/Park Care.png",
   },
   {
     name: "PARK REGENCY RETIREMENT",
@@ -207,6 +225,7 @@ const FACILITIES = [
     website: "www.ParkRegencyRetirement.com",
     pos: { lat: 33.93190125387858, lng: -117.96517419928311 },
     color: "#FFFFFF",
+    logo: "/logos/Park Retirement.png",
   },
   {
     name: "PELICAN RIDGE POST-ACUTE",
@@ -218,6 +237,7 @@ const FACILITIES = [
     website: "www.PelicanRidgePostAcute.com",
     pos: { lat: 33.62808424037945, lng: -117.92802817231146 },
     color: "#FFFFFF",
+    logo: "/logos/Pelican Ridge.png",
   },
   {
     name: "POMONA VISTA",
@@ -229,6 +249,7 @@ const FACILITIES = [
     website: "www.PomonaVistaCareCenter.com",
     pos: { lat: 34.06429893706353, lng: -117.7522927146234 },
     color: "#FFFFFF",
+    logo: "/logos/Pomona Vista.png",
   },
   {
     name: "SIERRA VIEW",
@@ -240,6 +261,7 @@ const FACILITIES = [
     website: "www.SierraViewCareCenter.com",
     pos: { lat: 34.09504916771106, lng: -117.96221172625945 },
     color: "#FFFFFF",
+    logo: "/logos/Sierra View.png",
   },
   {
     name: "SUN MAR NURSING",
@@ -251,6 +273,7 @@ const FACILITIES = [
     website: "www.SunMarNursing.com",
     pos: { lat: 33.82463041338142, lng: -117.94209114161428 },
     color: "#FFFFFF",
+    logo: "/logos/Sun Mar Nursing.png",
   },
   {
     name: "SUNSET MANOR",
@@ -262,6 +285,7 @@ const FACILITIES = [
     website: "www.SunsetManorCare.com",
     pos: { lat: 34.06116996697163, lng: -118.03628055695107 },
     color: "#FFFFFF",
+    logo: "/logos/Sunset Manor.png",
   },
   {
     name: "TARZANA",
@@ -273,6 +297,7 @@ const FACILITIES = [
     website: "www.TarzanaHealthandRehab.com",
     pos: { lat: 34.174087018289555, lng: -118.5357255011283 },
     color: "#FFFFFF",
+    logo: "/logos/Tarzana.png",
   },
   {
     name: "VICTORIA CARE",
@@ -284,6 +309,7 @@ const FACILITIES = [
     website: "www.TheVictoriaCareCenter.com",
     pos: { lat: 34.13403597694026, lng: -117.96014660957887 },
     color: "#FFFFFF",
+    logo: "/logos/Victoria Care.png",
   },
   {
     name: "VILLA RANCHO BERNARDO",
@@ -295,6 +321,7 @@ const FACILITIES = [
     website: "www.VillaRanchoBernardo.com",
     pos: { lat: 33.006118757187835, lng: -117.09403874164322 },
     color: "#FFFFFF",
+    logo: "/logos/Villa Rancho.png",
   },
   {
     name: "VINELAND POST ACUTE",
@@ -306,6 +333,7 @@ const FACILITIES = [
     website: "www.VinelandPostAcute.com",
     pos: { lat: 34.17913653778753, lng: -118.36711955880061 },
     color: "#428F47",
+    logo: "/logos/Vineland.png",
   },
 ];
 
