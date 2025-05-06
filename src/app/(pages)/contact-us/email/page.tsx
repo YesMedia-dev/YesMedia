@@ -34,10 +34,18 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      const result = await res.json();
-      console.log("📬 Server response:", result);
+      let result = null;
 
-      if (res.ok && result.success) {
+      try {
+        result = await res.json();
+        console.log("📬 Server response:", result);
+      } catch (jsonError) {
+        console.error("❌ Failed to parse JSON response:", jsonError);
+        const rawText = await res.text();
+        console.warn("📭 Raw server response text:", rawText);
+      }
+
+      if (res.ok && result?.success) {
         setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
         setFormData({
           firstName: "",
@@ -47,11 +55,10 @@ const Contact = () => {
           comments: "",
         });
       } else {
-        console.warn("❌ Server responded but failed to send:", result);
         alert("❌ Failed to send message. Try again later.");
       }
     } catch (err) {
-      console.error("❌ Client-side error occurred:", err);
+      console.error("❌ Client-side fetch error:", err);
       alert("❌ An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -59,7 +66,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative bg-white py-20 px-6 overflow-hidden">
+    <section className="relative bg-white py-20 px-6 overflow-hidden min-h-screen">
       {/* Decorative Bubbles */}
       <div className="absolute w-[100px] h-[100px] bg-green-100 rounded-full top-[-40px] left-[-30px] z-0 opacity-30" />
       <div className="absolute w-[80px] h-[80px] bg-green-200 rounded-full top-[30%] left-0 z-0 opacity-30" />
@@ -93,7 +100,13 @@ const Contact = () => {
           className="rounded-xl overflow-hidden shadow-lg mb-12"
         >
           <div className="relative w-full h-[400px] md:h-[350px]">
-            <Image src="/assets/outside3.jpeg" alt="Facility" fill className="object-cover rounded-xl" priority />
+            <Image
+              src="/assets/outside3.jpeg"
+              alt="Facility"
+              fill
+              className="object-cover rounded-xl"
+              priority
+            />
           </div>
         </motion.div>
 
@@ -198,7 +211,9 @@ const Contact = () => {
             </button>
           </div>
 
-          {successMessage && <p className="text-green-600 text-center sm:col-span-2 mt-4">{successMessage}</p>}
+          {successMessage && (
+            <p className="text-green-600 text-center sm:col-span-2 mt-4">{successMessage}</p>
+          )}
         </motion.form>
       </div>
     </section>
@@ -206,3 +221,7 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+
+

@@ -33,16 +33,21 @@ We may contact you at: ${phone}
     });
 
     console.log("✅ Email sent:", data);
-
     return NextResponse.json({ success: true, data });
   } catch (error) {
     console.error("❌ Resend email error:", error);
-    return NextResponse.json(
-      { success: false, error: "Email failed to send." },
-      { status: 500 }
+
+    return new Response(
+      JSON.stringify({ success: false, error: "Unhandled server crash" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
     );
   }
 }
+
+
 
 
 
