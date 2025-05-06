@@ -18,9 +18,7 @@ const ScheduleTour = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
@@ -90,13 +88,7 @@ const ScheduleTour = () => {
           className="rounded-xl overflow-hidden shadow-lg mb-12"
         >
           <div className="relative w-full h-[400px] md:h-[350px]">
-            <Image
-              src="/assets/tour.jpg"
-              alt="Schedule a Tour"
-              fill
-              className="object-cover rounded-xl"
-              priority
-            />
+            <Image src="/assets/tour.jpg" alt="Schedule a Tour" fill className="object-cover rounded-xl" priority />
           </div>
         </motion.div>
 
@@ -106,9 +98,8 @@ const ScheduleTour = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-md text-gray-700 leading-relaxed max-w-4xl mx-auto mb-8"
         >
-          <strong>At Vineland Post Acute</strong>, we invite you to come tour our facility and meet
-          our team of professional caregivers. We are available nights and weekends to
-          accommodate any busy schedule.
+          <strong>At Vineland Post Acute</strong>, we invite you to come tour our facility and meet our team of
+          professional caregivers. We are available nights and weekends to accommodate any busy schedule.
         </motion.p>
 
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto text-left space-y-6">
@@ -188,10 +179,30 @@ const ScheduleTour = () => {
               >
                 <option value="">Select a time</option>
                 {[
-                  "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
-                  "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
-                  "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
-                  "17:00", "17:30", "18:00", "18:30", "19:00", "19:30",
+                  "08:00",
+                  "08:30",
+                  "09:00",
+                  "09:30",
+                  "10:00",
+                  "10:30",
+                  "11:00",
+                  "11:30",
+                  "12:00",
+                  "12:30",
+                  "13:00",
+                  "13:30",
+                  "14:00",
+                  "14:30",
+                  "15:00",
+                  "15:30",
+                  "16:00",
+                  "16:30",
+                  "17:00",
+                  "17:30",
+                  "18:00",
+                  "18:30",
+                  "19:00",
+                  "19:30",
                 ].map((time) => (
                   <option key={time} value={time}>
                     {new Date(`1970-01-01T${time}:00`).toLocaleTimeString([], {
@@ -224,9 +235,7 @@ const ScheduleTour = () => {
             {isSubmitting ? "Sending..." : "Submit"}
           </button>
 
-          {successMessage && (
-            <p className="text-green-600 text-center mt-4">{successMessage}</p>
-          )}
+          {successMessage && <p className="text-green-600 text-center mt-4">{successMessage}</p>}
         </form>
       </div>
     </section>
@@ -234,6 +243,3 @@ const ScheduleTour = () => {
 };
 
 export default ScheduleTour;
-
-
-

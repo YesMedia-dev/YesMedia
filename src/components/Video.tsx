@@ -40,10 +40,7 @@ const Video = () => {
   return (
     <>
       {/* Banner Section with local MP4 */}
-      <section
-        ref={containerRef}
-        className="relative w-full h-[500px] overflow-hidden bg-gray-50"
-      >
+      <section ref={containerRef} className="relative w-full h-[500px] overflow-hidden bg-gray-50">
         {/* Background Local Video */}
         <div className="absolute inset-0 w-full h-full z-0">
           <video
@@ -83,11 +80,7 @@ const Video = () => {
               stroke="currentColor"
               className="w-5 h-5"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
             </svg>
           </button>
         </div>

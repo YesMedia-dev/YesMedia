@@ -1,6 +1,5 @@
 import HeroSection from "@/components/HeroSection";
 import ServicesGrid from "@/components/ServicesGrid";
-import FeaturedNews from "@/components/FeaturedNews";
 import MapContainer from "@/components/MapContainer";
 import Banner from "@/components/Banner";
 import Family from "@/components/Family";
@@ -12,7 +11,6 @@ export default function Home() {
     <main>
       <HeroSection />
       <ServicesGrid />
-      {/*<FeaturedNews */}
       <Video />
       <Photos />
       <Banner />

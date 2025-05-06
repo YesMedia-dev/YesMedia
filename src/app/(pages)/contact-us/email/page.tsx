@@ -16,9 +16,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
@@ -89,13 +87,7 @@ const Contact = () => {
           className="rounded-xl overflow-hidden shadow-lg mb-12"
         >
           <div className="relative w-full h-[400px] md:h-[350px]">
-            <Image
-              src="/assets/outside3.jpeg"
-              alt="Facility"
-              fill
-              className="object-cover rounded-xl"
-              priority
-            />
+            <Image src="/assets/outside3.jpeg" alt="Facility" fill className="object-cover rounded-xl" priority />
           </div>
         </motion.div>
 
@@ -106,8 +98,8 @@ const Contact = () => {
           className="text-gray-700 text-center max-w-3xl mx-auto mb-12 leading-relaxed"
         >
           We would love to show you what makes us different. You can be confident when choosing{" "}
-          <strong>Vineland Post Acute</strong>. We are committed to providing you or your loved one
-          with excellent and personalized care during your stay.
+          <strong>Vineland Post Acute</strong>. We are committed to providing you or your loved one with excellent and
+          personalized care during your stay.
         </motion.p>
 
         <motion.form
@@ -200,11 +192,7 @@ const Contact = () => {
             </button>
           </div>
 
-          {successMessage && (
-            <p className="text-green-600 text-center sm:col-span-2 mt-4">
-              {successMessage}
-            </p>
-          )}
+          {successMessage && <p className="text-green-600 text-center sm:col-span-2 mt-4">{successMessage}</p>}
         </motion.form>
       </div>
     </section>
@@ -212,4 +200,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

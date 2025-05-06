@@ -8,14 +8,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 place-items-start md:place-items-center">
         {/* Left: Logo & Address */}
         <div className="col-span-1">
-          <img
-            src="/assets/vinelandlogo.png"
-            alt="Vineland Logo"
-            className="h-10 mb-4"
-          />
-          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">
-            Address
-          </h4>
+          <img src="/assets/vinelandlogo.png" alt="Vineland Logo" className="h-10 mb-4" />
+          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Address</h4>
           <p>
             10830 Oxnard St
             <br />
@@ -25,17 +19,13 @@ const Footer = () => {
 
         {/* Middle Left: Contact + Social */}
         <div className="col-span-1">
-          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">
-            Contact Us
-          </h4>
+          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Contact Us</h4>
           <p>
             Tel: 818-763-8247
             <br />
             Fax: 818-279-7385
           </p>
-          <h4 className="text-sm font-bold uppercase mt-4 mb-1 text-gray-600">
-            Social Media
-          </h4>
+          <h4 className="text-sm font-bold uppercase mt-4 mb-1 text-gray-600">Social Media</h4>
           <div className="flex gap-4 text-xl">
             <a
               href="https://www.facebook.com/vinelandpostacute#"
@@ -58,9 +48,7 @@ const Footer = () => {
 
         {/* Middle Right: CNA School */}
         <div className="col-span-1">
-          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">
-            Free CNA School
-          </h4>
+          <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Free CNA School</h4>
           <img src="/assets/edutrack.jpg" alt="EDUTRACK" className="h-8 mb-4" />
           <a
             href="https://suncloudtraining.com/"
@@ -75,11 +63,7 @@ const Footer = () => {
         {/* Right: Five Star Badge with sparkle animation */}
         <div className="col-span-1 flex justify-center items-center">
           <div className="sparkle-container transform -translate-x-10 -translate-y-2">
-            <img
-              src="/assets/fivestar.png"
-              alt="Five Star Rating"
-              className="h-36 object-contain"
-            />
+            <img src="/assets/fivestar.png" alt="Five Star Rating" className="h-36 object-contain" />
           </div>
         </div>
       </div>
@@ -106,6 +90,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
-

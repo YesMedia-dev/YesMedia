@@ -53,9 +53,8 @@ export default function SocialServicesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        Social Services assist both patients and their families. We also provide essential
-        information, manage requests and concerns, and help in care planning and discharge
-        planning for each patient.
+        Social Services assist both patients and their families. We also provide essential information, manage requests
+        and concerns, and help in care planning and discharge planning for each patient.
       </motion.p>
 
       {/* List of Services */}

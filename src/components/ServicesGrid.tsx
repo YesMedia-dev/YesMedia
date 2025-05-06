@@ -51,12 +51,8 @@ const ServicesGrid = () => {
       <div className="py-20 max-w-6xl mx-auto px-8 relative z-10">
         {/* Header Text */}
         <div className="mb-14">
-          <p className="text-[#428f47] text-2xl font-semibold uppercase tracking-widest mb-2">
-            SERVICES
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
-            Your Health is Our Priority
-          </h2>
+          <p className="text-[#428f47] text-2xl font-semibold uppercase tracking-widest mb-2">SERVICES</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800">Your Health is Our Priority</h2>
         </div>
 
         {/* Grid */}
@@ -66,19 +62,11 @@ const ServicesGrid = () => {
               href={path}
               key={title}
               className={`text-center group w-full ${
-                index === 3
-                  ? "flex justify-end ml-40"
-                  : index === 4
-                  ? "flex justify-end ml-30"
-                  : ""
+                index === 3 ? "flex justify-end ml-40" : index === 4 ? "flex justify-end ml-30" : ""
               }`}
             >
               <div className="transition-transform duration-300 group-hover:scale-105 flex flex-col items-center">
-                <div
-                  className={`relative ${
-                    index === 4 ? "flex justify-center w-full" : ""
-                  }`}
-                >
+                <div className={`relative ${index === 4 ? "flex justify-center w-full" : ""}`}>
                   <Image
                     src={image}
                     alt={title}
@@ -87,13 +75,7 @@ const ServicesGrid = () => {
                     className="mx-auto transition duration-300 ease-in-out group-hover:scale-105 group-hover:drop-shadow-xl"
                   />
                 </div>
-                <p
-                  className={`text-blue-900 font-semibold text-lg ${
-                    index === 4 ? "-ml-8 -mt-2" : "mt-4"
-                  }`}
-                >
-                  {title}
-                </p>
+                <p className={`text-blue-900 font-semibold text-lg ${index === 4 ? "-ml-8 -mt-2" : "mt-4"}`}>{title}</p>
               </div>
             </Link>
           ))}
@@ -104,4 +86,3 @@ const ServicesGrid = () => {
 };
 
 export default ServicesGrid;
-

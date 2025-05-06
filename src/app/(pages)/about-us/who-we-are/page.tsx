@@ -42,7 +42,7 @@ export default function WhoWeArePage() {
             `Skilled nursing facilities operate 24 hours a day, 7 days a week, and employ a skilled support staff of clinicians, therapists, and medical consultants to oversee your overall health, rehab, and recovery plan.`,
             `Our staff recognizes that most individuals prefer to be at home instead of a nursing facility. Yet oftentimes, many patients and families are not aware of the additional supportive services a skilled nursing environment can provide while recovering following a hospital stay.`,
             `We want our patients and their families to feel comfortable while individuals recover and rehabilitate. Putting “patients first” is a guiding principle of our culture. We believe what separates us from other facilities is our positive team culture and our commitment to service. We strive to provide a compassionate and meaningful experience for each patient.`,
-            `We invite you to come tour our facility and meet our team of professional caregivers. We are available nights and weekends to accommodate any busy schedule.`
+            `We invite you to come tour our facility and meet our team of professional caregivers. We are available nights and weekends to accommodate any busy schedule.`,
           ].map((text, i) => (
             <motion.p
               key={i}
@@ -57,4 +57,3 @@ export default function WhoWeArePage() {
     </main>
   );
 }
- 

@@ -51,7 +51,8 @@ export default function ActivitiesPage() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        We create positive and uplifting social programs and individualized activities to match patient needs and capabilities.
+        We create positive and uplifting social programs and individualized activities to match patient needs and
+        capabilities.
       </motion.p>
 
       {/* Bullet point header */}

@@ -21,8 +21,7 @@ const slides = [
   {
     image: "/assets/outside1.jpeg",
     title: "A Place to Enjoy",
-    subtitle:
-      "Our beautifully renovated facility offers peace, safety, and comfort.",
+    subtitle: "Our beautifully renovated facility offers peace, safety, and comfort.",
     description:
       "We are committed to providing exceptional skilled nursing and rehabilitation services in a serene environment.",
   },
@@ -50,26 +49,16 @@ const HeroSection = () => {
                 src={slide.image}
                 alt={`Slide ${idx + 1}`}
                 fill
-                className={`object-cover ${
-                  idx === 0 ? "object-[center_10%]" : "object-center"
-                }`}
+                className={`object-cover ${idx === 0 ? "object-[center_10%]" : "object-center"}`}
                 priority
               />
 
               {/* TEXT OVERLAY */}
               <div className="absolute top-[85%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4">
-                <p className="text-xl tracking-widest uppercase font-semibold mb-2">
-                  FIRST CLASS CARE
-                </p>
-                <h2 className="text-3xl md:text-5xl font-bold mb-2 drop-shadow">
-                  {slide.title}
-                </h2>
-                <h3 className="text-xl md:text-2xl font-medium mb-2 drop-shadow">
-                  {slide.subtitle}
-                </h3>
-                <p className="max-w-2xl text-md md:text-lg drop-shadow mx-auto">
-                  {slide.description}
-                </p>
+                <p className="text-xl tracking-widest uppercase font-semibold mb-2">FIRST CLASS CARE</p>
+                <h2 className="text-3xl md:text-5xl font-bold mb-2 drop-shadow">{slide.title}</h2>
+                <h3 className="text-xl md:text-2xl font-medium mb-2 drop-shadow">{slide.subtitle}</h3>
+                <p className="max-w-2xl text-md md:text-lg drop-shadow mx-auto">{slide.description}</p>
               </div>
             </div>
           </SwiperSlide>
@@ -79,9 +68,7 @@ const HeroSection = () => {
       <div className="hidden 2xl:block absolute bottom-4 right-4 w-[450px] h-[250px] z-20">
         {/* Text above the map, centered and constrained */}
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white text-center px-2 w-[450px]">
-          <p className="text-md md:text-lg drop-shadow font-bold break-words">
-            Find a Sun Mar Facility Near You
-          </p>
+          <p className="text-md md:text-lg drop-shadow font-bold break-words">Find a Sun Mar Facility Near You</p>
         </div>
 
         {/* Map container */}

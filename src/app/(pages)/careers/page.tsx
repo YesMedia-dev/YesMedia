@@ -7,8 +7,7 @@ import { motion } from "framer-motion";
 const benefits = [
   {
     title: "New Hires",
-    description:
-      "Full-time new hires are eligible for Medical, Dental, Vision, Aflac, LegalZoom, PHMP.",
+    description: "Full-time new hires are eligible for Medical, Dental, Vision, Aflac, LegalZoom, PHMP.",
     image: "/assets/newhire.png",
   },
   {
@@ -25,8 +24,7 @@ const benefits = [
   },
   {
     title: "Monthly Safety Bonus",
-    description:
-      "The facility celebrates safety compliance monthly, raffling away cash and prizes.",
+    description: "The facility celebrates safety compliance monthly, raffling away cash and prizes.",
     image: "/assets/safety.png",
   },
   {
@@ -37,8 +35,7 @@ const benefits = [
   },
   {
     title: "Tickets at Work",
-    description:
-      "Theme parks, concerts, movies & more — enjoy big discounts as a Vineland team member.",
+    description: "Theme parks, concerts, movies & more — enjoy big discounts as a Vineland team member.",
     image: "/assets/tickets.png",
   },
 ];
@@ -83,10 +80,9 @@ const Careers = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-md text-gray-700 leading-relaxed max-w-4xl mx-auto mb-8"
         >
-          <strong>Vineland Post Acute</strong> is always hiring dedicated team members. We have
-          openings in Nursing, Therapy, Marketing, Housekeeping, Laundry, Social
-          Services, and more. We are an equal opportunity employer and offer
-          CNA training and career growth paths.
+          <strong>Vineland Post Acute</strong> is always hiring dedicated team members. We have openings in Nursing,
+          Therapy, Marketing, Housekeeping, Laundry, Social Services, and more. We are an equal opportunity employer and
+          offer CNA training and career growth paths.
         </motion.p>
 
         <a
@@ -98,9 +94,7 @@ const Careers = () => {
           APPLY NOW
         </a>
 
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-12">
-          Employee Benefits
-        </h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Employee Benefits</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {benefits.map((benefit, index) => {
@@ -119,23 +113,13 @@ const Careers = () => {
                   height={175}
                   className="mb-4 object-contain"
                 />
-                <h3 className="font-bold text-lg text-gray-800 mb-2 text-center">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-600 text-sm text-center">
-                  {benefit.description}
-                </p>
+                <h3 className="font-bold text-lg text-gray-800 mb-2 text-center">{benefit.title}</h3>
+                <p className="text-gray-600 text-sm text-center">{benefit.description}</p>
               </motion.div>
             );
 
             return benefit.link ? (
-              <a
-                key={benefit.title}
-                href={benefit.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
+              <a key={benefit.title} href={benefit.link} target="_blank" rel="noopener noreferrer" className="block">
                 {content}
               </a>
             ) : (

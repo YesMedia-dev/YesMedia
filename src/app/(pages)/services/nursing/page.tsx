@@ -52,19 +52,17 @@ const SkilledNursingPage = () => {
       </motion.div>
 
       <motion.p
-  className="text-left text-gray-700 text-[17px] leading-relaxed max-w-3xl mx-auto mb-8"
-  initial={{ opacity: 0, y: 10 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.2, duration: 0.5 }}
->
-  We take a holistic approach to developing a comprehensive care plan. We assemble a team
-  that includes administration, clinical, therapy, dietary, social service, and case management
-  professionals. We provide individualized 24-hour skilled care and rehabilitation services in a
-  comfortable and family-friendly environment. Our team works together with the patients and
-  their family members to determine the optimal treatment plan for each situation.
-</motion.p>
-
-
+        className="text-left text-gray-700 text-[17px] leading-relaxed max-w-3xl mx-auto mb-8"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
+        We take a holistic approach to developing a comprehensive care plan. We assemble a team that includes
+        administration, clinical, therapy, dietary, social service, and case management professionals. We provide
+        individualized 24-hour skilled care and rehabilitation services in a comfortable and family-friendly
+        environment. Our team works together with the patients and their family members to determine the optimal
+        treatment plan for each situation.
+      </motion.p>
 
       <motion.div
         className="text-left text-gray-700 max-w-3xl mx-auto"
@@ -72,16 +70,14 @@ const SkilledNursingPage = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.4 }}
       >
-        <p className="font-semibold text-lg mb-4">
-          We offer comprehensive clinical disciplines that include:
-        </p>
+        <p className="font-semibold text-lg mb-4">We offer comprehensive clinical disciplines that include:</p>
         <motion.ul
           initial="hidden"
           animate="visible"
           variants={{
             visible: {
               transition: {
-                delayChildren: .9,
+                delayChildren: 0.9,
                 staggerChildren: 0.15,
               },
             },
