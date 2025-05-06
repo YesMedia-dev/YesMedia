@@ -31,7 +31,7 @@ let infoWindow: google.maps.InfoWindow; // Store a single InfoWindow instance
 const GoogleMap = () => {
   const mapRef = useRef(null);
   const listRef = useRef<HTMLUListElement>(null);
-  const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete | null>(null);
+  const [, setAutocomplete] = useState<google.maps.places.Autocomplete | null>(null);
   const [markers, setMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [closestLocations, setClosestLocations] = useState<FacilityDistance[] | null>(null);
   const autocompleteMarker = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
