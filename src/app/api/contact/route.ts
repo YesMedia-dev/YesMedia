@@ -1,26 +1,15 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { firstName, lastName, email, phone, comments } = body;
 
-    console.log("📨 Incoming form data:", body); // Optional log for debugging
-
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER, // chrystyanpulido@gmail.com
-        pass: process.env.EMAIL_PASS, // Gmail app password
-      },
-      tls: {
-        rejectUnauthorized: false, // Allow Gmail’s cert on Vercel
-      },
-    });
-
-    await transporter.sendMail({
-      from: `"Vineland Post Acute" <${process.env.EMAIL_USER}>`,
+    const data = await resend.emails.send({
+      from: process.env.EMAIL_FROM as string,
       to: email,
       subject: "Thank you for reaching out to Vineland Post Acute",
       text: `
@@ -37,15 +26,13 @@ We may contact you at: ${phone}
 `,
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, data });
   } catch (error) {
-    console.error("❌ Email send error:", error);
-    return NextResponse.json(
-      { success: false, error: "Email failed to send." },
-      { status: 500 }
-    );
+    console.error("❌ Resend error:", error);
+    return NextResponse.json({ success: false, error: "Email failed to send." }, { status: 500 });
   }
 }
+
 
 
 
