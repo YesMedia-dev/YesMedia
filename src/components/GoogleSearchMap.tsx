@@ -2,8 +2,8 @@
 
 import { Loader } from "@googlemaps/js-api-loader";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { FACILITIES } from "@/constants/facilities";
+import FacilitiesList from "./FacilitiesList";
 
 type Facility = {
   name: string;
@@ -33,7 +33,7 @@ const GoogleMap = () => {
   const listRef = useRef<HTMLUListElement>(null);
   const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete | null>(null);
   const [markers, setMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
-  const [closestLocations, setClosestLocations] = useState<FacilityDistance[]>();
+  const [closestLocations, setClosestLocations] = useState<FacilityDistance[] | null>(null);
   const autocompleteMarker = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
 
   // Resets list position after searching
@@ -205,76 +205,14 @@ const GoogleMap = () => {
           placeholder="City, State, or Zip Code"
           className="w-full p-2 border border-gray-300 mb-4"
         />
-
-        {/* Facilities List (Scrollable) */}
-
-        <ul ref={listRef} className="overflow-y-auto max-h-[calc(100vh-160px)] border border-gray-300">
-          {closestLocations
-            ? closestLocations.map((array, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleFacilityClick(index)}
-                  className="flex items-center p-4 border-b border-gray-300 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
-                >
-                  <Image
-                    src="/logos/vine.png"
-                    alt="Facility Image"
-                    width={40}
-                    height={40}
-                    className="mr-4 justify-item-center"
-                  />
-
-                  <div>
-                    <p className="text-sm text-gray-600">{`${array.distanceMiles} Miles`}</p>
-                    <h6 className="text-lg font-semibold text-green-700">{array.facility.name}</h6>
-
-                    <p className="text-sm text-gray-600">
-                      {array.facility.address}, {array.facility.city}, {array.facility.state} {array.facility.zip}
-                    </p>
-
-                    <a
-                      href={`tel:${array.facility.phone.replace(/\D/g, "")}`}
-                      className="text-sm text-blue-600 hover:underline"
-                    >
-                      {array.facility.phone}
-                    </a>
-                  </div>
-                </li>
-              ))
-            : FACILITIES.map((facility, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleFacilityClick(index)}
-                  className="flex items-center p-4 border-b border-gray-300 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
-                >
-                  <Image
-                    src="/vine.png"
-                    alt="Facility Image"
-                    width={40}
-                    height={40}
-                    className="mr-4 justify-item-center"
-                  />
-
-                  <div>
-                    <h6 className="text-lg font-semibold text-green-700">{facility.name}</h6>
-
-                    <p className="text-sm text-gray-600">
-                      {facility.address}, {facility.city}, {facility.state} {facility.zip}
-                    </p>
-
-                    <a
-                      href={`tel:${facility.phone.replace(/\D/g, "")}`}
-                      className="text-sm text-blue-600 hover:underline"
-                    >
-                      {facility.phone}
-                    </a>
-                  </div>
-                </li>
-              ))}
-        </ul>
+        <FacilitiesList
+          closestLocations={closestLocations}
+          handleFacilityClick={handleFacilityClick}
+          facilities={FACILITIES}
+        />
       </div>
 
-      {/* Google Map on the Right */}
+      {/* Google Map */}
       <div ref={mapRef} className="w-3/4 h-full" />
     </div>
   );

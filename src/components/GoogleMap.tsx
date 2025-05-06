@@ -4,25 +4,34 @@ import { Loader } from "@googlemaps/js-api-loader";
 import React, { useEffect } from "react";
 import { FACILITIES } from "@/constants/facilities";
 
+type Facility = {
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  phone: string;
+  website: string;
+  pos: {
+    lat: number;
+    lng: number;
+  };
+  color: string;
+};
+
 const GoogleMap = () => {
   const mapRef = React.useRef(null);
 
   useEffect(() => {
     const initMap = async () => {
-      const google = new Loader({
+      const loader = new Loader({
         apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API as string,
+        version: "weekly",
       });
 
-      const { Map, InfoWindow } = await google.importLibrary("maps");
-      const { AdvancedMarkerElement, PinElement } = await google.importLibrary(
-        "marker"
-      );
-      const { ColorScheme } = await google.importLibrary("core");
-
-      // const defaultCenter = {
-      //   lat: 34.0522,
-      //   lng: -118.2437,
-      // };
+      const { Map, InfoWindow } = await loader.importLibrary("maps");
+      const { AdvancedMarkerElement, PinElement } = await loader.importLibrary("marker");
+      const { ColorScheme } = await loader.importLibrary("core");
 
       const vinelandCenter = {
         lat: 34.17913653778753,
@@ -58,20 +67,7 @@ const GoogleMap = () => {
 
           marker.addListener("gmp-click", () => {
             infoWindow.close();
-            const content = `
-              <div>
-                ${facility.address}<br/>
-                ${facility.city}, ${facility.state} ${facility.zip}<br/>
-                <a href="tel:${facility.phone.replace(/\D/g, "")}">${
-              facility.phone
-            }</a><br/>
-                <a href="${
-                  facility.website
-                }" target="_blank" rel="noopener noreferrer">${
-              facility.website
-            }</a>
-              </div>
-            `;
+            const content = fillContent(facility);
             infoWindow.setHeaderContent(facility.name);
             infoWindow.setContent(content);
             infoWindow.open(marker.map, marker);
@@ -84,6 +80,21 @@ const GoogleMap = () => {
   }, []);
 
   return <div ref={mapRef} className="w-full h-full" />;
+};
+
+const fillContent = (facility: Facility) => {
+  const content = `
+    <div>
+      ${facility.address}<br/>
+      ${facility.city}, ${facility.state} ${facility.zip}<br/>
+      <a href="tel:${facility.phone.replace(/\D/g, "")}">
+      ${facility.phone}
+      </a><br/>
+      <a href="${facility.website}" target="_blank" rel="noopener noreferrer">
+      ${facility.website}</a>
+      </div>
+            `;
+  return content;
 };
 
 export default GoogleMap;
