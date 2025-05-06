@@ -90,7 +90,7 @@ const fillContent = (facility: Facility) => {
       <a href="tel:${facility.phone.replace(/\D/g, "")}">
       ${facility.phone}
       </a><br/>
-      <a href="${facility.website}" target="_blank" rel="noopener noreferrer">
+      <a href="https://${facility.website}" target="_blank" rel="noopener noreferrer">
       ${facility.website}</a>
       </div>
             `;
