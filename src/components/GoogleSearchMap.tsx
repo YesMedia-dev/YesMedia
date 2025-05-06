@@ -89,9 +89,9 @@ const GoogleMap = () => {
 
             const pin = new PinElement({
               scale: 1.25,
-              background: "#005100",
-              borderColor: "#002e00",
-              glyphColor: "#002e00",
+              background: "#b81f14",
+              borderColor: "#7a150d",
+              glyphColor: "#b81f14",
             });
 
             if (autocompleteMarker.current) {
@@ -228,7 +228,7 @@ const fillContent = (facility: Facility) => {
       <a href="tel:${facility.phone.replace(/\D/g, "")}">
       ${facility.phone}
       </a><br/>
-      <a href="${facility.website}" target="_blank" rel="noopener noreferrer">
+      <a href="https://${facility.website}" target="_blank" rel="noopener noreferrer">
       ${facility.website}</a>
       </div>
             `;
