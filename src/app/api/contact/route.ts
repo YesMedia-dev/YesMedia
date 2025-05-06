@@ -11,8 +11,9 @@ export async function POST(req: Request) {
     const { firstName, lastName, email, phone, comments } = body;
 
     const emailFrom = process.env.EMAIL_FROM || "onboarding@resend.dev";
-    console.log("📤 Sending from:", emailFrom);
-    console.log("📤 Sending to:", email);
+
+    console.log("📤 Sending FROM:", emailFrom);
+    console.log("📤 Sending TO:", email);
 
     const data = await resend.emails.send({
       from: emailFrom,
@@ -32,13 +33,18 @@ We may contact you at: ${phone}
       `,
     });
 
-    console.log("✅ Email sent:", data);
-    return NextResponse.json({ success: true, data });
-  } catch (error) {
+    console.log("✅ Email sent successfully:", data);
+
+    return NextResponse.json({ success: true, data }, { status: 200 });
+  } catch (error: any) {
     console.error("❌ Resend email error:", error);
 
+    // Send valid JSON response on failure
     return new Response(
-      JSON.stringify({ success: false, error: "Unhandled server crash" }),
+      JSON.stringify({
+        success: false,
+        error: error?.message || "Unhandled server error",
+      }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
@@ -46,6 +52,7 @@ We may contact you at: ${phone}
     );
   }
 }
+
 
 
 
