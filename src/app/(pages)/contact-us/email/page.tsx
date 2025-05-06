@@ -36,16 +36,14 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      // Handle non-JSON responses
       if (!res.ok) {
         const errorText = await res.text();
         console.error("❌ Server error response:", errorText || res.statusText);
         throw new Error(errorText || `Server error: ${res.status} ${res.statusText}`);
       }
 
-      // For empty responses
       const responseText = await res.text();
-      
+
       if (!responseText) {
         console.log("✅ Request successful but empty response received");
         setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
@@ -59,14 +57,12 @@ const Contact = () => {
         return;
       }
 
-      // Try to parse JSON if we have content
       let result;
       try {
         result = JSON.parse(responseText);
         console.log("📬 Server response:", result);
-      } catch (_) {
+      } catch {
         console.warn("⚠️ Response is not valid JSON:", responseText);
-        // Still consider it a success if the request was successful
         if (res.ok) {
           setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
           setFormData({
@@ -81,7 +77,6 @@ const Contact = () => {
         throw new Error("Invalid server response format");
       }
 
-      // Handle parsed JSON result
       if (result?.success) {
         setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
         setFormData({
@@ -256,6 +251,7 @@ const Contact = () => {
 };
 
 export default Contact;
+
 
 
 
