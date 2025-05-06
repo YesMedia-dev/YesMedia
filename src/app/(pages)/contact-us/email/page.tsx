@@ -15,6 +15,7 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -24,6 +25,7 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSuccessMessage("");
+    setErrorMessage("");
 
     console.log("🚀 Submitting form data:", formData);
 
@@ -34,19 +36,53 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      let result = null;
-      const clone = res.clone(); // ✅ Clone to avoid consuming the body
-
-      try {
-        result = await clone.json();
-        console.log("📬 Server response:", result);
-      } catch (jsonError) {
-        console.error("❌ Failed to parse JSON response:", jsonError);
-        const rawText = await res.text();
-        console.warn("📭 Raw server response text:", rawText);
+      // Handle non-JSON responses
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error("❌ Server error response:", errorText || res.statusText);
+        throw new Error(errorText || `Server error: ${res.status} ${res.statusText}`);
       }
 
-      if (res.ok && result?.success) {
+      // For empty responses
+      const responseText = await res.text();
+      
+      if (!responseText) {
+        console.log("✅ Request successful but empty response received");
+        setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          comments: "",
+        });
+        return;
+      }
+
+      // Try to parse JSON if we have content
+      let result;
+      try {
+        result = JSON.parse(responseText);
+        console.log("📬 Server response:", result);
+      } catch (jsonError) {
+        console.warn("⚠️ Response is not valid JSON:", responseText);
+        // Still consider it a success if the request was successful
+        if (res.ok) {
+          setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            comments: "",
+          });
+          return;
+        }
+        throw new Error("Invalid server response format");
+      }
+
+      // Handle parsed JSON result
+      if (result?.success) {
         setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
         setFormData({
           firstName: "",
@@ -56,11 +92,11 @@ const Contact = () => {
           comments: "",
         });
       } else {
-        alert("❌ Failed to send message. Try again later.");
+        throw new Error(result?.error || "Unknown error occurred");
       }
     } catch (err) {
-      console.error("❌ Client-side fetch error:", err);
-      alert("❌ An error occurred. Please try again.");
+      console.error("❌ Form submission error:", err);
+      setErrorMessage(`Failed to send message: ${err instanceof Error ? err.message : "Unknown error"}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -208,6 +244,10 @@ const Contact = () => {
 
           {successMessage && (
             <p className="text-green-600 text-center sm:col-span-2 mt-4">{successMessage}</p>
+          )}
+          
+          {errorMessage && (
+            <p className="text-red-600 text-center sm:col-span-2 mt-4">{errorMessage}</p>
           )}
         </motion.form>
       </div>
