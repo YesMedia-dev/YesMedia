@@ -18,7 +18,9 @@ const ScheduleTour = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
@@ -34,22 +36,31 @@ const ScheduleTour = () => {
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
+      const text = await res.text();
+      if (!res.ok) throw new Error(text || `Status ${res.status}`);
+
+      try {
+        const result = JSON.parse(text);
+        if (result?.success) {
+          setSuccessMessage("✅ Your tour request has been sent!");
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            preferredDate: "",
+            preferredTime: "",
+            comments: "",
+          });
+        } else {
+          throw new Error(result?.error || "Unknown server error");
+        }
+      } catch {
+        console.warn("⚠️ Non-JSON response:", text);
         setSuccessMessage("✅ Your tour request has been sent!");
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          preferredDate: "",
-          preferredTime: "",
-          comments: "",
-        });
-      } else {
-        alert("❌ Failed to send request. Try again later.");
       }
     } catch (err) {
-      console.error(err);
+      console.error("❌ Tour request error:", err);
       alert("❌ Error sending request.");
     } finally {
       setIsSubmitting(false);
@@ -179,30 +190,10 @@ const ScheduleTour = () => {
               >
                 <option value="">Select a time</option>
                 {[
-                  "08:00",
-                  "08:30",
-                  "09:00",
-                  "09:30",
-                  "10:00",
-                  "10:30",
-                  "11:00",
-                  "11:30",
-                  "12:00",
-                  "12:30",
-                  "13:00",
-                  "13:30",
-                  "14:00",
-                  "14:30",
-                  "15:00",
-                  "15:30",
-                  "16:00",
-                  "16:30",
-                  "17:00",
-                  "17:30",
-                  "18:00",
-                  "18:30",
-                  "19:00",
-                  "19:30",
+                  "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
+                  "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
+                  "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
+                  "17:00", "17:30", "18:00", "18:30", "19:00", "19:30"
                 ].map((time) => (
                   <option key={time} value={time}>
                     {new Date(`1970-01-01T${time}:00`).toLocaleTimeString([], {
