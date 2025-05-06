@@ -25,6 +25,8 @@ const Contact = () => {
     setIsSubmitting(true);
     setSuccessMessage("");
 
+    console.log("🚀 Submitting form data:", formData);
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -32,7 +34,10 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
+      const result = await res.json();
+      console.log("📬 Server response:", result);
+
+      if (res.ok && result.success) {
         setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
         setFormData({
           firstName: "",
@@ -42,10 +47,11 @@ const Contact = () => {
           comments: "",
         });
       } else {
+        console.warn("❌ Server responded but failed to send:", result);
         alert("❌ Failed to send message. Try again later.");
       }
     } catch (err) {
-      console.error(err);
+      console.error("❌ Client-side error occurred:", err);
       alert("❌ An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
