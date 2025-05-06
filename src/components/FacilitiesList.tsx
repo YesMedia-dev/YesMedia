@@ -65,9 +65,19 @@ export default function FacilitiesList({ closestLocations, handleFacilityClick, 
               <p className="text-sm text-gray-600">
                 {facility.address}, {facility.city}, {facility.state} {facility.zip}
               </p>
-              <a href={`tel:${facility.phone.replace(/\D/g, "")}`} className="text-sm text-blue-600 hover:underline">
-                {facility.phone}
-              </a>
+              <div className="flex items-center gap-4">
+                <a href={`tel:${facility.phone.replace(/\D/g, "")}`} className="text-sm text-blue-600 hover:underline">
+                  {facility.phone}
+                </a>
+                <a
+                  href={`https://${facility.website}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-600 hover:underline"
+                >
+                  More Info
+                </a>
+              </div>
             </div>
           </li>
         );
