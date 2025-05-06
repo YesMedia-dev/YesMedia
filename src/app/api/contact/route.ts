@@ -3,17 +3,22 @@ import { NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(req: Request) {
+export async function POST(req: Request): Promise<NextResponse> {
   try {
     const body = await req.json();
     console.log("📨 Incoming POST body:", body);
 
-    const { firstName, lastName, email, phone, comments } = body;
+    const { firstName, lastName, email, phone, comments } = body as {
+      firstName: string;
+      lastName: string;
+      email: string;
+      phone: string;
+      comments: string;
+    };
 
     const emailFrom = process.env.EMAIL_FROM || "onboarding@resend.dev";
-
-    console.log("📤 Sending FROM:", emailFrom);
-    console.log("📤 Sending TO:", email);
+    console.log("📤 Sending from:", emailFrom);
+    console.log("📤 Sending to:", email);
 
     const data = await resend.emails.send({
       from: emailFrom,
@@ -33,18 +38,14 @@ We may contact you at: ${phone}
       `,
     });
 
-    console.log("✅ Email sent successfully:", data);
+    console.log("✅ Email sent:", data);
+    return NextResponse.json({ success: true, data });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("❌ Resend email error:", message);
 
-    return NextResponse.json({ success: true, data }, { status: 200 });
-  } catch (error: any) {
-    console.error("❌ Resend email error:", error);
-
-    // Send valid JSON response on failure
-    return new Response(
-      JSON.stringify({
-        success: false,
-        error: error?.message || "Unhandled server error",
-      }),
+    return new NextResponse(
+      JSON.stringify({ success: false, error: message }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
@@ -52,6 +53,8 @@ We may contact you at: ${phone}
     );
   }
 }
+
+
 
 
 
