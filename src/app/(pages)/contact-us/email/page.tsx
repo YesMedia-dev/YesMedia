@@ -64,7 +64,7 @@ const Contact = () => {
       try {
         result = JSON.parse(responseText);
         console.log("📬 Server response:", result);
-      } catch (jsonError) {
+      } catch (error) {
         console.warn("⚠️ Response is not valid JSON:", responseText);
         // Still consider it a success if the request was successful
         if (res.ok) {
