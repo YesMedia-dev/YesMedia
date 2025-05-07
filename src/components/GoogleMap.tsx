@@ -30,7 +30,7 @@ const GoogleMap = () => {
       });
 
       const { Map, InfoWindow } = await loader.importLibrary("maps");
-      const { AdvancedMarkerElement, PinElement } = await loader.importLibrary("marker");
+      const { AdvancedMarkerElement } = await loader.importLibrary("marker");
       const { ColorScheme } = await loader.importLibrary("core");
 
       const vinelandCenter = {
