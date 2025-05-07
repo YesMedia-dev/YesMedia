@@ -64,7 +64,7 @@ const GoogleMap = () => {
       const mapOptions: google.maps.MapOptions = {
         center: defaultCenter,
         zoom: 10,
-        mapId: "cd229f410e543e1b",
+        mapId: "428a471c5a144130",
         colorScheme: ColorScheme.LIGHT,
       };
 
@@ -126,7 +126,7 @@ const GoogleMap = () => {
 
             // Sort markers as well
             const sortedMarkers = facilityDistances.map(
-              (fd) => facilityMarkers.find((marker) => marker.title === fd.facility.name)!
+              (fd) => facilityMarkers.find((marker) => marker.title === fd.facility.name)!,
             );
             setMarkers(sortedMarkers);
 
@@ -139,18 +139,21 @@ const GoogleMap = () => {
         const facilityMarkers: google.maps.marker.AdvancedMarkerElement[] = [];
 
         FACILITIES.forEach((facility) => {
-          const pin = new PinElement({
-            scale: 0.75,
-            background: "#428F47",
-            borderColor: "#26792C",
-            glyphColor: "#26792C",
-          });
+          const image = document.createElement("img");
+          image.src = facility.logo;
+          image.alt = facility.name;
+          image.style.width = "25px"; // adjust as needed
+          image.style.height = "25px";
+          image.style.objectFit = "contain";
+          image.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.3)";
+          image.style.borderRadius = "50%"; // optional: makes logos circular
+          image.style.backgroundColor = "white"; // optional: helps shadow show better
 
           const marker = new AdvancedMarkerElement({
             map,
             position: facility.pos,
             title: facility.name,
-            content: pin.element,
+            content: image,
             gmpClickable: true,
           });
 
