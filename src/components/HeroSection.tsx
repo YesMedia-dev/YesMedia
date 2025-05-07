@@ -54,11 +54,26 @@ const HeroSection = () => {
               />
 
               {/* TEXT OVERLAY */}
-              <div className="absolute top-[85%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4">
+              <div className="absolute top-[78%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4">
                 <p className="text-xl tracking-widest uppercase font-semibold mb-2">FIRST CLASS CARE</p>
                 <h2 className="text-3xl md:text-5xl font-bold mb-2 drop-shadow">{slide.title}</h2>
                 <h3 className="text-xl md:text-2xl font-medium mb-2 drop-shadow">{slide.subtitle}</h3>
                 <p className="max-w-2xl text-md md:text-lg drop-shadow mx-auto">{slide.description}</p>
+
+                <button
+                  onClick={() => {
+                    const section = document.getElementById("services");
+                    if (section) {
+                      window.scrollTo({
+                        top: section.offsetTop - 80, // offset for header
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className="mt-6 bg-white text-[#428f47] px-6 py-2 rounded-md font-semibold shadow hover:bg-gray-100 transition"
+                >
+                  More Info
+                </button>
               </div>
             </div>
           </SwiperSlide>
