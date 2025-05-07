@@ -89,7 +89,7 @@ export default function TestimonialsPage() {
         transition={{ delay: 0.2, duration: 0.6 }}
       >
         <Image
-          src="/assets/testimony.jpg"
+          src="/assets/bear.jpeg"
           alt="Facility"
           width={1400}
           height={350}
