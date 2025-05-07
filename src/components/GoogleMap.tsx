@@ -41,7 +41,7 @@ const GoogleMap = () => {
       const mapOptions: google.maps.MapOptions = {
         center: vinelandCenter,
         zoom: 11,
-        mapId: "cd229f410e543e1b",
+        mapId: "428a471c5a144130",
         colorScheme: ColorScheme.LIGHT,
       };
 
