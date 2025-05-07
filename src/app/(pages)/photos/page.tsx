@@ -14,11 +14,11 @@ const allImages = [
   "group7.png", "group2.png", "patio.png", "doctor2.png",
   // SET 5
   "outside1.png", "hall.png", "group6.png", "letter.png",
-  // SET 6 (house replaces group10)
+  // SET 6
   "rehab.png", "flower.png", "lobby.png", "house.png",
   // SET 7
   "group4.png", "group5.png", "welcome.png", "group8.png",
-  // SET 8 (group10 alone)
+  // SET 8
   "group10.png"
 ];
 
@@ -68,6 +68,17 @@ export default function PhotoGallery() {
   return (
     <section className="min-h-screen bg-gradient-to-b from-white to-green-50 py-12 px-4 relative">
       <div className="max-w-7xl mx-auto">
+
+        {/* Title + Subtitle */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl sm:text-5xl font-bold text-[#428f47] mb-3">
+            Photo Gallery
+          </h1>
+          <p className="text-gray-600 text-lg italic">
+            Explore our facility and meet the vibrant Vineland community through pictures.
+          </p>
+        </div>
+
         {/* Categories */}
         <div className="flex justify-center gap-4 flex-wrap mb-10">
           {categories.map((cat) => (
@@ -188,6 +199,7 @@ export default function PhotoGallery() {
     </section>
   );
 }
+
 
 
 
