@@ -8,27 +8,27 @@ export default function WhoWeArePage() {
     <main className="max-w-screen-xl mx-auto px-4 py-16 relative overflow-hidden">
       {/* Decorative Bubbles */}
       {/* Left bubbles */}
-      <motion.div 
+      <motion.div
         className="absolute top-20 left-0 w-32 h-32 rounded-full bg-green-200/30"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 0.6, scale: 1 }}
         transition={{ duration: 1.2 }}
       />
-      <motion.div 
+      <motion.div
         className="absolute bottom-40 left-12 w-20 h-20 rounded-full bg-green-300/40"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 0.5, scale: 1 }}
         transition={{ duration: 1.5, delay: 0.3 }}
       />
-      
+
       {/* Right bubbles */}
-      <motion.div 
+      <motion.div
         className="absolute top-10 right-12 w-36 h-36 rounded-full bg-green-200/30"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 0.6, scale: 1 }}
         transition={{ duration: 1.3 }}
       />
-      <motion.div 
+      <motion.div
         className="absolute bottom-20 right-[0] w-14 h-14 rounded-full bg-green-300/40"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 0.5, scale: 1 }}
@@ -55,11 +55,7 @@ export default function WhoWeArePage() {
           transition={{ duration: 0.8 }}
         >
           {/* First image */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
             <Image
               src="/assets/group.png"
               alt="Vineland Staff"
@@ -68,15 +64,11 @@ export default function WhoWeArePage() {
               className="rounded-xl shadow-md object-cover"
             />
           </motion.div>
-          
+
           {/* Second image */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }}>
             <Image
-              src="/assets/group1.png"
+              src="/gallery/group5.png"
               alt="Vineland Team"
               width={600}
               height={400}

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import ServicesList from "@/components/ServicesList";
 
 const activityPoints = [
   "Musical performances",
@@ -45,39 +46,46 @@ export default function ActivitiesPage() {
       </motion.div>
 
       {/* Paragraph */}
-      <motion.p
-        className="text-gray-700 max-w-2xl mx-auto mb-8 text-left text-[17px] leading-relaxed"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-      >
-        We create positive and uplifting social programs and individualized activities to match patient needs and
-        capabilities.
-      </motion.p>
-
-      {/* Bullet point header */}
-      <motion.p
-        className="text-lg font-semibold mb-4 max-w-2xl mx-auto text-left"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
-      >
-        Specific activities can include:
-      </motion.p>
-
-      {/* Bullet List */}
-      <ul className="max-w-2xl mx-auto text-gray-700 text-left space-y-2 pl-5 list-disc">
-        {activityPoints.map((point, index) => (
-          <motion.li
-            key={index}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
+      <div className="flex flex-col md:flex-row gap-12">
+        <div>
+          <motion.p
+            className="text-gray-700 max-w-2xl mx-auto mb-8 text-left text-[17px] leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
           >
-            {point}
-          </motion.li>
-        ))}
-      </ul>
+            We create positive and uplifting social programs and individualized activities to match patient needs and
+            capabilities.
+          </motion.p>
+
+          {/* Bullet point header */}
+          <motion.p
+            className="text-lg text-[#428f47] font-semibold mb-4 max-w-2xl mx-auto text-left"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            Specific activities can include:
+          </motion.p>
+
+          {/* Bullet List */}
+          <ul className="max-w-2xl mx-auto text-gray-700 text-left space-y-2 pl-5 list-disc">
+            {activityPoints.map((point, index) => (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
+              >
+                {point}
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex-1">
+          <ServicesList />
+        </div>
+      </div>
     </main>
   );
 }

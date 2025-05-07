@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import ServicesList from "@/components/ServicesList";
 
 const services = [
   "Dental",
@@ -47,39 +48,46 @@ export default function SocialServicesPage() {
       </motion.div>
 
       {/* Description */}
-      <motion.p
-        className="text-left text-gray-700 text-[17px] leading-relaxed max-w-3xl mx-auto mb-8"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-      >
-        Social Services assist both patients and their families. We also provide essential information, manage requests
-        and concerns, and help in care planning and discharge planning for each patient.
-      </motion.p>
-
-      {/* List of Services */}
-      <motion.h2
-        className="text-xl font-semibold text-gray-800 max-w-3xl mx-auto mb-4"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.4 }}
-      >
-        We can arrange professional services for:
-      </motion.h2>
-
-      <ul className="list-disc text-gray-700 pl-8 max-w-3xl mx-auto">
-        {services.map((item, index) => (
-          <motion.li
-            key={index}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8 + index * 0.1, duration: 0.3 }}
-            className="mb-1"
+      <div className="flex flex-col md:flex-row gap-12">
+        <div>
+          <motion.p
+            className="text-left text-gray-700 text-[17px] leading-relaxed max-w-3xl mx-auto mb-8"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
           >
-            {item}
-          </motion.li>
-        ))}
-      </ul>
+            Social Services assist both patients and their families. We also provide essential information, manage
+            requests and concerns, and help in care planning and discharge planning for each patient.
+          </motion.p>
+
+          {/* List of Services */}
+          <motion.h2
+            className="text-xl font-semibold text-[#428f47] max-w-3xl mx-auto mb-4"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+          >
+            We can arrange professional services for:
+          </motion.h2>
+
+          <ul className="list-disc text-gray-700 pl-8 max-w-3xl mx-auto">
+            {services.map((item, index) => (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8 + index * 0.1, duration: 0.3 }}
+                className="mb-1"
+              >
+                {item}
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex-1">
+          <ServicesList />
+        </div>
+      </div>
     </main>
   );
 }
