@@ -1,217 +1,159 @@
 "use client";
 
-import { Loader } from "@googlemaps/js-api-loader";
 import React, { useEffect, useRef, useState } from "react";
-import { FACILITIES } from "@/constants/facilities";
+import { SOCALFACILITIES, NORCALFACILITIES } from "@/constants/facilities";
+import { FacilityDistance } from "@/types/facility";
+import { initLocationMap } from "@/utilities/initLocationMap";
+import { fillContent, closeAutocomplete } from "@/utilities/mapUtilities";
 import FacilitiesList from "./FacilitiesList";
 
-type Facility = {
-  name: string;
-  address: string;
-  city: string;
-  state: string;
-  zip: string;
-  phone: string;
-  website: string;
-  pos: {
-    lat: number;
-    lng: number;
-  };
-  color: string;
-};
-
-type FacilityDistance = {
-  facility: (typeof FACILITIES)[number];
-  distanceMiles: number;
-};
-
-let map: google.maps.Map;
-let infoWindow: google.maps.InfoWindow; // Store a single InfoWindow instance
-
-const GoogleMap = () => {
+const GoogleSearchMap = () => {
+  // All necessary Refs
   const mapRef = useRef(null);
-  const listRef = useRef<HTMLUListElement>(null);
+  const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
+  const autocompleteMarkerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
+
+  // All autocomplete states
   const [, setAutocomplete] = useState<google.maps.places.Autocomplete | null>(null);
-  const [markers, setMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
-  const [closestLocations, setClosestLocations] = useState<FacilityDistance[] | null>(null);
-  const autocompleteMarker = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
+  const [autocompleteInstance] = useState<google.maps.places.Autocomplete | null>(null);
+  const [autocompleteMarker, setAutocompleteMarker] = useState<google.maps.marker.AdvancedMarkerElement | null>(null);
 
-  // Resets list position after searching
-  useEffect(() => {
-    if (listRef.current) {
-      listRef.current.scrollTop = 0;
-    }
-  }, [closestLocations]);
+  // Facilities sorted by distance for both regions
+  const [closestLocationsSOCAL, setClosestLocationsSOCAL] = useState<FacilityDistance[] | null>(null);
+  const [closestLocationsNORCAL, setClosestLocationsNORCAL] = useState<FacilityDistance[] | null>(null);
+  const [activeRegion, setActiveRegion] = useState<"SOCAL" | "NORCAL">("SOCAL");
 
+  // Markers for both regions
+  const [socalMarkers, setSocalMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
+  const [norcalMarkers, setNorcalMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
+
+  // Used for clearing search input in the button
+  const [searchInput, setSearchInput] = useState("");
+
+  // Retrieves the right facilities depending on region
+  const currentFacilities = activeRegion === "SOCAL" ? SOCALFACILITIES : NORCALFACILITIES;
+  const currentMarkers = activeRegion === "SOCAL" ? socalMarkers : norcalMarkers;
+  const closestLocations = activeRegion === "SOCAL" ? closestLocationsSOCAL : closestLocationsNORCAL;
+
+  // Used to update search marker when searching for a new location
   useEffect(() => {
-    const initMap = async () => {
-      const loader = new Loader({
+    autocompleteMarkerRef.current = autocompleteMarker;
+  }, [autocompleteMarker]);
+
+  // Loads map
+  useEffect(() => {
+    if (mapRef.current) {
+      initLocationMap({
         apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API as string,
-        version: "weekly",
+        mapContainer: mapRef.current,
+        infoWindowRef,
+        autocompleteMarkerRef,
+        setAutocomplete,
+        closeAutocomplete,
+        setAutocompleteMarker,
+        setClosestLocationsSOCAL,
+        setClosestLocationsNORCAL,
+        setSocalMarkers,
+        setNorcalMarkers,
+        setSearchInput,
       });
-
-      const { Map, InfoWindow } = await loader.importLibrary("maps");
-      const { AdvancedMarkerElement, PinElement } = await loader.importLibrary("marker");
-      const { ColorScheme, LatLng } = await loader.importLibrary("core");
-      const { Autocomplete } = await loader.importLibrary("places");
-      const { spherical } = await loader.importLibrary("geometry");
-
-      const defaultCenter = {
-        lat: 34.0522,
-        lng: -118.2437,
-      };
-
-      const mapOptions: google.maps.MapOptions = {
-        center: defaultCenter,
-        zoom: 10,
-        mapId: "428a471c5a144130",
-        colorScheme: ColorScheme.LIGHT,
-      };
-
-      if (mapRef.current) {
-        map = new Map(mapRef.current as HTMLDivElement, mapOptions);
-        infoWindow = new InfoWindow(); // Initialize a single InfoWindow instance
-
-        // Initialize autocomplete for search input
-        const input = document.getElementById("autocomplete-input") as HTMLInputElement;
-        const autocompleteInstance = new Autocomplete(input, {
-          fields: ["place_id", "geometry", "name"],
-        });
-
-        // Set the autocomplete to state
-        setAutocomplete(autocompleteInstance);
-
-        // Listen for the place selection
-        autocompleteInstance.addListener("place_changed", () => {
-          const place = autocompleteInstance.getPlace();
-          if (place.geometry?.location) {
-            const location = place.geometry.location;
-
-            const pin = new PinElement({
-              scale: 1.25,
-              background: "#b81f14",
-              borderColor: "#7a150d",
-              glyphColor: "#b81f14",
-            });
-
-            if (autocompleteMarker.current) {
-              autocompleteMarker.current.position = location;
-            } else {
-              const marker = new AdvancedMarkerElement({
-                map,
-                position: location,
-                content: pin.element,
-              });
-              autocompleteMarker.current = marker;
-            }
-
-            map.setCenter(location);
-            map.setZoom(11);
-
-            // Calculate all facility distances from searched location
-            const facilityDistances = FACILITIES.map((facility) => {
-              const destination = new LatLng(facility.pos.lat, facility.pos.lng);
-              const distanceMeters = spherical.computeDistanceBetween(location, destination);
-              const distanceMiles = distanceMeters * 0.000621371; // convert to miles
-
-              return {
-                facility,
-                distanceMiles: parseFloat(distanceMiles.toFixed(1)), // round to 2 decimals
-              };
-            });
-
-            // Sort by facilities by closest distance
-            facilityDistances.sort((a, b) => a.distanceMiles - b.distanceMiles);
-            setClosestLocations(facilityDistances);
-
-            // Sort markers as well
-            const sortedMarkers = facilityDistances.map(
-              (fd) => facilityMarkers.find((marker) => marker.title === fd.facility.name)!,
-            );
-            setMarkers(sortedMarkers);
-
-            // Debug
-            console.log("Distances to each facility:", facilityDistances);
-          }
-        });
-
-        // Add markers for facilities and store them in state
-        const facilityMarkers: google.maps.marker.AdvancedMarkerElement[] = [];
-
-        FACILITIES.forEach((facility) => {
-          const image = document.createElement("img");
-          image.src = facility.logo;
-          image.alt = facility.name;
-          image.style.width = "25px"; // adjust as needed
-          image.style.height = "25px";
-          image.style.objectFit = "contain";
-          image.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.3)";
-          image.style.borderRadius = "50%"; // optional: makes logos circular
-          image.style.backgroundColor = "white"; // optional: helps shadow show better
-
-          const marker = new AdvancedMarkerElement({
-            map,
-            position: facility.pos,
-            title: facility.name,
-            content: image,
-            gmpClickable: true,
-          });
-
-          marker.addListener("gmp-click", () => {
-            // Close any open InfoWindow before opening a new one
-            infoWindow.close();
-            const content = fillContent(facility);
-            infoWindow.setHeaderContent(facility.name);
-            infoWindow.setContent(content);
-            infoWindow.open(marker.map, marker);
-          });
-
-          // Store the marker for later use
-          facilityMarkers.push(marker);
-        });
-
-        // Set the markers in state
-        setMarkers(facilityMarkers);
-      }
-    };
-
-    initMap();
+    }
   }, []);
 
+  // Opens up the right facility content window from the Facility list
   const handleFacilityClick = (index: number) => {
-    const marker = markers[index];
-    if (marker) {
-      // Close any open InfoWindow before opening a new one
-      infoWindow.close();
-
-      let facility;
-      if (closestLocations) {
-        facility = closestLocations[index].facility;
-      } else {
-        facility = FACILITIES[index];
+    const marker = currentMarkers[index];
+    const facility = closestLocations ? closestLocations[index].facility : currentFacilities[index];
+    if (marker && facility) {
+      const infoWindow = infoWindowRef.current;
+      if (infoWindow) {
+        infoWindow.close();
+        infoWindow.setHeaderContent(facility.name);
+        infoWindow.setContent(fillContent(facility));
+        infoWindow.open(marker.map, marker);
       }
-      const content = fillContent(facility);
-      infoWindow.setHeaderContent(facility.name);
-      infoWindow.setContent(content);
-      infoWindow.open(marker.map, marker);
+    }
+  };
+
+  // Correctly updates the region
+  const handleRegionClick = (region: "SOCAL" | "NORCAL") => {
+    setActiveRegion(region);
+    if (region === "SOCAL") {
+      setClosestLocationsSOCAL(closestLocationsSOCAL);
+    } else {
+      setClosestLocationsNORCAL(closestLocationsNORCAL);
+    }
+  };
+
+  const handleClearInput = () => {
+    setSearchInput("");
+    // Removes search location
+    if (autocompleteMarkerRef.current) {
+      autocompleteMarkerRef.current.map = null;
+      setAutocompleteMarker(null);
+    }
+    // Removes dropdown menu
+    closeAutocomplete(autocompleteInstance);
+    // Removes the miles from the list
+    if (closestLocationsNORCAL || closestLocationsSOCAL) {
+      setClosestLocationsSOCAL(null);
+      setClosestLocationsNORCAL(null);
     }
   };
 
   return (
     <div className="flex w-full h-screen">
-      {/* Autocomplete Input + Facilities List */}
       <div className="w-1/4 p-4 mt-[80px] flex flex-col h-full">
-        {/* Autocomplete Input */}
-        <input
-          id="autocomplete-input"
-          type="text"
-          placeholder="City, State, or Zip Code"
-          className="w-full p-2 border border-gray-300 mb-4"
-        />
+        <div className="relative mb-4 w-full">
+          <input
+            id="autocomplete-input"
+            type="text"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="City, State, or Zip Code"
+            className="w-full p-2 pr-8 border border-gray-300"
+          />
+          {searchInput && (
+            <button
+              type="button"
+              onClick={handleClearInput}
+              className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500 hover:text-black"
+            >
+              ×
+            </button>
+          )}
+        </div>
+
+        {/* Toggle Buttons */}
+        <div className="flex mb-4 border border-gray-300 rounded overflow-hidden w-full">
+          <button
+            className={`flex-1 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+              activeRegion === "SOCAL" ? "bg-[#428f47] text-black" : "bg-white text-gray-700 hover:bg-gray-100"
+            } rounded-l`}
+            onClick={() => {
+              handleRegionClick("SOCAL");
+            }}
+          >
+            SoCal Facilities
+          </button>
+          <div className="w-px bg-gray-300" />
+          <button
+            className={`flex-1 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+              activeRegion === "NORCAL" ? "bg-[#428f47] text-black" : "bg-white text-gray-700 hover:bg-gray-100"
+            } rounded-r`}
+            onClick={() => {
+              handleRegionClick("NORCAL");
+            }}
+          >
+            NorCal Facilities
+          </button>
+        </div>
+
+        {/* Facilities List */}
         <FacilitiesList
+          facilities={currentFacilities}
           closestLocations={closestLocations}
           handleFacilityClick={handleFacilityClick}
-          facilities={FACILITIES}
         />
       </div>
 
@@ -221,19 +163,4 @@ const GoogleMap = () => {
   );
 };
 
-export default GoogleMap;
-
-const fillContent = (facility: Facility) => {
-  const content = `
-    <div>
-      ${facility.address}<br/>
-      ${facility.city}, ${facility.state} ${facility.zip}<br/>
-      <a href="tel:${facility.phone.replace(/\D/g, "")}">
-      ${facility.phone}
-      </a><br/>
-      <a href="https://${facility.website}" target="_blank" rel="noopener noreferrer">
-      ${facility.website}</a>
-      </div>
-            `;
-  return content;
-};
+export default GoogleSearchMap;
