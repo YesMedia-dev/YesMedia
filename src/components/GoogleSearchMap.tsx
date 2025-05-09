@@ -78,9 +78,11 @@ const GoogleSearchMap = () => {
   // Correctly updates the region
   const handleRegionClick = (region: "SOCAL" | "NORCAL") => {
     setActiveRegion(region);
-    region === "SOCAL"
-      ? setClosestLocationsSOCAL(closestLocationsSOCAL)
-      : setClosestLocationsNORCAL(closestLocationsNORCAL);
+    if (region === "SOCAL") {
+      setClosestLocationsSOCAL(closestLocationsSOCAL);
+    } else {
+      setClosestLocationsNORCAL(closestLocationsNORCAL);
+    }
   };
 
   const handleClearInput = () => {
