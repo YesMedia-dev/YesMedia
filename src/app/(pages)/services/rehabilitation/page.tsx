@@ -41,7 +41,7 @@ export default function RehabilitationPage() {
         transition={{ delay: 0.2, duration: 0.6 }}
       >
         <Image
-          src="/assets/room2.jpeg"
+          src="/services/rehabilitation.jpg"
           alt="Rehabilitation Room"
           width={1400}
           height={400}
@@ -120,12 +120,18 @@ export default function RehabilitationPage() {
             </motion.ul>
           </div>
 
-          {/* Right: Services List */}
-          <div className="flex-1">
+          {/* Right: Services List with fade-in */}
+          <motion.div
+            className="flex-1"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: .6, duration: 0.6 }}
+          >
             <ServicesList />
-          </div>
+          </motion.div>
         </div>
       </section>
     </main>
   );
 }
+

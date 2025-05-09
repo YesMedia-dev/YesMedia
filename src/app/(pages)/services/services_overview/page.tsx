@@ -64,7 +64,7 @@ export default function ServicesOverviewPage() {
         transition={{ duration: ANIMATION_DURATION, delay: 0.2 }}
       >
         <Image
-          src="/gallery/meetingroom.png"
+          src="/services/overview.jpg"
           alt="Service Overview"
           width={1400}
           height={400}

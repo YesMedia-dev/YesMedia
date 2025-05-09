@@ -41,16 +41,16 @@ const Header = () => {
       {/* Main nav */}
       <div className="w-full border-b border-gray-200 bg-white">
         <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Logo wrapped in Link */}
+          <Link href="/" className="flex items-center">
             <Image
               src="/assets/vinelandlogo.png"
               alt="Vineland Logo"
               width={120}
               height={40}
-              className="object-contain"
+              className="object-contain cursor-pointer"
             />
-          </div>
+          </Link>
 
           {/* Center Nav Links */}
           <nav className="hidden md:flex gap-6 text-base font-medium text-gray-700 relative">
@@ -74,21 +74,17 @@ const Header = () => {
                 <div className="absolute top-full left-0 mt-2 bg-white border shadow-md rounded-md w-64 p-4 z-50">
                   <ul className="flex flex-col gap-2 text-sm text-gray-800">
                     <li>
-                      <Link href="/about-us/who-we-are" className="hover:underline" onClick={() => setAboutOpen(false)}>
+                      <Link href="/about-us/who-we-are" onClick={() => setAboutOpen(false)} className="hover:underline">
                         Who We Are
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/about-us/testimonials"
-                        className="hover:underline"
-                        onClick={() => setAboutOpen(false)}
-                      >
+                      <Link href="/about-us/testimonials" onClick={() => setAboutOpen(false)} className="hover:underline">
                         Testimonials
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about-us/faqs" className="hover:underline" onClick={() => setAboutOpen(false)}>
+                      <Link href="/about-us/faqs" onClick={() => setAboutOpen(false)} className="hover:underline">
                         General FAQs
                       </Link>
                     </li>
@@ -113,39 +109,27 @@ const Header = () => {
                 <div className="absolute top-full left-0 mt-2 bg-white border shadow-md rounded-md w-64 p-4 z-50">
                   <ul className="flex flex-col gap-2 text-sm text-gray-800">
                     <li>
-                      <Link
-                        href="/services/services_overview"
-                        className="hover:underline"
-                        onClick={() => setServicesOpen(false)}
-                      >
+                      <Link href="/services/services_overview" onClick={() => setServicesOpen(false)} className="hover:underline">
                         Overview
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/nursing" className="hover:underline" onClick={() => setServicesOpen(false)}>
+                      <Link href="/services/nursing" onClick={() => setServicesOpen(false)} className="hover:underline">
                         Nursing
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/services/rehabilitation"
-                        className="hover:underline"
-                        onClick={() => setServicesOpen(false)}
-                      >
+                      <Link href="/services/rehabilitation" onClick={() => setServicesOpen(false)} className="hover:underline">
                         Rehabilitation
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/social" className="hover:underline" onClick={() => setServicesOpen(false)}>
+                      <Link href="/services/social" onClick={() => setServicesOpen(false)} className="hover:underline">
                         Social Services
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/services/activities"
-                        className="hover:underline"
-                        onClick={() => setServicesOpen(false)}
-                      >
+                      <Link href="/services/activities" onClick={() => setServicesOpen(false)} className="hover:underline">
                         Activities
                       </Link>
                     </li>
@@ -180,12 +164,12 @@ const Header = () => {
                 <div className="absolute top-full left-0 mt-2 bg-white border shadow-md rounded-md w-64 p-4 z-50">
                   <ul className="flex flex-col gap-2 text-sm text-gray-800">
                     <li>
-                      <Link href="/contact-us/email" className="hover:underline" onClick={() => setContactOpen(false)}>
+                      <Link href="/contact-us/email" onClick={() => setContactOpen(false)} className="hover:underline">
                         Email Us
                       </Link>
                     </li>
                     <li>
-                      <Link href="/contact-us/tour" className="hover:underline" onClick={() => setContactOpen(false)}>
+                      <Link href="/contact-us/tour" onClick={() => setContactOpen(false)} className="hover:underline">
                         Schedule a Tour
                       </Link>
                     </li>
@@ -195,10 +179,8 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* Right placeholder */}
-          <div className="hidden md:block">
-            <button className="text-gray-600 hover:text-gray-900">🔍</button>
-          </div>
+       {/* Right Side Hidden Block Placeholder */}
+        <div className="hidden md:block" /> 
         </div>
       </div>
     </header>
@@ -206,3 +188,4 @@ const Header = () => {
 };
 
 export default Header;
+
