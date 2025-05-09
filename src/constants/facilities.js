@@ -1,4 +1,4 @@
-const FACILITIES = [
+const SOCALFACILITIES = [
   {
     name: "ALCOTT REHAB",
     address: "3551 W. Olympic Blvd.",
@@ -8,7 +8,6 @@ const FACILITIES = [
     phone: "(323) 737-2000",
     website: "www.AlcottRehabilitation.com",
     pos: { lat: 34.0530714373979, lng: -118.31714091349116 },
-    color: "#FFFFFF",
     logo: "/logos/Alcott.png",
   },
   {
@@ -20,7 +19,6 @@ const FACILITIES = [
     phone: "(714) 816-0540",
     website: "www.AnaheimHealthcare.com",
     pos: { lat: 33.826426389994985, lng: -117.99362442997688 },
-    color: "#FFFFFF",
     logo: "/logos/Anaheim.png",
   },
   {
@@ -32,7 +30,7 @@ const FACILITIES = [
     phone: "(909) 823-3481",
     website: "www.CitrusNursing.com",
     pos: { lat: 34.082596534431, lng: -117.45489240298542 },
-    color: "#FFFFFF",
+
     logo: "/logos/Citrus.png",
   },
   {
@@ -44,7 +42,7 @@ const FACILITIES = [
     phone: "(323) 257-8151",
     website: "www.CollegeVistaCare.com",
     pos: { lat: 34.12973649713725, lng: -118.21755235880238 },
-    color: "#FFFFFF",
+
     logo: "/logos/College.png",
   },
   {
@@ -56,7 +54,7 @@ const FACILITIES = [
     phone: "(951) 680-6500",
     website: "www.CommunityCareandRehab.com",
     pos: { lat: 33.96085594619692, lng: -117.39656813182603 },
-    color: "#FFFFFF",
+
     logo: "/logos/CCRC.png",
   },
   {
@@ -68,7 +66,7 @@ const FACILITIES = [
     phone: "(909) 622-1067",
     website: "www.CountryOaksCareCenter.us",
     pos: { lat: 34.10102199178756, lng: -117.7697045196175 },
-    color: "#FFFFFF",
+
     logo: "/logos/Country Oaks.png",
   },
   {
@@ -80,7 +78,7 @@ const FACILITIES = [
     phone: "(626) 288-8353",
     website: "www.DelMarHospital.com",
     pos: { lat: 34.065811182713524, lng: -118.09888368094715 },
-    color: "#FFFFFF",
+
     logo: "/logos/Del Mar.png",
   },
   {
@@ -92,7 +90,7 @@ const FACILITIES = [
     phone: "(951) 687-3842",
     website: "www.extendedcarehospital.com",
     pos: { lat: 33.935388520247535, lng: -117.42230264531813 },
-    color: "#FFFFFF",
+
     logo: "/logos/Extended Care.png",
   },
   {
@@ -104,7 +102,7 @@ const FACILITIES = [
     phone: "(714) 973-1656",
     website: "www.FrenchParkCareCenter.com",
     pos: { lat: 33.75568905896885, lng: -117.86229453368718 },
-    color: "#FFFFFF",
+
     logo: "/logos/French Park.png",
   },
   {
@@ -116,7 +114,7 @@ const FACILITIES = [
     phone: "(714) 971-2153",
     website: "www.GardenParkCareCenter.com",
     pos: { lat: 33.77884968194595, lng: -117.9066984606688 },
-    color: "#FFFFFF",
+
     logo: "/logos/Garden Park.png",
   },
   {
@@ -128,7 +126,7 @@ const FACILITIES = [
     phone: "(714) 879-7301",
     website: "www.GordonLaneCareCenter.com",
     pos: { lat: 33.8747795128682, lng: -117.89693602626751 },
-    color: "#FFFFFF",
+
     logo: "/logos/Gordon Lane.png",
   },
   {
@@ -140,7 +138,7 @@ const FACILITIES = [
     phone: "(626) 573-3141",
     website: "www.HeritageManorCare.com",
     pos: { lat: 34.06899949566121, lng: -118.12242754716723 },
-    color: "#FFFFFF",
+
     logo: "/logos/Heritage Manor.png",
   },
   {
@@ -152,7 +150,7 @@ const FACILITIES = [
     phone: "(951) 688-2222",
     website: "www.MissionCareCenter.com",
     pos: { lat: 33.93183670817216, lng: -117.42838224531833 },
-    color: "#FFFFFF",
+
     logo: "/logos/Mission Care.png",
   },
   {
@@ -164,7 +162,7 @@ const FACILITIES = [
     phone: "(626) 280-0280",
     website: "www.MontereyParkCare.com",
     pos: { lat: 34.06706832660523, lng: -118.12268132760052 },
-    color: "#FFFFFF",
+
     logo: "/logos/Monterey Park.png",
   },
   {
@@ -176,7 +174,7 @@ const FACILITIES = [
     phone: "(818) 352-1454",
     website: "www.NorthValleyNursingCenter.com",
     pos: { lat: 34.257484740916304, lng: -118.29987771832427 },
-    color: "#FFFFFF",
+
     logo: "/logos/North Valley.png",
   },
   {
@@ -188,7 +186,7 @@ const FACILITIES = [
     phone: "(310) 453-5456",
     website: "www.PacificPostAcute.com",
     pos: { lat: 34.027794875674765, lng: -118.48366931833253 },
-    color: "#FFFFFF",
+
     logo: "/logos/Pacific.png",
   },
   {
@@ -200,7 +198,7 @@ const FACILITIES = [
     phone: "(562) 634-6877",
     website: "www.ParamountConvalescent.com",
     pos: { lat: 33.90333452043277, lng: -118.14951901648297 },
-    color: "#FFFFFF",
+
     logo: "/logos/Paramount.png",
   },
   {
@@ -212,7 +210,7 @@ const FACILITIES = [
     phone: "(714) 773-0750",
     website: "www.ParkRegencyCare.com",
     pos: { lat: 33.931507383860996, lng: -117.9660402741546 },
-    color: "#FFFFFF",
+
     logo: "/logos/Park Care.png",
   },
   {
@@ -224,7 +222,7 @@ const FACILITIES = [
     phone: "(562) 691-3822",
     website: "www.ParkRegencyRetirement.com",
     pos: { lat: 33.93190125387858, lng: -117.96517419928311 },
-    color: "#FFFFFF",
+
     logo: "/logos/Park Retirement.png",
   },
   {
@@ -236,7 +234,7 @@ const FACILITIES = [
     phone: "(949) 642-8044",
     website: "www.PelicanRidgePostAcute.com",
     pos: { lat: 33.62808424037945, lng: -117.92802817231146 },
-    color: "#FFFFFF",
+
     logo: "/logos/Pelican Ridge.png",
   },
   {
@@ -248,7 +246,7 @@ const FACILITIES = [
     phone: "(909) 623-2481",
     website: "www.PomonaVistaCareCenter.com",
     pos: { lat: 34.06429893706353, lng: -117.7522927146234 },
-    color: "#FFFFFF",
+
     logo: "/logos/Pomona Vista.png",
   },
   {
@@ -260,7 +258,7 @@ const FACILITIES = [
     phone: "(626) 960-1971",
     website: "www.SierraViewCareCenter.com",
     pos: { lat: 34.09504916771106, lng: -117.96221172625945 },
-    color: "#FFFFFF",
+
     logo: "/logos/Sierra View.png",
   },
   {
@@ -272,7 +270,7 @@ const FACILITIES = [
     phone: "(714) 776-1720",
     website: "www.SunMarNursing.com",
     pos: { lat: 33.82463041338142, lng: -117.94209114161428 },
-    color: "#FFFFFF",
+
     logo: "/logos/Sun Mar Nursing.png",
   },
   {
@@ -284,7 +282,7 @@ const FACILITIES = [
     phone: "(626) 443-9425",
     website: "www.SunsetManorCare.com",
     pos: { lat: 34.06116996697163, lng: -118.03628055695107 },
-    color: "#FFFFFF",
+
     logo: "/logos/Sunset Manor.png",
   },
   {
@@ -296,7 +294,7 @@ const FACILITIES = [
     phone: "(818) 881-4261",
     website: "www.TarzanaHealthandRehab.com",
     pos: { lat: 34.174087018289555, lng: -118.5357255011283 },
-    color: "#FFFFFF",
+
     logo: "/logos/Tarzana.png",
   },
   {
@@ -308,7 +306,7 @@ const FACILITIES = [
     phone: "(626) 962-1043",
     website: "www.TheVictoriaCareCenter.com",
     pos: { lat: 34.13403597694026, lng: -117.96014660957887 },
-    color: "#FFFFFF",
+
     logo: "/logos/Victoria Care.png",
   },
   {
@@ -320,7 +318,7 @@ const FACILITIES = [
     phone: "(858) 672-3900",
     website: "www.VillaRanchoBernardo.com",
     pos: { lat: 33.006118757187835, lng: -117.09403874164322 },
-    color: "#FFFFFF",
+
     logo: "/logos/Villa Rancho.png",
   },
   {
@@ -332,9 +330,121 @@ const FACILITIES = [
     phone: "(818) 763-8247",
     website: "www.VinelandPostAcute.com",
     pos: { lat: 34.17913653778753, lng: -118.36711955880061 },
-    color: "#428F47",
     logo: "/logos/Vineland.png",
   },
 ];
 
-export { FACILITIES };
+const NORCALFACILITIES = [
+  {
+    name: "CEDARWOOD POST-ACUTE (AppleWood)",
+    address: "1090 Rio Lane",
+    city: "Sacramento",
+    state: "CA",
+    zip: "95822",
+    phone: "(916) 446-2506",
+    website: "www.CedarwoodPostAcute.com",
+    pos: { lat: 38.5342962155563, lng: -121.51942956581205 },
+    logo: "/logos/Vineland.png",
+  },
+  {
+    name: "SHASTA CARE CENTER (BrentWood)",
+    address: "1795 Walnut Street",
+    city: "Red Bluff",
+    state: "CA",
+    zip: "96080",
+    phone: "(530) 527-2046",
+    website: "www.ShastaCareCenter.org",
+    pos: { lat: 40.169481917720226, lng: -122.2529370000019 },
+    logo: "/logos/Vineland.png",
+  },
+  {
+    name: "BRIDGEWOOD POST-ACUTE (BriarWood)",
+    address: "5901 Lemon Hill Ave.",
+    city: "Sacramento",
+    state: "CA",
+    zip: "95824",
+    phone: "(916) 383-2741",
+    website: "www.BridgewoodPostAcute.com",
+    pos: { lat: 38.516663387483476, lng: -121.4363790846523 },
+    logo: "/logos/Vineland.png",
+  },
+  {
+    name: "COUNTRY CREST POST-ACUTE",
+    address: "50 Concordia Lane",
+    city: "Oroville",
+    state: "CA",
+    zip: "95966",
+    phone: "(530) 532-6600",
+    website: "www.CountryCrestPostAcute.com",
+    pos: { lat: 39.49590908046609, lng: -121.5185341288362 },
+    logo: "/logos/Vineland.png",
+  },
+  {
+    name: "COURTYARD CARE CENTER",
+    address: "340 Northlake Drive",
+    city: "San Jose",
+    state: "CA",
+    zip: "95117",
+    phone: "(408) 249-0344",
+    website: "www.CourtyardCare.center",
+    pos: { lat: 37.3223738113757, lng: -121.96801799999999 },
+    logo: "/logos/Vineland.png",
+  },
+  {
+    name: "DIAMOND RIDGE HEALTHCARE CENTER",
+    address: "2351 Loveridge Road",
+    city: "Pittsburg",
+    state: "CA",
+    zip: "94565",
+    phone: "(925) 427-4444",
+    website: "www.DiamondRidgeHealthcare.com",
+    pos: { lat: 38.005488386763005, lng: -121.87005704510591 },
+    logo: "/logos/Vineland.png",
+  },
+  {
+    name: "EXCELL HEALTH CARE CENTER",
+    address: "3025 High Street",
+    city: "Oakland",
+    state: "CA",
+    zip: "94619",
+    phone: "(510) 261-5200",
+    website: "www.ExcellHealthcareCenter.com",
+    pos: { lat: 37.785161312354866, lng: -122.20054333862075 },
+    logo: "/logos/Vineland.png",
+  },
+  {
+    name: "MISSION CARMICHAEL HEALTHCARE CENTER",
+    address: "3630 Mission Avenue",
+    city: "Carmichael",
+    state: "CA",
+    zip: "95608",
+    phone: "(916) 488-1580",
+    website: "www.MissionCarmichael.com",
+    pos: { lat: 38.6312525785685, lng: -121.35484299999999 },
+    logo: "/logos/Vineland.png",
+  },
+  {
+    name: "FEATHER RIVER CARE CENTER (Shadowbrook)",
+    address: "1 Gilmore Lane",
+    city: "Oroville",
+    state: "CA",
+    zip: "95966",
+    phone: "(530) 534-1353",
+    website: "www.FeatherCareCenter.org",
+    pos: { lat: 39.50858599241778, lng: -121.540656 },
+    logo: "/logos/Vineland.png",
+  },
+  {
+    name: "ALMOND CARE CENTER (Valley West)",
+    address: "1224 East Street",
+    city: "Williams",
+    state: "CA",
+    zip: "95987",
+    phone: "(530) 473-5321",
+    website: "www.AlmondCareCenter.org",
+    pos: { lat: 39.15310528550697, lng: -122.15718035618804 },
+    logo: "/logos/Vineland.png",
+  },
+];
+
+export { SOCALFACILITIES, NORCALFACILITIES };
