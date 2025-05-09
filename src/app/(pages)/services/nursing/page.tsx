@@ -44,13 +44,14 @@ const SkilledNursingPage = () => {
         transition={{ delay: 0.2, duration: 0.6 }}
       >
         <Image
-          src="/assets/nursing.jpg"
+          src="/services/nursing.jpg"
           alt="Skilled Nursing Room"
           width={1400}
           height={400}
           className="w-full object-cover h-[350px]"
         />
       </motion.div>
+
       <div className="flex flex-col md:flex-row gap-12">
         <div>
           <motion.p
@@ -96,12 +97,20 @@ const SkilledNursingPage = () => {
             </motion.ul>
           </motion.div>
         </div>
-        <div className="flex-1">
+
+        {/* ADDED FADE-IN ANIMATION HERE */}
+        <motion.div
+          className="flex-1"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: .6, duration: 0.6 }}
+        >
           <ServicesList />
-        </div>
+        </motion.div>
       </div>
     </main>
   );
 };
 
 export default SkilledNursingPage;
+

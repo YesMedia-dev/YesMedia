@@ -39,7 +39,7 @@ export default function SocialServicesPage() {
         transition={{ delay: 0.2, duration: 0.6 }}
       >
         <Image
-          src="/assets/social.jpg"
+          src="/services/social.jpg"
           alt="Social Services"
           width={1400}
           height={400}
@@ -84,10 +84,18 @@ export default function SocialServicesPage() {
             ))}
           </ul>
         </div>
-        <div className="flex-1">
+
+        {/* Fade-in added below */}
+        <motion.div
+          className="flex-1"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: .6, duration: 0.6 }}
+        >
           <ServicesList />
-        </div>
+        </motion.div>
       </div>
     </main>
   );
 }
+

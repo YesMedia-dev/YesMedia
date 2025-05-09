@@ -149,7 +149,7 @@ export default function GeneralFAQsPage() {
         transition={{ delay: 0.2, duration: 0.6 }}
       >
         <Image
-          src="/assets/FAQ.jpg"
+          src="/about/FAQ.jpg"
           alt="Facility Outdoor"
           width={1400}
           height={400}

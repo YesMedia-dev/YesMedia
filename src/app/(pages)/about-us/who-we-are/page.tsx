@@ -57,7 +57,7 @@ export default function WhoWeArePage() {
           {/* First image */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
             <Image
-              src="/assets/group.png"
+              src="/about/WWA1.jpg"
               alt="Vineland Staff"
               width={600}
               height={400}
@@ -68,7 +68,7 @@ export default function WhoWeArePage() {
           {/* Second image */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }}>
             <Image
-              src="/gallery/group5.png"
+              src="/about/WWA2.jpg"
               alt="Vineland Team"
               width={600}
               height={400}
