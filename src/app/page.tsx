@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
-      <ServicesGrid />
+      <ServicesGrid id="services" />
       <Video />
       <Photos />
       <Banner />

@@ -36,9 +36,9 @@ const services = [
   },
 ];
 
-const ServicesGrid = () => {
+const ServicesGrid = ({ id }: { id?: string }) => {
   return (
-    <section className="bg-white text-center animate-fadeIn relative overflow-visible">
+    <section id={id} className="bg-white text-center animate-fadeIn relative overflow-visible">
       {/* Decorative Green Bubbles */}
       <div className="absolute w-[100px] h-[100px] bg-green-100 rounded-full top-[-30px] left-[-30px] z-0 opacity-30" />
       <div className="absolute w-[80px] h-[80px] bg-green-200 rounded-full bottom-[10%] left-[5%] z-0 opacity-25" />

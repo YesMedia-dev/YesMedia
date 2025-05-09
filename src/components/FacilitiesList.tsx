@@ -1,35 +1,10 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { FACILITIES } from "@/constants/facilities";
+import { FacilityList } from "@/types/facility";
 
-type Facility = {
-  name: string;
-  address: string;
-  city: string;
-  state: string;
-  zip: string;
-  phone: string;
-  website: string;
-  pos: {
-    lat: number;
-    lng: number;
-  };
-  color: string;
-  logo: string;
-};
-
-type FacilityDistance = {
-  facility: (typeof FACILITIES)[number];
-  distanceMiles: number;
-};
-
-type Props = {
-  closestLocations: FacilityDistance[] | null;
-  handleFacilityClick: (index: number) => void;
-  facilities: Facility[];
-};
-
-export default function FacilitiesList({ closestLocations, handleFacilityClick, facilities }: Props) {
+export default function FacilitiesList({ facilities, closestLocations, handleFacilityClick }: FacilityList) {
   const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -39,7 +14,7 @@ export default function FacilitiesList({ closestLocations, handleFacilityClick, 
   }, [closestLocations]);
 
   return (
-    <ul ref={listRef} className="overflow-y-auto max-h-[calc(100vh-160px)] border border-gray-300">
+    <ul ref={listRef} className="overflow-y-auto max-h-[calc(100vh-220px)] border border-gray-300">
       {(closestLocations ?? facilities).map((item, index) => {
         const facility = "facility" in item ? item.facility : item;
         const distance =
