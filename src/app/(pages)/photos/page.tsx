@@ -2,23 +2,16 @@
 
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import Image from "next/image";
 
 const allImages = [
-  // SET 1
   "bear.png", "group3.png", "beds.png", "rehab2.png",
-  // SET 2
   "biggroup.png", "group9.png", "chair.png", "group1.png",
-  // SET 3
   "chef.png", "meetingroom.png", "doctor1.png", "event.png",
-  // SET 4
   "group7.png", "group2.png", "patio.png", "doctor2.png",
-  // SET 5
   "outside1.png", "hall.png", "group6.png", "letter.png",
-  // SET 6
   "rehab.png", "flower.png", "lobby.png", "house.png",
-  // SET 7
   "group4.png", "group5.png", "welcome.png", "group8.png",
-  // SET 8
   "group10.png"
 ];
 
@@ -70,7 +63,7 @@ export default function PhotoGallery() {
       <div className="max-w-7xl mx-auto">
 
         {/* Title + Subtitle */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-drop-in">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#428f47] mb-3">
             Photo Gallery
           </h1>
@@ -80,7 +73,7 @@ export default function PhotoGallery() {
         </div>
 
         {/* Categories */}
-        <div className="flex justify-center gap-4 flex-wrap mb-10">
+        <div className="flex justify-center gap-4 flex-wrap mb-10 opacity-0 animate-fade-in-slow">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -124,10 +117,13 @@ export default function PhotoGallery() {
               onClick={() => setSelectedImage(img)}
               style={{ animation: `fadeIn 0.3s ease-out ${i * 0.1}s both` }}
             >
-              <img
+              <Image
                 src={`/gallery/${img}`}
                 alt=""
+                width={800}
+                height={600}
                 className="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
+                priority={i < 4}
               />
             </div>
           ))}
@@ -195,10 +191,40 @@ export default function PhotoGallery() {
             transform: translateY(0);
           }
         }
+
+        .animate-drop-in {
+          animation: dropIn 0.6s ease-out both;
+        }
+
+        @keyframes dropIn {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-slow {
+          animation: fadeInSlow 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInSlow {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
       `}</style>
     </section>
   );
 }
+
+
 
 
 

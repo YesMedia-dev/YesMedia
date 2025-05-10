@@ -65,7 +65,7 @@ const Careers = () => {
         >
           <div className="relative w-full h-[400px] md:h-[350px]">
             <Image
-              src="/assets/welcome.jpeg"
+              src="/contact/welcome.jpeg"
               alt="Welcome to Vineland"
               fill
               className="object-cover rounded-xl"
