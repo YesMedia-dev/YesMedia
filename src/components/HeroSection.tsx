@@ -13,13 +13,13 @@ const GoogleMap = dynamic(() => import("./GoogleMap"), { ssr: false });
 
 const slides = [
   {
-    image: "/assets/chef.jpeg",
+    image: "/assets/chef.webp",
     title: "True Love is a Homecooked Meal",
     description:
       "Our chefs bring decades of experience and culinary expertise, preparing the finest healthy meals with care and dedication for our residents.",
   },
   {
-    image: "/assets/outside1.jpeg",
+    image: "/assets/outside1.webp",
     title: "A Place to Enjoy",
     subtitle: "Our beautifully renovated facility offers peace, safety, and comfort.",
     description:
@@ -96,3 +96,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
