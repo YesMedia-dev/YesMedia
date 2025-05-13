@@ -5,25 +5,25 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 
 const allImages = [
-  "bear.png", "group3.png", "beds.png", "rehab2.png",
-  "biggroup.png", "group9.png", "chair.png", "group1.png",
-  "chef.png", "meetingroom.png", "doctor1.png", "event.png",
-  "group7.png", "group2.png", "patio.png", "doctor2.png",
-  "outside1.png", "hall.png", "group6.png", "letter.png",
-  "rehab.png", "flower.png", "lobby.png", "house.png",
-  "group4.png", "group5.png", "welcome.png", "group8.png",
-  "group10.png"
+  "bear.webp", "group3.webp", "beds.webp", "rehab2.webp",
+  "biggroup.webp", "group9.webp", "chair.webp", "group1.webp",
+  "chef.webp", "meetingroom.webp", "doctor1.webp", "event.webp",
+  "group7.webp", "group2.webp", "patio.webp", "doctor2.webp",
+  "outside1.webp", "hall.webp", "group6.webp", "letter.webp",
+  "rehab.webp", "flower.webp", "lobby.webp", "house.webp",
+  "group4.webp", "group5.webp", "welcome.webp", "group8.webp",
+  "group10.webp"
 ];
 
 const imageDetails = {
-  "bear.png": "Comfort", "group3.png": "Team", "beds.png": "Rooms", "rehab2.png": "Rooms",
-  "biggroup.png": "Team", "group9.png": "Team", "chair.png": "Comfort", "group1.png": "Team",
-  "chef.png": "Comfort", "meetingroom.png": "Rooms", "doctor1.png": "Team", "event.png": "Rooms",
-  "group7.png": "Team", "group2.png": "Team", "patio.png": "Rooms", "doctor2.png": "Team",
-  "outside1.png": "Rooms", "hall.png": "Rooms", "group6.png": "Team", "letter.png": "Comfort",
-  "rehab.png": "Rooms", "flower.png": "Comfort", "lobby.png": "Rooms", "house.png": "Rooms",
-  "group4.png": "Team", "group5.png": "Team", "welcome.png": "Rooms", "group8.png": "Team",
-  "group10.png": "Team"
+  "bear.webp": "Comfort", "group3.webp": "Team", "beds.webp": "Rooms", "rehab2.webp": "Rooms",
+  "biggroup.webp": "Team", "group9.webp": "Team", "chair.webp": "Comfort", "group1.webp": "Team",
+  "chef.webp": "Comfort", "meetingroom.webp": "Rooms", "doctor1.webp": "Team", "event.webp": "Rooms",
+  "group7.webp": "Team", "group2.webp": "Team", "patio.webp": "Rooms", "doctor2.webp": "Team",
+  "outside1.webp": "Rooms", "hall.webp": "Rooms", "group6.webp": "Team", "letter.webp": "Comfort",
+  "rehab.webp": "Rooms", "flower.webp": "Comfort", "lobby.webp": "Rooms", "house.webp": "Rooms",
+  "group4.webp": "Team", "group5.webp": "Team", "welcome.webp": "Rooms", "group8.webp": "Team",
+  "group10.webp": "Team"
 };
 
 const categories = ["All", "Team", "Rooms", "Comfort"] as const;
@@ -223,6 +223,7 @@ export default function PhotoGallery() {
     </section>
   );
 }
+
 
 
 
