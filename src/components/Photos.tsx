@@ -10,10 +10,10 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 const photos = [
-  { image: "/assets/house.jpeg", alt: "Facility Exterior" },
-  { image: "/assets/bear.jpeg", alt: "Bear on Table" },
-  { image: "/assets/room.jpeg", alt: "Therapy Room" },
-  { image: "/assets/outside2.jpeg", alt: "Courtyard" },
+  { image: "/assets/house.webp", alt: "Facility Exterior" },
+  { image: "/assets/bear.webp", alt: "Bear on Table" },
+  { image: "/assets/room.webp", alt: "Therapy Room" },
+  { image: "/assets/outside2.webp", alt: "Courtyard" },
 ];
 
 const Photos = () => {
@@ -48,28 +48,28 @@ const Photos = () => {
             className="col-span-4 row-span-2 relative rounded-xl overflow-hidden shadow-lg cursor-pointer"
             onClick={() => openModal(0)}
           >
-            <Image src="/assets/house.jpeg" alt="Facility Exterior" fill className="rounded-xl object-cover" />
+            <Image src="/assets/house.webp" alt="Facility Exterior" fill className="rounded-xl object-cover" />
           </div>
 
           <div
             className="col-span-2 row-span-1 relative rounded-xl overflow-hidden shadow-md cursor-pointer"
             onClick={() => openModal(1)}
           >
-            <Image src="/assets/bear.jpeg" alt="Bear on Table" fill className="rounded-xl object-cover" />
+            <Image src="/assets/bear.webp" alt="Bear on Table" fill className="rounded-xl object-cover" />
           </div>
 
           <div
             className="col-span-2 row-span-1 relative rounded-xl overflow-hidden shadow-md cursor-pointer"
             onClick={() => openModal(2)}
           >
-            <Image src="/assets/room.jpeg" alt="Therapy Room" fill className="rounded-xl object-cover" />
+            <Image src="/assets/room.webp" alt="Therapy Room" fill className="rounded-xl object-cover" />
           </div>
 
           <div
             className="col-span-6 row-span-2 relative rounded-xl overflow-hidden shadow-md mt-4 cursor-pointer"
             onClick={() => openModal(3)}
           >
-            <Image src="/assets/outside2.jpeg" alt="Courtyard" fill className="rounded-xl object-cover" />
+            <Image src="/assets/outside2.webp" alt="Courtyard" fill className="rounded-xl object-cover" />
           </div>
         </div>
 
@@ -119,3 +119,4 @@ const Photos = () => {
 };
 
 export default Photos;
+
