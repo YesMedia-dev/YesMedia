@@ -45,7 +45,7 @@ const Video = () => {
         <div className="absolute inset-0 w-full h-full z-0">
           <video
             ref={videoRef}
-            src="/assets/vineland_tour.mp4"
+            src="/assets/vinelandvid.mp4"
             autoPlay
             loop
             muted
