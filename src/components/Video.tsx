@@ -37,19 +37,41 @@ const Video = () => {
     return () => window.removeEventListener("resize", setVideoDimensions);
   }, []);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !video.src) {
+          video.src = "/assets/vinelandvid.mp4";
+          video.load();
+          video.play().catch(() => {});
+          observer.unobserve(video);
+        }
+      },
+      {
+        threshold: 0.01,
+        rootMargin: "500px 0px", // Preload early
+      }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-      {/* Banner Section with local MP4 */}
       <section ref={containerRef} className="relative w-full h-[500px] overflow-hidden bg-gray-50">
         {/* Background Local Video */}
         <div className="absolute inset-0 w-full h-full z-0">
           <video
             ref={videoRef}
-            src="/assets/vinelandvid.mp4"
-            autoPlay
-            loop
             muted
+            loop
             playsInline
+            preload="none"
+            poster="/assets/vineland_preview.jpg"
             style={{
               position: "absolute",
               objectFit: "cover",
@@ -111,3 +133,6 @@ const Video = () => {
 };
 
 export default Video;
+
+
+
