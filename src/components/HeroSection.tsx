@@ -13,17 +13,11 @@ const GoogleMap = dynamic(() => import("./GoogleMap"), { ssr: false });
 
 const slides = [
   {
-    image: "/assets/chef.jpeg",
+    image: "/gallery/vinelandfacility.webp",
     title: "True Love is a Homecooked Meal",
-    description:
-      "Our chefs bring decades of experience and culinary expertise, preparing the finest healthy meals with care and dedication for our residents.",
-  },
-  {
-    image: "/assets/outside1.jpeg",
-    title: "A Place to Enjoy",
     subtitle: "Our beautifully renovated facility offers peace, safety, and comfort.",
     description:
-      "We are committed to providing exceptional skilled nursing and rehabilitation services in a serene environment.",
+      "Our chefs bring decades of experience and culinary expertise, preparing the finest healthy meals with care and dedication for our residents.",
   },
 ];
 
@@ -45,13 +39,7 @@ const HeroSection = () => {
         {slides.map((slide, idx) => (
           <SwiperSlide key={idx}>
             <div className="relative w-full h-screen">
-              <Image
-                src={slide.image}
-                alt={`Slide ${idx + 1}`}
-                fill
-                className={`object-cover ${idx === 0 ? "object-[center_10%]" : "object-center"}`}
-                priority
-              />
+              <Image src={slide.image} alt={`Slide ${idx + 1}`} fill className="object-cover" priority />
 
               {/* TEXT OVERLAY */}
               <div className="absolute top-[78%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4">
