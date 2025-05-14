@@ -7,7 +7,7 @@ const services = [
   {
     title: "Overview",
     image: "/assets/services1.png",
-    path: "/services/services_overview",
+    path: "/services/overview",
     size: 110,
   },
   {

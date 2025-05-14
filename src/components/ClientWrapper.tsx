@@ -8,7 +8,7 @@ const ClientWrapper = ({ children }: { children: React.ReactNode }) => {
   const isHomePage = pathname === "/";
   const isLocationPage = pathname === "/location";
 
-  return <div className={isHomePage || isLocationPage ? "" : "mt-[80px]"}>{children}</div>;
+  return <main className={isHomePage || isLocationPage ? "flex-1" : "flex-1 mt-[80px]"}>{children}</main>;
 };
 
 export default ClientWrapper;

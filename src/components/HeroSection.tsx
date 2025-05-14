@@ -14,17 +14,11 @@ const GoogleMap = dynamic(() => import("./GoogleMap"), { ssr: false });
 
 const slides = [
   {
-    image: "/assets/chef.webp",
+    image: "/gallery/vinelandfacility.webp",
     title: "True Love is a Homecooked Meal",
-    description:
-      "Our chefs bring decades of experience and culinary expertise, preparing the finest healthy meals with care and dedication for our residents.",
-  },
-  {
-    image: "/assets/outside.webp",
-    title: "A Place to Enjoy",
     subtitle: "Our beautifully renovated facility offers peace, safety, and comfort.",
     description:
-      "We are committed to providing exceptional skilled nursing and rehabilitation services in a serene environment.",
+      "Our chefs bring decades of experience and culinary expertise, preparing the finest healthy meals with care and dedication for our residents.",
   },
 ];
 
@@ -46,13 +40,7 @@ const HeroSection = () => {
         {slides.map((slide, idx) => (
           <SwiperSlide key={idx}>
             <div className="relative w-full h-screen">
-              <Image
-                src={slide.image}
-                alt={`Slide ${idx + 1}`}
-                fill
-                className={`object-cover ${idx === 0 ? "object-[center_10%]" : "object-center"}`}
-                priority
-              />
+              <Image src={slide.image} alt={`Slide ${idx + 1}`} fill className="object-cover" priority />
 
               {/* TEXT OVERLAY with animation */}
               <motion.div
@@ -61,9 +49,7 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
               >
-                <p className="text-xl tracking-widest uppercase font-semibold mb-2">
-                  FIRST CLASS CARE
-                </p>
+                <p className="text-xl tracking-widest uppercase font-semibold mb-2">FIRST CLASS CARE</p>
                 <h2 className="text-3xl md:text-5xl font-bold mb-2 drop-shadow">{slide.title}</h2>
                 <h3 className="text-xl md:text-2xl font-medium mb-2 drop-shadow">{slide.subtitle}</h3>
                 <p className="max-w-2xl text-md md:text-lg drop-shadow mx-auto">{slide.description}</p>
@@ -102,9 +88,7 @@ const HeroSection = () => {
         transition={{ duration: 1, delay: 1.2 }}
       >
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white text-center px-2 w-[450px]">
-          <p className="text-md md:text-lg drop-shadow font-bold break-words">
-            Find a Sun Mar Facility Near You
-          </p>
+          <p className="text-md md:text-lg drop-shadow font-bold break-words">Find a Sun Mar Facility Near You</p>
         </div>
 
         <div className="w-full h-full rounded-lg overflow-hidden border border-white shadow-lg">
@@ -116,6 +100,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
-
-
