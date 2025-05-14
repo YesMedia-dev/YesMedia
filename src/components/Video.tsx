@@ -10,52 +10,39 @@ const Video = () => {
   // Handle video optimization
   useEffect(() => {
     // Create a low-resolution placeholder initially
-    const placeholderImg = document.createElement('div');
-    placeholderImg.className = 'absolute inset-0 bg-black';
+    const placeholderImg = document.createElement("div");
+    placeholderImg.className = "absolute inset-0 bg-black";
     containerRef.current?.appendChild(placeholderImg);
-    
-    // Preload the video before mounting to DOM
-    const preloadVideo = new window.Image();
-    preloadVideo.src = '/assets/test2.mp4';
-    
-    // Setup video with optimized settings
+
+    // ❌ FIXED: removed invalid preloadVideo using Image()
+
     if (videoRef.current) {
       // Apply Chrome-specific optimizations
-      videoRef.current.setAttribute('playsinline', '');
-      videoRef.current.setAttribute('webkit-playsinline', '');
-      videoRef.current.setAttribute('preload', 'auto');
-      
+      videoRef.current.setAttribute("playsinline", "");
+      videoRef.current.setAttribute("webkit-playsinline", "");
+      videoRef.current.setAttribute("preload", "auto");
+
       // Critical performance attributes
       videoRef.current.muted = true;
-      videoRef.current.playsInline = true; 
+      videoRef.current.playsInline = true;
       videoRef.current.loop = true;
-      
-      // Explicitly set video quality for better initial performance
-      videoRef.current.style.transform = 'scale(1.01)'; // Slight scale to prevent pixel flickering
-      
-      // These settings help Chrome with rendering performance
-      if ('disableRemotePlayback' in videoRef.current) {
-        // @ts-ignore - This exists in Chrome but TypeScript doesn't know about it
-        videoRef.current.disableRemotePlayback = true;
-      }
 
-      // Force hardware acceleration
-      videoRef.current.style.transform = 'translateZ(0)';
-      videoRef.current.style.backfaceVisibility = 'hidden';
-      
-      // Request animation frame for smoother loading
+      // Slight scale and GPU rendering hints
+      videoRef.current.style.transform = "translateZ(0)";
+      videoRef.current.style.backfaceVisibility = "hidden";
+
       requestAnimationFrame(() => {
-        const playVideo = async () => {
+        const playVideo = () => {
           try {
-            await videoRef.current!.load();
+            videoRef.current!.load(); // ✅ FIXED: load() is sync, removed await
             const playPromise = videoRef.current!.play();
-            
+
             if (playPromise !== undefined) {
               playPromise
                 .then(() => {
                   setVideoReady(true);
                   console.log("Video playing successfully");
-                  
+
                   // Remove placeholder when video is playing
                   if (placeholderImg.parentNode) {
                     setTimeout(() => {
@@ -63,7 +50,7 @@ const Video = () => {
                     }, 200);
                   }
                 })
-                .catch(err => {
+                .catch((err) => {
                   console.error("Playback failed:", err);
                   // Retry with delay
                   setTimeout(() => {
@@ -75,11 +62,11 @@ const Video = () => {
             console.error("Video setup failed:", e);
           }
         };
-        
+
         playVideo();
       });
     }
-    
+
     return () => {
       if (videoRef.current) {
         videoRef.current.pause();
@@ -107,13 +94,12 @@ const Video = () => {
           playsInline
           loop
           autoPlay
-          poster="/assets/video-poster.jpg" /* Optional: Add a poster image */
+          poster="/assets/video-poster.jpg"
           src="/assets/test2.mp4"
         >
-          {/* Fallback source format for different browsers */}
           <source src="/assets/test2.mp4" type="video/mp4" />
         </video>
-        
+
         {/* Semi-transparent overlay for better text readability */}
         <div className="absolute inset-0 bg-black/55"></div>
 
@@ -138,18 +124,21 @@ const Video = () => {
               stroke="currentColor"
               className="w-5 h-5"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
             </svg>
           </button>
         </div>
       </section>
 
-      {/* Modal Vimeo popup - only create when needed */}
+      {/* Modal Vimeo popup */}
       {isPopupOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
           onClick={(e) => {
-            // Close when clicking the backdrop (outside the video)
             if (e.target === e.currentTarget) {
               setIsPopupOpen(false);
             }
@@ -178,6 +167,7 @@ const Video = () => {
 };
 
 export default Video;
+
 
 
 
