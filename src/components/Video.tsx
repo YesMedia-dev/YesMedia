@@ -5,56 +5,44 @@ const Video = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [videoReady, setVideoReady] = useState(false);
 
-  // Handle video optimization
   useEffect(() => {
-    // Create a low-resolution placeholder initially
     const placeholderImg = document.createElement("div");
     placeholderImg.className = "absolute inset-0 bg-black";
     containerRef.current?.appendChild(placeholderImg);
 
-    // ❌ FIXED: removed invalid preloadVideo using Image()
+    const video = videoRef.current; // ✅ Local copy of ref to use in cleanup
 
-    if (videoRef.current) {
-      // Apply Chrome-specific optimizations
-      videoRef.current.setAttribute("playsinline", "");
-      videoRef.current.setAttribute("webkit-playsinline", "");
-      videoRef.current.setAttribute("preload", "auto");
+    if (video) {
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.setAttribute("preload", "auto");
 
-      // Critical performance attributes
-      videoRef.current.muted = true;
-      videoRef.current.playsInline = true;
-      videoRef.current.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.loop = true;
 
-      // Slight scale and GPU rendering hints
-      videoRef.current.style.transform = "translateZ(0)";
-      videoRef.current.style.backfaceVisibility = "hidden";
+      video.style.transform = "translateZ(0)";
+      video.style.backfaceVisibility = "hidden";
 
       requestAnimationFrame(() => {
         const playVideo = () => {
           try {
-            videoRef.current!.load(); // ✅ FIXED: load() is sync, removed await
-            const playPromise = videoRef.current!.play();
+            video.load();
+            const playPromise = video.play();
 
             if (playPromise !== undefined) {
               playPromise
                 .then(() => {
-                  setVideoReady(true);
                   console.log("Video playing successfully");
-
-                  // Remove placeholder when video is playing
-                  if (placeholderImg.parentNode) {
-                    setTimeout(() => {
-                      placeholderImg.parentNode?.removeChild(placeholderImg);
-                    }, 200);
-                  }
+                  setTimeout(() => {
+                    placeholderImg.parentNode?.removeChild(placeholderImg);
+                  }, 200);
                 })
                 .catch((err) => {
                   console.error("Playback failed:", err);
-                  // Retry with delay
                   setTimeout(() => {
-                    if (videoRef.current) videoRef.current.play();
+                    video.play();
                   }, 300);
                 });
             }
@@ -68,14 +56,12 @@ const Video = () => {
     }
 
     return () => {
-      if (videoRef.current) {
-        videoRef.current.pause();
-        videoRef.current.src = "";
-        videoRef.current.load();
+      if (video) {
+        video.pause();
+        video.src = "";
+        video.load();
       }
-      if (placeholderImg.parentNode) {
-        placeholderImg.parentNode.removeChild(placeholderImg);
-      }
+      placeholderImg.parentNode?.removeChild(placeholderImg);
     };
   }, []);
 
@@ -85,7 +71,6 @@ const Video = () => {
         ref={containerRef}
         className="relative w-full h-[400px] overflow-hidden bg-black"
       >
-        {/* Video background with optimizations */}
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover will-change-transform"
@@ -100,10 +85,8 @@ const Video = () => {
           <source src="/assets/test2.mp4" type="video/mp4" />
         </video>
 
-        {/* Semi-transparent overlay for better text readability */}
         <div className="absolute inset-0 bg-black/55"></div>
 
-        {/* Centered content */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
           <h2 className="text-2xl md:text-4xl font-bold mb-4 max-w-3xl">
             Vineland is a place to call home.
@@ -134,7 +117,6 @@ const Video = () => {
         </div>
       </section>
 
-      {/* Modal Vimeo popup */}
       {isPopupOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
@@ -167,6 +149,7 @@ const Video = () => {
 };
 
 export default Video;
+
 
 
 
