@@ -45,7 +45,7 @@ const ServicesGrid = ({ id }: { id?: string }) => {
       <div className="absolute w-[90px] h-[90px] bg-green-100 rounded-full top-[35%] left-[250px] z-0 opacity-30" />
       <div className="absolute w-[70px] h-[70px] bg-green-200 rounded-full bottom-[25%] left-[20%] z-0 opacity-20" />
 
-      <div className="absolute w-[110px] h-[110px] bg-green-100 rounded-full top-[20%] right-[-40px] z-0 opacity-30" />
+
       <div className="absolute w-[90px] h-[90px] bg-green-200 rounded-full bottom-[5%] right-[10%] z-0 opacity-20" />
 
       <div className="py-20 max-w-6xl mx-auto px-8 relative z-10">

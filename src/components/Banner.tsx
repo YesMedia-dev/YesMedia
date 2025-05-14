@@ -7,7 +7,7 @@ const Banner = () => {
     <section
       className="relative h-[400px] bg-fixed bg-cover bg-center text-white flex items-center justify-center px-4 text-center mt-20"
       style={{
-        backgroundImage: "url('/assets/welcome.jpeg')",
+        backgroundImage: "url('/assets/welcome.webp')",
       }}
     >
       <div className="bg-black/50 w-full h-full absolute top-0 left-0"></div>
