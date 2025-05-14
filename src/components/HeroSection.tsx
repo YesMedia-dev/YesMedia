@@ -20,7 +20,7 @@ const slides = [
       "Our chefs bring decades of experience and culinary expertise, preparing the finest healthy meals with care and dedication for our residents.",
   },
   {
-    image: "/assets/outside1.webp",
+    image: "/assets/outside.webp",
     title: "A Place to Enjoy",
     subtitle: "Our beautifully renovated facility offers peace, safety, and comfort.",
     description:
@@ -94,8 +94,13 @@ const HeroSection = () => {
         ))}
       </Swiper>
 
-      {/* Google Map for 2XL screen and up */}
-      <div className="hidden 2xl:block absolute bottom-4 right-4 w-[450px] h-[250px] z-20">
+      {/* Google Map for 2XL screen and up, now animated */}
+      <motion.div
+        className="hidden 2xl:block absolute bottom-4 right-4 w-[450px] h-[250px] z-20"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1.2 }}
+      >
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white text-center px-2 w-[450px]">
           <p className="text-md md:text-lg drop-shadow font-bold break-words">
             Find a Sun Mar Facility Near You
@@ -105,11 +110,12 @@ const HeroSection = () => {
         <div className="w-full h-full rounded-lg overflow-hidden border border-white shadow-lg">
           <GoogleMap />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
 
 export default HeroSection;
+
 
 

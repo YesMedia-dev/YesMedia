@@ -1,89 +1,93 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
 
 const Video = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
-    function setVideoDimensions() {
-      const container = containerRef.current;
-      const video = videoRef.current;
+    const placeholderImg = document.createElement("div");
+    placeholderImg.className = "absolute inset-0 bg-black";
+    containerRef.current?.appendChild(placeholderImg);
 
-      if (container && video) {
-        const containerWidth = container.getBoundingClientRect().width;
-        const containerHeight = container.getBoundingClientRect().height;
-        const aspectRatio = 16 / 9;
+    const video = videoRef.current; // ✅ Local copy of ref to use in cleanup
 
-        let width = containerWidth;
-        let height = containerWidth / aspectRatio;
+    if (video) {
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.setAttribute("preload", "auto");
 
-        if (height < containerHeight) {
-          height = containerHeight;
-          width = containerHeight * aspectRatio;
-        }
+      video.muted = true;
+      video.playsInline = true;
+      video.loop = true;
 
-        video.style.width = `${width}px`;
-        video.style.height = `${height}px`;
-        video.style.left = `${(containerWidth - width) / 2}px`;
-        video.style.top = `${(containerHeight - height) / 2}px`;
-      }
+      video.style.transform = "translateZ(0)";
+      video.style.backfaceVisibility = "hidden";
+
+      requestAnimationFrame(() => {
+        const playVideo = () => {
+          try {
+            video.load();
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => {
+                  console.log("Video playing successfully");
+                  setTimeout(() => {
+                    placeholderImg.parentNode?.removeChild(placeholderImg);
+                  }, 200);
+                })
+                .catch((err) => {
+                  console.error("Playback failed:", err);
+                  setTimeout(() => {
+                    video.play();
+                  }, 300);
+                });
+            }
+          } catch (e) {
+            console.error("Video setup failed:", e);
+          }
+        };
+
+        playVideo();
+      });
     }
 
-    setVideoDimensions();
-    window.addEventListener("resize", setVideoDimensions);
-    return () => window.removeEventListener("resize", setVideoDimensions);
-  }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !video.src) {
-          video.src = "/assets/vinelandvid.mp4";
-          video.load();
-          video.play().catch(() => {});
-          observer.unobserve(video);
-        }
-      },
-      {
-        threshold: 0.01,
-        rootMargin: "500px 0px", // Preload early
+    return () => {
+      if (video) {
+        video.pause();
+        video.src = "";
+        video.load();
       }
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
+      placeholderImg.parentNode?.removeChild(placeholderImg);
+    };
   }, []);
 
   return (
     <>
-      <section ref={containerRef} className="relative w-full h-[500px] overflow-hidden bg-gray-50">
-        {/* Background Local Video */}
-        <div className="absolute inset-0 w-full h-full z-0">
-          <video
-            ref={videoRef}
-            muted
-            loop
-            playsInline
-            preload="none"
-            poster="/assets/vineland_preview.jpg"
-            style={{
-              position: "absolute",
-              objectFit: "cover",
-            }}
-          />
-        </div>
+      <section
+        ref={containerRef}
+        className="relative w-full h-[400px] overflow-hidden bg-black"
+      >
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover will-change-transform"
+          preload="auto"
+          muted
+          playsInline
+          loop
+          autoPlay
+          poster="/assets/video-poster.jpg"
+          src="/assets/test2.mp4"
+        >
+          <source src="/assets/test2.mp4" type="video/mp4" />
+        </video>
 
-        {/* Overlay */}
-        {!isPopupOpen && <div className="absolute inset-0 bg-black/50 z-10" />}
+        <div className="absolute inset-0 bg-black/55"></div>
 
-        {/* Text & Play Button */}
-        <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4 pb-6">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
           <h2 className="text-2xl md:text-4xl font-bold mb-4 max-w-3xl">
             Vineland is a place to call home.
             <br />
@@ -91,7 +95,8 @@ const Video = () => {
           </h2>
           <button
             onClick={() => setIsPopupOpen(true)}
-            className="mt-4 flex items-center gap-2 px-6 py-3 border border-white rounded-full hover:bg-white hover:text-black transition"
+            className="mt-4 flex items-center gap-2 px-6 py-3 border border-white rounded-full hover:bg-white hover:text-black transition duration-300"
+            aria-label="Play Video"
           >
             <span className="font-semibold">Play Video</span>
             <svg
@@ -102,18 +107,28 @@ const Video = () => {
               stroke="currentColor"
               className="w-5 h-5"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
             </svg>
           </button>
         </div>
       </section>
 
-      {/* Modal with Vimeo Video */}
       {isPopupOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
-          <div className="relative w-full max-w-5xl aspect-video">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setIsPopupOpen(false);
+            }
+          }}
+        >
+          <div className="relative w-full max-w-5xl mx-4 aspect-video">
             <iframe
-              src="https://player.vimeo.com/video/1055051324?h=98ceea2b33&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&muted=0"
+              src="https://player.vimeo.com/video/1055051324?h=98ceea2b33&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1"
               className="w-full h-full"
               allow="autoplay; fullscreen"
               allowFullScreen
@@ -121,7 +136,8 @@ const Video = () => {
             ></iframe>
             <button
               onClick={() => setIsPopupOpen(false)}
-              className="absolute top-3 right-3 text-white bg-[#004F91] hover:bg-blue-800 px-4 py-2 text-xs font-bold rounded"
+              className="absolute top-3 right-3 text-white bg-[#004F91] hover:bg-blue-800 px-4 py-2 text-xs font-bold rounded-md transition-colors"
+              aria-label="Close video"
             >
               CLOSE ✕
             </button>
@@ -133,6 +149,13 @@ const Video = () => {
 };
 
 export default Video;
+
+
+
+
+
+
+
 
 
 
