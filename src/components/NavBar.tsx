@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, createRef, RefObject, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
@@ -9,6 +9,7 @@ import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 
 type MenuKey = "About Vineland" | "Services" | "Contact Us";
+type Nav = { name: string; href: string };
 
 const aboutChildren = [
   { name: "Who We Are", href: "/about-us/who-we-are" },
@@ -48,11 +49,14 @@ const NavBar = () => {
 
   const [openNavMenu, setOpenNavMenu] = useState<MenuKey | null>(null);
 
-  const menuRefs: Record<MenuKey, React.RefObject<HTMLDivElement | null>> = {
-    "About Vineland": useRef<HTMLDivElement>(null),
-    Services: useRef<HTMLDivElement>(null),
-    "Contact Us": useRef<HTMLDivElement>(null),
-  };
+  const menuRefs: Record<MenuKey, RefObject<HTMLDivElement | null>> = useMemo(
+    () => ({
+      "About Vineland": createRef<HTMLDivElement>(),
+      Services: createRef<HTMLDivElement>(),
+      "Contact Us": createRef<HTMLDivElement>(),
+    }),
+    [],
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -69,7 +73,7 @@ const NavBar = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [openNavMenu]);
+  }, [openNavMenu, menuRefs]);
 
   const getNavConfigs = (
     name: string,
@@ -86,7 +90,7 @@ const NavBar = () => {
   };
 
   // Renders the entire nav bar with dropdowns for the correct links
-  const renderNavbar = (item: { name: string; href: string; children: any[] }) => {
+  const renderNavbar = (item: { name: string; href: string; children: Nav[] }) => {
     if (!item.children || item.children.length === 0)
       return (
         <Link key={item.name} href={item.href} className="hover:underline">
