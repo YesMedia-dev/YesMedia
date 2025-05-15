@@ -2,8 +2,8 @@ import GoogleSeachMap from "@/components/GoogleSearchMap";
 
 export default function Location() {
   return (
-    <section>
+    <main className="-mt-26">
       <GoogleSeachMap />
-    </section>
+    </main>
   );
 }

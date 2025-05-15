@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import ServicesList from "@/components/ServicesList";
+import ServicesSection from "@/components/ServiceSection";
 
 const paragraph =
   "Our experienced therapy team is committed to providing superior physical, occupational and speech therapy in an environment conducive to healing. Patients are empowered through individualized programs to work toward restoring maximum functionality, independence, and ability following hospitalization.";
@@ -125,13 +125,12 @@ export default function RehabilitationPage() {
             className="flex-1"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: .6, duration: 0.6 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
           >
-            <ServicesList />
+            <ServicesSection variant="list" />
           </motion.div>
         </div>
       </section>
     </main>
   );
 }
-
