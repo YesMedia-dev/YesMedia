@@ -8,7 +8,7 @@ import Photos from "@/components/Photos";
 
 export default function Home() {
   return (
-    <main>
+    <div className="-mt-26">
       <HeroSection />
       <ServicesGrid id="services" />
       <Video />
@@ -16,6 +16,6 @@ export default function Home() {
       <Banner />
       <Family />
       <MapContainer />
-    </main>
+    </div>
   );
 }
