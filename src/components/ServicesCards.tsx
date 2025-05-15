@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Services } from "@/types/services";
+import Link from "next/link";
 
 export default function ServicesCards({ services, animateDur }: { services: Services[]; animateDur: number }) {
   const [openStates, setOpenStates] = useState<boolean[]>(Array(services.length).fill(false));
@@ -45,7 +46,7 @@ export default function ServicesCards({ services, animateDur }: { services: Serv
             </motion.h2>
 
             {isOpen && (
-              <motion.p
+              <motion.div
                 layout
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -55,11 +56,22 @@ export default function ServicesCards({ services, animateDur }: { services: Serv
                 }}
                 className="text-gray-700 text-sm mt-6"
               >
-                {service.description}{" "}
-                <a href={service.link} className="font-semibold text-[#428f47] underline">
-                  Learn More Here.
-                </a>
-              </motion.p>
+                {service.description}
+                <motion.p
+                  layout
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{
+                    duration: animateDur,
+                    delay: 0.3,
+                  }}
+                  className="absolute bottom-2 right-4"
+                >
+                  <Link key={service.title} href={service.link} className="font-semibold text-[#428f47] underline">
+                    Learn More Here.
+                  </Link>
+                </motion.p>
+              </motion.div>
             )}
           </motion.div>
         );

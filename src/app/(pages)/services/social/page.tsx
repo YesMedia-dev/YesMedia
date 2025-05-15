@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import ServicesList from "@/components/ServicesList";
+import ServicesSection from "@/components/ServiceSection";
 
 const services = [
   "Dental",
@@ -90,12 +90,11 @@ export default function SocialServicesPage() {
           className="flex-1"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: .6, duration: 0.6 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
         >
-          <ServicesList />
+          <ServicesSection variant="list" />
         </motion.div>
       </div>
     </main>
   );
 }
-

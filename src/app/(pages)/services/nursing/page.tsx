@@ -1,8 +1,8 @@
 "use client";
 
-import ServicesList from "@/components/ServicesList";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import ServicesSection from "@/components/ServiceSection";
 
 const listItemVariants = {
   hidden: { opacity: 0, y: 10 },
@@ -103,9 +103,9 @@ const SkilledNursingPage = () => {
           className="flex-1"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: .6, duration: 0.6 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
         >
-          <ServicesList />
+          <ServicesSection variant="list" />
         </motion.div>
       </div>
     </main>
@@ -113,4 +113,3 @@ const SkilledNursingPage = () => {
 };
 
 export default SkilledNursingPage;
-
