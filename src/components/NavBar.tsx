@@ -123,10 +123,10 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="relative w-full shadow-sm z-50 bg-transparent">
-      <div className="w-full h-4 bg-[#428f47]" /> {/* Line */}
+    <nav className="sticky top-0 w-full shadow-sm z-50 bg-white">
+      <div className="w-full h-2 bg-[#428f47]" /> {/* Line */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-25 items-center justify-between">
+        <div className="flex h-24 items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image
               src="/assets/vinelandlogo.png"
