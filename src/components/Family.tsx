@@ -14,8 +14,8 @@ const testimonials = [
     text: "My sister always had positive comments regarding this facility. She said the food was very good. The nurses were great. The staff was also very much involved and willing to give her all the answers that she needed on top of the Physical Therapy that she said was the best she had ever received, her physical therapy was customized for her needs for the areas of her body that needed to be strengthened. She said she was very happy with this facility. And would happily return if she needed this type of therapy.",
   },
   {
-    image: "/assets/care2.webp",
-    text: "My respect for all CNAs at Vineland Post Acute. They work very hard to take care of their patients and accommodate their needs. They take pride in helping the elderly like one of their family. Thank you Maria Pena, Jackie, Norma Martínez, Marcey, Elba, Alma, Flor, Cithalie, Osmen, Greatest CNA at Vineland Post Acute to date.",
+    image: "/gallery/group4.webp",
+    text: "I am very pleased with Vineland post-acute. Juilette arranges the outing once a month for the patients they get to go out enjoy life and in the activities room they get to exercise She also arranges for them to join in the beautiful candlelight dinner for the patients to engage and interact with each other. Juilette takes pride in making a difference in every patient at Vineland post-acute. I’m so thankful to the lord that they have a wonderful person working with our love ones and making then feel special comfortable there at Vineland post-acute.",
   },
 ];
 

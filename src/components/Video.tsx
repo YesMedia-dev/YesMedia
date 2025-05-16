@@ -11,7 +11,7 @@ const Video = () => {
     placeholderImg.className = "absolute inset-0 bg-black";
     containerRef.current?.appendChild(placeholderImg);
 
-    const video = videoRef.current; // ✅ Local copy of ref to use in cleanup
+    const video = videoRef.current;
 
     if (video) {
       video.setAttribute("playsinline", "");
@@ -28,7 +28,6 @@ const Video = () => {
       requestAnimationFrame(() => {
         const playVideo = () => {
           try {
-            video.load();
             const playPromise = video.play();
 
             if (playPromise !== undefined) {
@@ -58,8 +57,6 @@ const Video = () => {
     return () => {
       if (video) {
         video.pause();
-        video.src = "";
-        video.load();
       }
       placeholderImg.parentNode?.removeChild(placeholderImg);
     };
@@ -149,6 +146,7 @@ const Video = () => {
 };
 
 export default Video;
+
 
 
 
