@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { SOCALFACILITIES, NORCALFACILITIES } from "@/constants/facilities";
+import { FACILITIES } from "@/constants/facilities";
 import { FacilityDistance } from "@/types/facility";
 import { initLocationMap } from "@/utilities/initLocationMap";
 import { fillContent, closeAutocomplete } from "@/utilities/mapUtilities";
@@ -19,21 +19,13 @@ const GoogleSearchMap = () => {
   const [autocompleteMarker, setAutocompleteMarker] = useState<google.maps.marker.AdvancedMarkerElement | null>(null);
 
   // Facilities sorted by distance for both regions
-  const [closestLocationsSOCAL, setClosestLocationsSOCAL] = useState<FacilityDistance[] | null>(null);
-  const [closestLocationsNORCAL, setClosestLocationsNORCAL] = useState<FacilityDistance[] | null>(null);
-  const [activeRegion, setActiveRegion] = useState<"SOCAL" | "NORCAL">("SOCAL");
+  const [closestLocations, setClosestLocations] = useState<FacilityDistance[] | null>(null);
 
   // Markers for both regions
-  const [socalMarkers, setSocalMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
-  const [norcalMarkers, setNorcalMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
+  const [markers, setMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
 
   // Used for clearing search input in the button
   const [searchInput, setSearchInput] = useState("");
-
-  // Retrieves the right facilities depending on region
-  const currentFacilities = activeRegion === "SOCAL" ? SOCALFACILITIES : NORCALFACILITIES;
-  const currentMarkers = activeRegion === "SOCAL" ? socalMarkers : norcalMarkers;
-  const closestLocations = activeRegion === "SOCAL" ? closestLocationsSOCAL : closestLocationsNORCAL;
 
   // Used to update search marker when searching for a new location
   useEffect(() => {
@@ -51,10 +43,8 @@ const GoogleSearchMap = () => {
         setAutocomplete,
         closeAutocomplete,
         setAutocompleteMarker,
-        setClosestLocationsSOCAL,
-        setClosestLocationsNORCAL,
-        setSocalMarkers,
-        setNorcalMarkers,
+        setClosestLocations,
+        setMarkers,
         setSearchInput,
       });
     }
@@ -62,8 +52,8 @@ const GoogleSearchMap = () => {
 
   // Opens up the right facility content window from the Facility list
   const handleFacilityClick = (index: number) => {
-    const marker = currentMarkers[index];
-    const facility = closestLocations ? closestLocations[index].facility : currentFacilities[index];
+    const marker = markers[index];
+    const facility = closestLocations ? closestLocations[index].facility : FACILITIES[index];
     if (marker && facility) {
       const infoWindow = infoWindowRef.current;
       if (infoWindow) {
@@ -72,16 +62,6 @@ const GoogleSearchMap = () => {
         infoWindow.setContent(fillContent(facility));
         infoWindow.open(marker.map, marker);
       }
-    }
-  };
-
-  // Correctly updates the region
-  const handleRegionClick = (region: "SOCAL" | "NORCAL") => {
-    setActiveRegion(region);
-    if (region === "SOCAL") {
-      setClosestLocationsSOCAL(closestLocationsSOCAL);
-    } else {
-      setClosestLocationsNORCAL(closestLocationsNORCAL);
     }
   };
 
@@ -95,15 +75,15 @@ const GoogleSearchMap = () => {
     // Removes dropdown menu
     closeAutocomplete(autocompleteInstance);
     // Removes the miles from the list
-    if (closestLocationsNORCAL || closestLocationsSOCAL) {
-      setClosestLocationsSOCAL(null);
-      setClosestLocationsNORCAL(null);
+    if (closestLocations) {
+      setClosestLocations(null);
     }
   };
 
   return (
     <div className="flex flex-col md:flex-row w-full h-screen">
       <div className="w-full mt-24 md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 flex flex-col overflow-auto bg-white z-10 mx-auto">
+        <h1 className="text-[#428f47] font-medium text-lg text-center"> View our locations </h1>
         <div className="relative mb-4 w-full">
           <input
             id="autocomplete-input"
@@ -124,34 +104,9 @@ const GoogleSearchMap = () => {
           )}
         </div>
 
-        {/* Toggle Buttons */}
-        <div className="flex mb-4 border border-gray-300 rounded overflow-hidden w-full">
-          <button
-            className={`flex-1 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-              activeRegion === "SOCAL" ? "bg-[#428f47] text-black" : "bg-white text-gray-700 hover:bg-gray-100"
-            } rounded-l`}
-            onClick={() => {
-              handleRegionClick("SOCAL");
-            }}
-          >
-            SoCal Facilities
-          </button>
-          <div className="w-px bg-gray-300" />
-          <button
-            className={`flex-1 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-              activeRegion === "NORCAL" ? "bg-[#428f47] text-black" : "bg-white text-gray-700 hover:bg-gray-100"
-            } rounded-r`}
-            onClick={() => {
-              handleRegionClick("NORCAL");
-            }}
-          >
-            NorCal Facilities
-          </button>
-        </div>
-
         {/* Facilities List */}
         <FacilitiesList
-          facilities={currentFacilities}
+          facilities={FACILITIES}
           closestLocations={closestLocations}
           handleFacilityClick={handleFacilityClick}
         />

@@ -1,5 +1,5 @@
 import { Loader } from "@googlemaps/js-api-loader";
-import { SOCALFACILITIES, NORCALFACILITIES } from "@/constants/facilities";
+import { FACILITIES } from "@/constants/facilities";
 import { InitLocationMapParams } from "@/types/googleMap";
 import { createMarkers, calculateDistance } from "./mapUtilities";
 
@@ -10,10 +10,8 @@ export async function initLocationMap({
   autocompleteMarkerRef,
   setAutocomplete,
   setAutocompleteMarker,
-  setClosestLocationsSOCAL,
-  setClosestLocationsNORCAL,
-  setSocalMarkers,
-  setNorcalMarkers,
+  setClosestLocations,
+  setMarkers,
   setSearchInput,
 }: InitLocationMapParams) {
   const loader = new Loader({
@@ -73,11 +71,9 @@ export async function initLocationMap({
       map.setCenter(location);
       map.setZoom(8);
 
-      setClosestLocationsSOCAL(calculateDistance(SOCALFACILITIES, location, LatLng, spherical));
-      setClosestLocationsNORCAL(calculateDistance(NORCALFACILITIES, location, LatLng, spherical));
+      setClosestLocations(calculateDistance(FACILITIES, location, LatLng, spherical));
     }
   });
 
-  setSocalMarkers(createMarkers(SOCALFACILITIES, map, AdvancedMarkerElement, infoWindowRef));
-  setNorcalMarkers(createMarkers(NORCALFACILITIES, map, AdvancedMarkerElement, infoWindowRef));
+  setMarkers(createMarkers(FACILITIES, map, AdvancedMarkerElement, infoWindowRef));
 }
