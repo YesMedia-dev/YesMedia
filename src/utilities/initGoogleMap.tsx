@@ -22,6 +22,7 @@ export async function initGoogleMap({ apiKey, mapContainer }: InitGoogleMapParam
     center: vinelandCenter,
     zoom: 11,
     mapId: "428a471c5a144130",
+    mapTypeControl: false,
     colorScheme: ColorScheme.LIGHT,
   };
 
