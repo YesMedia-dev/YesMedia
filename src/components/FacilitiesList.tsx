@@ -14,7 +14,10 @@ export default function FacilitiesList({ facilities, closestLocations, handleFac
   }, [closestLocations]);
 
   return (
-    <ul ref={listRef} className="overflow-y-auto max-h-[calc(100vh-210px)] border border-gray-300">
+    <ul
+      ref={listRef}
+      className="overflow-y-auto max-h-[calc(100vh-215px)] md:max-h-[calc(100vh-205px)] border border-gray-300"
+    >
       {(closestLocations ?? facilities).map((item, index) => {
         const facility = "facility" in item ? item.facility : item;
         const distance =

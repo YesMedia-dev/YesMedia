@@ -95,30 +95,13 @@ const GoogleSearchMap = () => {
     <div className="flex flex-col md:flex-row w-full h-screen">
       {/* Sidebar: search + list */}
       <div
-        className={`w-full mt-24 ${!isMobile ? "md:w-1/2 lg:w-1/3 xl:w-1/4" : ""} p-4 flex flex-col bg-white z-10 mx-auto`}
+        className={`w-full mt-24 ${!isMobile ? "md:w-1/2 lg:w-1/3 xl:w-1/4" : ""} px-4 pt-4 flex flex-col bg-white z-10 mx-auto`}
       >
         {/* Buttons (mobile only) */}
-        {isMobile ? (
-          <div className="flex justify-center gap-4 mb-4">
-            <button
-              onClick={() => setMobileView("list")}
-              className={`px-4 py-2 border rounded ${mobileView === "list" ? "bg-gray-200" : ""}`}
-            >
-              List
-            </button>
-            <button
-              onClick={() => setMobileView("map")}
-              className={`px-4 py-2 border rounded ${mobileView === "map" ? "bg-gray-200" : ""}`}
-            >
-              Map
-            </button>
-          </div>
-        ) : (
-          <h1 className="text-[#428f47] font-medium text-lg text-center"> View our locations </h1>
-        )}
+        {!isMobile && <h1 className="text-[#428f47] font-medium text-lg text-center"> View our locations </h1>}
 
         {/* Search input */}
-        <div className="relative mb-4 w-full">
+        <div className="relative mb-2 w-full">
           <input
             id="autocomplete-input"
             type="text"
@@ -137,6 +120,27 @@ const GoogleSearchMap = () => {
             </button>
           )}
         </div>
+
+        {isMobile && (
+          <div className="flex w-full mb-2">
+            <button
+              onClick={() => setMobileView("list")}
+              className={`w-1/2 px-2 border border-[#428f47] rounded-l ${
+                mobileView === "list" ? "bg-[#428f47] text-white" : "bg-white text-[#428f47]"
+              }`}
+            >
+              List
+            </button>
+            <button
+              onClick={() => setMobileView("map")}
+              className={`w-1/2 px-2 border border-[#428f47] rounded-r ${
+                mobileView === "map" ? "bg-[#428f47] text-white" : "bg-white text-[#428f47]"
+              }`}
+            >
+              Map
+            </button>
+          </div>
+        )}
 
         {/* Facilities List (only in "list" view or on desktop) */}
         {(!isMobile || mobileView === "list") && (
