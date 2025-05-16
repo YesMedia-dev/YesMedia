@@ -447,4 +447,6 @@ const NORCALFACILITIES = [
   },
 ];
 
-export { SOCALFACILITIES, NORCALFACILITIES };
+const FACILITIES = [...SOCALFACILITIES, ...NORCALFACILITIES];
+FACILITIES.sort((a, b) => a.name.localeCompare(b.name));
+export { FACILITIES };
