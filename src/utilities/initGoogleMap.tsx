@@ -1,5 +1,5 @@
 import { Loader } from "@googlemaps/js-api-loader";
-import { SOCALFACILITIES, NORCALFACILITIES } from "@/constants/facilities";
+import { FACILITIES } from "@/constants/facilities";
 import { InitGoogleMapParams } from "@/types/googleMap";
 import { createMarkers } from "./mapUtilities";
 
@@ -28,6 +28,5 @@ export async function initGoogleMap({ apiKey, mapContainer }: InitGoogleMapParam
   const map = new Map(mapContainer, mapOptions);
   const infoWindow = new InfoWindow();
 
-  createMarkers(SOCALFACILITIES, map, AdvancedMarkerElement, infoWindow);
-  createMarkers(NORCALFACILITIES, map, AdvancedMarkerElement, infoWindow);
+  createMarkers(FACILITIES, map, AdvancedMarkerElement, infoWindow);
 }

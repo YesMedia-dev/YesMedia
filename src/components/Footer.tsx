@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { SOCALFACILITIES } from "@/constants/facilities";
+import { FACILITIES } from "@/constants/facilities";
 import Image from "next/image";
 
-const curFacility = SOCALFACILITIES.find((facility) => facility.name === "VINELAND POST ACUTE");
+const curFacility = FACILITIES.find((facility) => facility.name === "VINELAND POST ACUTE");
 const Footer = () => {
   return (
     <footer className="bg-gray-100 text-gray-800 py-6 px-6 md:px-20">
