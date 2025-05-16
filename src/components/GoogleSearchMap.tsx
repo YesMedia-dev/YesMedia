@@ -27,6 +27,17 @@ const GoogleSearchMap = () => {
   // Used for clearing search input in the button
   const [searchInput, setSearchInput] = useState("");
 
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileView, setMobileView] = useState<"list" | "map">("list");
+
+  // Watch window size
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Used to update search marker when searching for a new location
   useEffect(() => {
     autocompleteMarkerRef.current = autocompleteMarker;
@@ -82,8 +93,31 @@ const GoogleSearchMap = () => {
 
   return (
     <div className="flex flex-col md:flex-row w-full h-screen">
-      <div className="w-full mt-24 md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 flex flex-col overflow-auto bg-white z-10 mx-auto">
-        <h1 className="text-[#428f47] font-medium text-lg text-center"> View our locations </h1>
+      {/* Sidebar: search + list */}
+      <div
+        className={`w-full mt-24 ${!isMobile ? "md:w-1/2 lg:w-1/3 xl:w-1/4" : ""} p-4 flex flex-col bg-white z-10 mx-auto`}
+      >
+        {/* Buttons (mobile only) */}
+        {isMobile ? (
+          <div className="flex justify-center gap-4 mb-4">
+            <button
+              onClick={() => setMobileView("list")}
+              className={`px-4 py-2 border rounded ${mobileView === "list" ? "bg-gray-200" : ""}`}
+            >
+              List
+            </button>
+            <button
+              onClick={() => setMobileView("map")}
+              className={`px-4 py-2 border rounded ${mobileView === "map" ? "bg-gray-200" : ""}`}
+            >
+              Map
+            </button>
+          </div>
+        ) : (
+          <h1 className="text-[#428f47] font-medium text-lg text-center"> View our locations </h1>
+        )}
+
+        {/* Search input */}
         <div className="relative mb-4 w-full">
           <input
             id="autocomplete-input"
@@ -104,16 +138,21 @@ const GoogleSearchMap = () => {
           )}
         </div>
 
-        {/* Facilities List */}
-        <FacilitiesList
-          facilities={FACILITIES}
-          closestLocations={closestLocations}
-          handleFacilityClick={handleFacilityClick}
-        />
+        {/* Facilities List (only in "list" view or on desktop) */}
+        {(!isMobile || mobileView === "list") && (
+          <FacilitiesList
+            facilities={FACILITIES}
+            closestLocations={closestLocations}
+            handleFacilityClick={handleFacilityClick}
+          />
+        )}
       </div>
 
-      {/* Google Map */}
-      <div ref={mapRef} className="hidden md:block w-full md:w-1/2 lg:w-3/4 h-full" />
+      {/* Map */}
+      <div
+        ref={mapRef}
+        className={`${isMobile && mobileView !== "map" ? "hidden" : ""} w-full ${isMobile ? "h-[800px] border-t-[#428f47] border-t-4" : "md:w-1/2 lg:w-3/4 h-full"}`}
+      />
     </div>
   );
 };
