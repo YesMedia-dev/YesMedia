@@ -138,14 +138,14 @@ const NavBar = () => {
           </Link>
 
           {/* Desktop NavBar */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="ml-10 flex items-center space-x-4 text-base font-medium text-gray-700">
               {navLinks.map((item) => renderNavbar(item))}
             </div>
           </div>
 
           {/* Mobile NavBar */}
-          <div className="flex md:hidden">
+          <div className="flex lg:hidden">
             <Button
               variant="ghost"
               size="icon"
