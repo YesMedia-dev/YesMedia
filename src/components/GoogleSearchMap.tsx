@@ -102,8 +102,8 @@ const GoogleSearchMap = () => {
   };
 
   return (
-    <div className="flex w-full h-screen">
-      <div className="w-1/4 p-4 mt-[80px] flex flex-col h-full">
+    <div className="flex flex-col md:flex-row w-full h-screen">
+      <div className="w-full mt-24 md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 flex flex-col overflow-auto bg-white z-10 mx-auto">
         <div className="relative mb-4 w-full">
           <input
             id="autocomplete-input"
@@ -158,7 +158,7 @@ const GoogleSearchMap = () => {
       </div>
 
       {/* Google Map */}
-      <div ref={mapRef} className="w-3/4 h-full" />
+      <div ref={mapRef} className="hidden md:block w-full md:w-1/2 lg:w-3/4 h-full" />
     </div>
   );
 };
