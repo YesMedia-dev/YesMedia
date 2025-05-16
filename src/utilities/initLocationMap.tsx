@@ -31,6 +31,7 @@ export async function initLocationMap({
     center: defaultCenter,
     zoom: 6,
     mapId: "428a471c5a144130",
+    mapTypeControl: false,
     colorScheme: ColorScheme.LIGHT,
   };
 
