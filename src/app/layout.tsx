@@ -3,20 +3,21 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 export const metadata: Metadata = {
   title: "Vineland Post Acute",
-  description: "Compassionate Skilled Nursing & Rehabilitation in North Hollywood, CA",
+  description: "Compassionate Skilled Nursing & Rehabilitation in North Hollywood, CA"
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -32,3 +33,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+
