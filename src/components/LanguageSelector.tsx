@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import i18n from "@/i18n";
+import Image from "next/image";
 
 const LanguageSelector = () => {
   const [language, setLanguage] = useState("en");
@@ -19,6 +20,18 @@ const LanguageSelector = () => {
     localStorage.setItem("lang", language);
   }, [language]);
 
+  const renderFlag = (lang: string) => (
+    <Image
+      src={`/logos/${lang === "en" ? "USA" : "MX"}.png`}
+      alt={lang === "en" ? "USA Flag" : "Mexico Flag"}
+      width={20}
+      height={14}
+      className={`inline-block mr-1 align-middle ${
+        lang === "es" ? "translate-y-[-1.5px]" : ""
+      }`}
+    />
+  );
+
   return (
     <>
       {/* Desktop */}
@@ -29,7 +42,7 @@ const LanguageSelector = () => {
             language === "en" ? "font-bold underline" : "opacity-60"
           }`}
         >
-          🇺🇸 English
+          {renderFlag("en")} English
         </button>
         <button
           onClick={() => setLanguage("es")}
@@ -37,7 +50,7 @@ const LanguageSelector = () => {
             language === "es" ? "font-bold underline" : "opacity-60"
           }`}
         >
-          🇲🇽 Español
+          {renderFlag("es")} Español
         </button>
       </div>
 
@@ -50,7 +63,7 @@ const LanguageSelector = () => {
           }`}
           aria-label="Switch to English"
         >
-          🇺🇸 EN
+          {renderFlag("en")} EN
         </button>
         <button
           onClick={() => setLanguage("es")}
@@ -59,7 +72,7 @@ const LanguageSelector = () => {
           }`}
           aria-label="Switch to Spanish"
         >
-          🇲🇽 ES
+          {renderFlag("es")} ES
         </button>
       </div>
     </>
@@ -67,6 +80,8 @@ const LanguageSelector = () => {
 };
 
 export default LanguageSelector;
+
+
 
 
 
