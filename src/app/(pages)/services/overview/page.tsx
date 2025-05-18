@@ -6,7 +6,7 @@ import { SERVICES } from "@/constants/services";
 import { useTranslation } from "react-i18next";
 import ServicesCards from "@/components/ServicesCards";
 
-const ANIMATION_DURATION = 0.6;
+const ANIMATION_DURATION = 0.3;
 
 export default function ServicesOverviewPage() {
   const { t } = useTranslation("common");
