@@ -1,17 +1,22 @@
 "use client";
+
 import React from "react";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FACILITIES } from "@/constants/facilities";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const curFacility = FACILITIES.find((facility) => facility.name === "VINELAND POST ACUTE");
+
 const Footer = () => {
+  const { t } = useTranslation("common");
+
   return (
     <footer className="bg-gray-100 text-gray-800 py-6 px-6 md:px-20">
       <div className="max-w-7xl mx-auto">
-        {/* Desktop: Full Grid Layout */}
+        {/* Desktop Grid Layout */}
         <div className="hidden md:grid grid-cols-4 gap-10 place-items-start md:place-items-center">
-          {/* Left: Logo & Address */}
+          {/* Logo + Address */}
           <div className="col-span-1">
             <Image
               src="/assets/vinelandlogo.png"
@@ -20,7 +25,7 @@ const Footer = () => {
               height={40}
               className="object-contain mb-4"
             />
-            <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Address</h4>
+            <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">{t("footerAddress")}</h4>
             <p>
               {curFacility?.address}
               <br />
@@ -28,15 +33,15 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Middle Left: Contact + Social */}
+          {/* Contact + Social */}
           <div className="col-span-1">
-            <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Contact Us</h4>
+            <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">{t("footerContact")}</h4>
             <p>
               Tel: 818-763-8247
               <br />
               Fax: 818-279-7385
             </p>
-            <h4 className="text-sm font-bold uppercase mt-4 mb-1 text-gray-600">Social Media</h4>
+            <h4 className="text-sm font-bold uppercase mt-4 mb-1 text-gray-600">{t("footerSocial")}</h4>
             <div className="flex gap-4 text-xl">
               <a
                 href="https://www.facebook.com/vinelandpostacute#"
@@ -57,9 +62,9 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Middle Right: CNA School */}
+          {/* CNA School */}
           <div className="col-span-1">
-            <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Free CNA School</h4>
+            <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">{t("footerCnaSchool")}</h4>
             <Image src="/assets/edutrack.jpg" alt="EDUTRACK" width={180} height={40} className="h-8 mb-4" />
             <a
               href="https://suncloudtraining.com/"
@@ -67,11 +72,11 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="inline-block mt-2 px-5 py-2 bg-green-800 text-white rounded-full text-sm font-semibold hover:bg-green-900 transition"
             >
-              Employee Login
+              {t("footerEmployeeLogin")}
             </a>
           </div>
 
-          {/* Right: Badge */}
+          {/* Badge */}
           <div className="col-span-1 flex justify-center items-center">
             <div className="sparkle-container transform -translate-x-10 -translate-y-2">
               <Image
@@ -85,9 +90,8 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Mobile: 3x2 Grid Layout */}
-        <div className="grid md:hidden grid-cols-2 gap-6 flex text-sm">
-          {/* Logo */}
+        {/* Mobile Grid Layout */}
+        <div className="grid md:hidden grid-cols-2 gap-6 text-sm">
           <div className="flex justify-center">
             <Image
               src="/assets/vinelandlogo.png"
@@ -98,7 +102,6 @@ const Footer = () => {
             />
           </div>
 
-          {/* Five Star Badge */}
           <div className="flex justify-center">
             <div className="sparkle-container">
               <Image
@@ -111,10 +114,9 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Address */}
           <div className="flex justify-center">
             <div>
-              <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Address</h4>
+              <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">{t("footerAddress")}</h4>
               <p>
                 {curFacility?.address}
                 <br />
@@ -123,10 +125,9 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Us */}
           <div className="flex justify-center">
             <div>
-              <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Contact Us</h4>
+              <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">{t("footerContact")}</h4>
               <p>
                 Tel: 818-763-8247
                 <br />
@@ -135,10 +136,9 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Social Media */}
           <div className="flex justify-center">
             <div>
-              <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Social Media</h4>
+              <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">{t("footerSocial")}</h4>
               <div className="flex gap-4 text-xl">
                 <a
                   href="https://www.facebook.com/vinelandpostacute#"
@@ -160,16 +160,15 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* CNA School */}
           <div className="flex justify-center">
             <div>
-              <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">Free CNA School</h4>
+              <h4 className="text-sm font-bold uppercase mb-1 text-gray-600">{t("footerCnaSchool")}</h4>
               <Image src="/assets/edutrack.jpg" alt="EDUTRACK" width={130} height={40} className="h-8 mb-4" />
             </div>
           </div>
         </div>
 
-        {/* Employee Login */}
+        {/* Employee Login (mobile) */}
         <div className="flex md:hidden justify-center">
           <a
             href="https://suncloudtraining.com/"
@@ -177,25 +176,25 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="inline-block mt-2 px-5 py-2 bg-green-800 text-white rounded-full text-sm font-semibold hover:bg-green-900 transition"
           >
-            Employee Login
+            {t("footerEmployeeLogin")}
           </a>
         </div>
       </div>
 
-      {/* Bottom bar (unchanged) */}
+      {/* Bottom Bar */}
       <div className="mt-4 border-t border-gray-300 pt-6 text-sm text-center text-gray-600">
-        <p>© 2025 All Rights Reserved.</p>
+        <p>{t("footerCopyright")}</p>
         <div className="flex justify-center flex-wrap gap-4 text-xs text-gray-500">
-          <span>Site Map</span>
-          <span>Privacy Policy</span>
-          <span>Terms & Conditions</span>
-          <span>Web Accessibility</span>
+          <span>{t("footerSiteMap")}</span>
+          <span>{t("footerPrivacy")}</span>
+          <span>{t("footerTerms")}</span>
+          <span>{t("footerAccessibility")}</span>
           <a
             href="https://vinelandpostacute.com/wp-login.php?redirect_to=https%3A%2F%2Fvinelandpostacute.com%2Fwp-admin%2F&reauth=1"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Client Login
+            {t("footerClientLogin")}
           </a>
         </div>
       </div>
@@ -204,3 +203,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+

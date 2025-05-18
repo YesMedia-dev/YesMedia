@@ -2,10 +2,23 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Services } from "@/types/services";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
-export default function ServicesCards({ services, animateDur }: { services: Services[]; animateDur: number }) {
+type Services = {
+  title: string;
+  description: string;
+  link: string;
+};
+
+export default function ServicesCards({
+  services,
+  animateDur,
+}: {
+  services: Services[];
+  animateDur: number;
+}) {
+  const { t } = useTranslation("common");
   const [openStates, setOpenStates] = useState<boolean[]>(Array(services.length).fill(false));
 
   const toggleCard = (index: number) => {
@@ -15,6 +28,7 @@ export default function ServicesCards({ services, animateDur }: { services: Serv
       return newStates;
     });
   };
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
       {services.map((service, index) => {
@@ -50,10 +64,7 @@ export default function ServicesCards({ services, animateDur }: { services: Serv
                 layout
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{
-                  duration: animateDur,
-                  delay: 0.3,
-                }}
+                transition={{ duration: animateDur, delay: 0.3 }}
                 className="text-gray-700 text-sm mt-6"
               >
                 {service.description}
@@ -61,14 +72,11 @@ export default function ServicesCards({ services, animateDur }: { services: Serv
                   layout
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{
-                    duration: animateDur,
-                    delay: 0.3,
-                  }}
+                  transition={{ duration: animateDur, delay: 0.3 }}
                   className="absolute bottom-2 right-4"
                 >
-                  <Link key={service.title} href={service.link} className="font-semibold text-[#428f47] underline">
-                    Learn More Here.
+                  <Link href={service.link} className="font-semibold text-[#428f47] underline">
+                    {t("learnMore")}
                   </Link>
                 </motion.p>
               </motion.div>
@@ -79,3 +87,7 @@ export default function ServicesCards({ services, animateDur }: { services: Serv
     </section>
   );
 }
+
+
+
+
