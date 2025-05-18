@@ -9,12 +9,12 @@ const testimonials = [
   {
     name: "Jeanine A.",
     sourceKey: "reviewGoogle",
-    full: `I was at the facility a little over three weeks with a fractured bone in my hip...`,
+    full: `I was at the facility a little over three weeks with a fractured bone in my hip.`,
   },
   {
     name: "Peter F.",
     sourceKey: "reviewYelp",
-    full: `Very good quality! They have enough staff and there's not too many people...`,
+    full: `Very good quality! They have enough staff and there's not too many people.`,
   },
   {
     name: "Jodi C.",
@@ -43,7 +43,26 @@ export default function TestimonialsPage() {
   const [mounted, setMounted] = useState(false);
   const [modalIndex, setModalIndex] = useState<number | null>(null);
   const [visibleIndex, setVisibleIndex] = useState(0);
-  const groupSize = 3;
+  const [groupSize, setGroupSize] = useState(3);
+
+  useEffect(() => {
+    const updateGroupSize = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        // < sm
+        setGroupSize(1);
+      } else if (width < 1280) {
+        // < lg
+        setGroupSize(2);
+      } else {
+        setGroupSize(3);
+      }
+    };
+
+    updateGroupSize(); // set on initial render
+    window.addEventListener("resize", updateGroupSize);
+    return () => window.removeEventListener("resize", updateGroupSize);
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -99,24 +118,24 @@ export default function TestimonialsPage() {
         />
       </motion.div>
 
-      <div className="flex justify-center gap-4 mb-8">
+      <div className="flex justify-center mb-4">
         <button onClick={showPrevGroup} className="text-3xl px-4 text-gray-600 hover:text-black">
           ❮
         </button>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {testimonials.slice(visibleIndex, visibleIndex + groupSize).map((testimonial, i) => (
             <motion.div
               key={visibleIndex + i}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2, duration: 0.5 }}
-              className="bg-gray-100 p-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition w-80"
+              className="bg-gray-100 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition w-60 xs:w-70 md:w-80"
               onClick={() => setModalIndex(visibleIndex + i)}
             >
               <div className="flex justify-center mb-4">
                 <Image src="/assets/quotes.png" alt="Quotes" width={80} height={80} />
               </div>
-              <p className="text-gray-700 text-sm mb-4">{testimonial.full.split(" ").slice(0, 40).join(" ")}...</p>
+              <p className="text-gray-700 text-sm mb-4 line-clamp-3">{testimonial.full}</p>
               <p className="font-semibold">{testimonial.name}</p>
               <p className="text-sm text-gray-500">{t(testimonial.sourceKey)}</p>
             </motion.div>
@@ -152,12 +171,12 @@ export default function TestimonialsPage() {
               <Image src="/assets/quotes.png" alt="Quotes" width={60} height={60} />
             </div>
 
-            <p className="text-gray-700 mb-4">{testimonials[modalIndex].full}</p>
+            <div className="text-gray-700 mb-4 max-h-60 overflow-y-auto pr-2">{testimonials[modalIndex].full}</div>
             <p className="font-semibold">{testimonials[modalIndex].name}</p>
             <p className="text-sm text-gray-500">{t(testimonials[modalIndex].sourceKey)}</p>
 
             {/* Nav arrows */}
-            <div className="absolute left-[-60px] top-1/2 transform -translate-y-1/2">
+            <div className="absolute bottom-4 left-4 lg:left-[-60px] lg:top-1/2 lg:transform lg:-translate-y-1/2">
               <button
                 onClick={modalPrev}
                 disabled={modalIndex === 0}
@@ -166,7 +185,7 @@ export default function TestimonialsPage() {
                 &#x276E;
               </button>
             </div>
-            <div className="absolute right-[-60px] top-1/2 transform -translate-y-1/2">
+            <div className="absolute bottom-4 right-4 lg:right-[-60px] lg:top-1/2 lg:transform lg:-translate-y-1/2">
               <button
                 onClick={modalNext}
                 disabled={modalIndex === testimonials.length - 1}
@@ -181,6 +200,3 @@ export default function TestimonialsPage() {
     </main>
   );
 }
-
-
-
