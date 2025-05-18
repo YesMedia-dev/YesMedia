@@ -3,41 +3,43 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const testimonials = [
   {
     name: "Jeanine A.",
-    source: "5-Star, Google Review",
+    sourceKey: "reviewGoogle",
     full: `I was at the facility a little over three weeks with a fractured bone in my hip...`,
   },
   {
     name: "Peter F.",
-    source: "5-Star, Yelp Review",
+    sourceKey: "reviewYelp",
     full: `Very good quality! They have enough staff and there's not too many people...`,
   },
   {
     name: "Jodi C.",
-    source: "5-Star, Yelp Review",
+    sourceKey: "reviewYelp",
     full: `I was sent to this facility to recover from a health emergency...`,
   },
   {
     name: "Norma S.",
-    source: "5-Star, Yelp Review",
+    sourceKey: "reviewYelp",
     full: `My respect for all CNAs at Vineland Post Acute...`,
   },
   {
     name: "Marie C.",
-    source: "5-Star, Yelp Review",
+    sourceKey: "reviewYelp",
     full: `My sister always had positive comments regarding this facility...`,
   },
   {
     name: "Janelle R.",
-    source: "5-Star, Google Review",
+    sourceKey: "reviewGoogle",
     full: `I can't say enough about how much this place helped my mother...`,
   },
 ];
 
 export default function TestimonialsPage() {
+  const { t } = useTranslation("common");
   const [mounted, setMounted] = useState(false);
   const [modalIndex, setModalIndex] = useState<number | null>(null);
   const [visibleIndex, setVisibleIndex] = useState(0);
@@ -78,7 +80,7 @@ export default function TestimonialsPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-5xl font-bold text-[#428f47] mb-2">Testimonials</h1>
+        <h1 className="text-5xl font-bold text-[#428f47] mb-2">{t("testimonials")}</h1>
         <p className="text-gray-600 text-lg italic">Vineland Post Acute</p>
       </motion.section>
 
@@ -102,7 +104,7 @@ export default function TestimonialsPage() {
           ❮
         </button>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.slice(visibleIndex, visibleIndex + groupSize).map((t, i) => (
+          {testimonials.slice(visibleIndex, visibleIndex + groupSize).map((testimonial, i) => (
             <motion.div
               key={visibleIndex + i}
               initial={{ opacity: 0, y: 40 }}
@@ -114,9 +116,9 @@ export default function TestimonialsPage() {
               <div className="flex justify-center mb-4">
                 <Image src="/assets/quotes.png" alt="Quotes" width={80} height={80} />
               </div>
-              <p className="text-gray-700 text-sm mb-4">{t.full.split(" ").slice(0, 40).join(" ")}...</p>
-              <p className="font-semibold">{t.name}</p>
-              <p className="text-sm text-gray-500">{t.source}</p>
+              <p className="text-gray-700 text-sm mb-4">{testimonial.full.split(" ").slice(0, 40).join(" ")}...</p>
+              <p className="font-semibold">{testimonial.name}</p>
+              <p className="text-sm text-gray-500">{t(testimonial.sourceKey)}</p>
             </motion.div>
           ))}
         </div>
@@ -127,8 +129,10 @@ export default function TestimonialsPage() {
 
       {modalIndex !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }} // Light transparent background
+          className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/30"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setModalIndex(null);
+          }}
         >
           <motion.div
             className="bg-white max-w-lg w-full p-6 rounded-lg relative shadow-xl text-center"
@@ -149,10 +153,10 @@ export default function TestimonialsPage() {
             </div>
 
             <p className="text-gray-700 mb-4">{testimonials[modalIndex].full}</p>
-
             <p className="font-semibold">{testimonials[modalIndex].name}</p>
-            <p className="text-sm text-gray-500">{testimonials[modalIndex].source}</p>
+            <p className="text-sm text-gray-500">{t(testimonials[modalIndex].sourceKey)}</p>
 
+            {/* Nav arrows */}
             <div className="absolute left-[-60px] top-1/2 transform -translate-y-1/2">
               <button
                 onClick={modalPrev}
@@ -177,3 +181,6 @@ export default function TestimonialsPage() {
     </main>
   );
 }
+
+
+

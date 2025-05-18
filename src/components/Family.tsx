@@ -6,34 +6,31 @@ import type { Swiper as SwiperType } from "swiper";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import "swiper/css";
-
-const testimonials = [
-  {
-    image: "/assets/care1.webp",
-    text: "My sister always had positive comments regarding this facility. She said the food was very good. The nurses were great. The staff was also very much involved and willing to give her all the answers that she needed on top of the Physical Therapy that she said was the best she had ever received, her physical therapy was customized for her needs for the areas of her body that needed to be strengthened. She said she was very happy with this facility. And would happily return if she needed this type of therapy.",
-  },
-  {
-    image: "/gallery/group4.webp",
-    text: "I am very pleased with Vineland post-acute. Juilette arranges the outing once a month for the patients they get to go out enjoy life and in the activities room they get to exercise She also arranges for them to join in the beautiful candlelight dinner for the patients to engage and interact with each other. Juilette takes pride in making a difference in every patient at Vineland post-acute. I’m so thankful to the lord that they have a wonderful person working with our love ones and making then feel special comfortable there at Vineland post-acute.",
-  },
-];
 
 const Family = () => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   const router = useRouter();
+  const { t } = useTranslation("common");
+
+  const testimonials = [
+    {
+      image: "/assets/care1.webp",
+      text: t("testimonial1"),
+    },
+    {
+      image: "/gallery/group4.webp",
+      text: t("testimonial2"),
+    },
+  ];
 
   return (
     <section className="pt-24 pb-10 bg-white text-center animate-fadeIn relative overflow-hidden">
-      {/* Decorative Bubbles */}
-      <div className="absolute w-[120px] h-[120px] bg-green-100 rounded-full top-[-40px] left-[-30px] z-0 opacity-40" />
-      <div className="absolute w-[100px] h-[100px] bg-green-200 rounded-full bottom-[px] left-[10%] z-0 opacity-30" />
-      <div className="absolute w-[90px] h-[90px] bg-green-100 rounded-full top-[20%] right-[5%] z-0 opacity-30" />
-      <div className="absolute w-[110px] h-[110px] bg-green-200 rounded-full bottom-[20px] right-[15%] z-0 opacity-20" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Your Loved Ones Deserve the Best Care</h2>
-        <p className="text-lg text-gray-700 mb-12">Everyone is family here at Vineland Post Acute</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("familyTitle")}</h2>
+        <p className="text-lg text-gray-700 mb-12">{t("familySubtitle")}</p>
 
         <div className="relative">
           <Swiper
@@ -99,7 +96,7 @@ const Family = () => {
             onClick={() => router.push("/about-us/testimonials")}
             className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
           >
-            Read More Testimonials
+            {t("readMoreTestimonials")}
           </button>
         </div>
       </div>
@@ -108,4 +105,5 @@ const Family = () => {
 };
 
 export default Family;
+
 

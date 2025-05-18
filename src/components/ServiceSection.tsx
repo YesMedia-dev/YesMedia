@@ -1,10 +1,13 @@
 "use client";
 
 import { SERVICES } from "@/constants/services";
-import { usePathname } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import ServicesCards from "./ServicesCards";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 interface ServicesSectionProps {
   variant?: "grid" | "list";
@@ -13,31 +16,42 @@ interface ServicesSectionProps {
 
 const ServicesSection = ({ variant = "grid", id }: ServicesSectionProps) => {
   const pathname = usePathname();
-  const filteredServices =
-    variant === "list"
-      ? SERVICES.filter((service) => service.title !== "Overview" && service.link !== pathname)
-      : SERVICES;
+  const { t } = useTranslation("common");
 
-  const mobileServices = SERVICES.filter((service) => service.title !== "Overview");
+  const translatedServices = SERVICES.map((service) => ({
+    ...service,
+    title: t(`service${capitalize(service.key)}Title`),
+    description: t(`service${capitalize(service.key)}Desc`),
+  }));
+
+  const filteredServices = variant === "list"
+    ? translatedServices.filter((s) => s.link !== pathname && s.key !== "overview")
+    : translatedServices;
+
+  const mobileServices = translatedServices.filter((s) => s.key !== "overview");
   const isList = variant === "list";
 
   return (
     <section id={id} className="text-center animate-fadeIn relative w-full">
       <div className={`${isList ? "" : "py-12"} mx-auto max-w-6xl px-8 flex flex-col items-center`}>
-        {/* Header */}
         <div className="mb-8">
-          <p className={`text-[#428f47] text-2xl font-semibold ${isList ? "" : " uppercase tracking-widest"} mb-2`}>
-            {isList ? "Explore Other Services" : "SERVICES"}
+          <p className={`text-[#428f47] text-2xl font-semibold ${isList ? "" : "uppercase tracking-widest"} mb-2`}>
+            {isList ? t("servicesExplore") : t("servicesHeader")}
           </p>
-          {!isList && <h2 className="text-4xl md:text-5xl font-bold text-gray-800">Your Health is Our Priority</h2>}
+          {!isList && (
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
+              {t("servicesSubheader")}
+            </h2>
+          )}
         </div>
 
-        {/* Services Grid/List */}
         {isList ? (
-          // LIST VARIANT — preserves your original layout
-          <div className={`grid gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 place-items-center`}>
+          <div className="grid gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 place-items-center">
             {filteredServices.map(({ title, image, link, size }, index) => {
-              const listSpecial = filteredServices.length === 3 && index === 2 ? "col-span-2 justify-self-center" : "";
+              const listSpecial =
+                filteredServices.length === 3 && index === 2
+                  ? "col-span-2 justify-self-center"
+                  : "";
 
               return (
                 <Link href={link} key={title} className={`text-center group w-full max-w-xs ${listSpecial}`}>
@@ -58,9 +72,8 @@ const ServicesSection = ({ variant = "grid", id }: ServicesSectionProps) => {
             })}
           </div>
         ) : (
-          // GRID VARIANT — special 3 + 2 desktop, text-right mobile layout
           <div className="flex flex-col items-center gap-8 w-full">
-            {/* Desktop layout: 3 on top row */}
+            {/* Top Row */}
             <div className="hidden md:grid grid-cols-3 gap-8 w-full place-items-center">
               {filteredServices.slice(0, 3).map(({ title, image, link, size }) => (
                 <Link href={link} key={title} className="group w-full max-w-xs text-center">
@@ -80,7 +93,7 @@ const ServicesSection = ({ variant = "grid", id }: ServicesSectionProps) => {
               ))}
             </div>
 
-            {/* Desktop layout: 2 on bottom row */}
+            {/* Bottom Row */}
             <div className="hidden md:grid grid-cols-2 gap-8 w-full place-items-center">
               {filteredServices.slice(3, 5).map(({ title, image, link, size }) => (
                 <Link href={link} key={title} className="group w-full max-w-xs text-center">
@@ -100,13 +113,9 @@ const ServicesSection = ({ variant = "grid", id }: ServicesSectionProps) => {
               ))}
             </div>
 
-            {/* Mobile layout: one column, image left and text right */}
+            {/* Mobile Layout */}
             <div className="md:hidden w-full">
-              <p className="mb-4">
-                Vineland Post Acute recognizes the unique needs of our patients and provides a secure environment to
-                meet both their social and clinical needs while still promoting independence. We invite you to contact
-                us today and ask us about any of our available services.
-              </p>
+              <p className="mb-4">{t("mobileDescription")}</p>
               <ServicesCards services={mobileServices} animateDur={0.3} />
             </div>
           </div>
@@ -117,3 +126,6 @@ const ServicesSection = ({ variant = "grid", id }: ServicesSectionProps) => {
 };
 
 export default ServicesSection;
+
+
+

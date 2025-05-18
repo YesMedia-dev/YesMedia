@@ -1,10 +1,13 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Video = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     const placeholderImg = document.createElement("div");
@@ -33,7 +36,6 @@ const Video = () => {
             if (playPromise !== undefined) {
               playPromise
                 .then(() => {
-                  console.log("Video playing successfully");
                   setTimeout(() => {
                     placeholderImg.parentNode?.removeChild(placeholderImg);
                   }, 200);
@@ -82,20 +84,20 @@ const Video = () => {
           <source src="/assets/test2.mp4" type="video/mp4" />
         </video>
 
-        <div className="absolute inset-0 bg-black/55"></div>
+        <div className="absolute inset-0 bg-black/55" />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
           <h2 className="text-2xl md:text-4xl font-bold mb-4 max-w-3xl">
-            Vineland is a place to call home.
+            {t("videoHeadline1")}
             <br />
-            You can now experience an up close view.
+            {t("videoHeadline2")}
           </h2>
           <button
             onClick={() => setIsPopupOpen(true)}
             className="mt-4 flex items-center gap-2 px-6 py-3 border border-white rounded-full hover:bg-white hover:text-black transition duration-300"
-            aria-label="Play Video"
+            aria-label={t("videoPlay")}
           >
-            <span className="font-semibold">Play Video</span>
+            <span className="font-semibold">{t("videoPlay")}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -134,9 +136,9 @@ const Video = () => {
             <button
               onClick={() => setIsPopupOpen(false)}
               className="absolute top-3 right-3 text-white bg-[#004F91] hover:bg-blue-800 px-4 py-2 text-xs font-bold rounded-md transition-colors"
-              aria-label="Close video"
+              aria-label={t("videoClose")}
             >
-              CLOSE ✕
+              {t("videoClose")}
             </button>
           </div>
         </div>
@@ -146,6 +148,7 @@ const Video = () => {
 };
 
 export default Video;
+
 
 
 
