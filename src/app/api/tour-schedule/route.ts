@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-// Define request body structure
 interface TourFormData {
   firstName: string;
   lastName: string;
@@ -10,13 +9,12 @@ interface TourFormData {
   preferredDate: string;
   preferredTime: string;
   comments: string;
+  language?: string; // "en" | "es"
 }
 
 export async function POST(req: Request): Promise<NextResponse> {
   try {
     const body = await req.json();
-    console.log("📨 Incoming tour request:", body);
-
     const {
       firstName,
       lastName,
@@ -25,30 +23,43 @@ export async function POST(req: Request): Promise<NextResponse> {
       preferredDate,
       preferredTime,
       comments,
+      language = "en"
     } = body as TourFormData;
 
     if (!firstName || !lastName || !email || !preferredDate || !preferredTime) {
-      return NextResponse.json(
-        { success: false, error: "Missing required fields" },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, error: "Missing required fields" }, { status: 400 });
     }
 
-    // Transporter setup
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.GMAIL_USER, // e.g. chrystyanpulido@gmail.com
-        pass: process.env.GMAIL_PASS, // App password (not your actual Gmail password)
-      },
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
+      }
     });
 
-    const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: email,
-      subject: "Your Tour Request at Vineland Post Acute",
-      text: `
-Hi ${firstName} ${lastName},
+    const isSpanish = language === "es";
+
+    const subject = isSpanish
+      ? "Su solicitud de recorrido en Vineland Post Acute"
+      : "Your Tour Request at Vineland Post Acute";
+
+    const message = isSpanish
+      ? `Hola ${firstName} ${lastName},
+
+Gracias por su interés en visitar Vineland Post Acute.
+
+Detalles recibidos:
+– Fecha preferida: ${preferredDate}
+– Hora preferida: ${preferredTime}
+– Teléfono: ${phone || "N/A"}
+– Comentarios: ${comments || "N/A"}
+
+Nuestro equipo se pondrá en contacto pronto para confirmar su recorrido.
+
+Saludos cordiales,
+Vineland Post Acute`
+      : `Hi ${firstName} ${lastName},
 
 Thank you for your interest in visiting Vineland Post Acute.
 
@@ -61,22 +72,20 @@ Here are the details we received:
 Our team will be in touch shortly to confirm your tour.
 
 Best regards,  
-Vineland Post Acute
-      `,
-    };
+Vineland Post Acute`;
 
-    const data = await transporter.sendMail(mailOptions);
-    console.log("✅ Tour email sent:", data);
+    await transporter.sendMail({
+      from: process.env.GMAIL_USER,
+      to: email,
+      subject,
+      text: message
+    });
 
-    return NextResponse.json({ success: true, data });
+    return NextResponse.json({ success: true });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown error";
-    console.error("❌ Tour schedule email error:", error);
-
-    return NextResponse.json(
-      { success: false, error: message },
-      { status: 500 }
-    );
+    console.error("❌ Email send error:", error);
+    return NextResponse.json({ success: false }, { status: 500 });
   }
 }
+
 

@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import i18n from "@/i18n";
 import Image from "next/image";
@@ -20,59 +19,91 @@ const LanguageSelector = () => {
     localStorage.setItem("lang", language);
   }, [language]);
 
-  const renderFlag = (lang: string) => (
-    <Image
-      src={`/logos/${lang === "en" ? "USA" : "MX"}.png`}
-      alt={lang === "en" ? "USA Flag" : "Mexico Flag"}
-      width={20}
-      height={14}
-      className={`inline-block mr-1 align-middle ${
-        lang === "es" ? "translate-y-[-1.5px]" : ""
-      }`}
-    />
-  );
-
   return (
     <>
       {/* Desktop */}
-      <div className="hidden lg:flex items-center space-x-2">
+      <div className="hidden lg:flex items-center space-x-4">
         <button
           onClick={() => setLanguage("en")}
-          className={`px-2 py-1 text-sm ${
+          className={`flex items-center h-8 ${
             language === "en" ? "font-bold underline" : "opacity-60"
           }`}
         >
-          {renderFlag("en")} English
+          <div className="flex items-center">
+            <div className="flex items-center justify-center w-6 h-4">
+              <Image
+                src="/logos/USA.png"
+                alt="USA Flag"
+                width={20}
+                height={14}
+                className="object-contain"
+              />
+            </div>
+            <span className="ml-1 text-sm">English</span>
+          </div>
         </button>
         <button
           onClick={() => setLanguage("es")}
-          className={`px-2 py-1 text-sm ${
+          className={`flex items-center h-8 ${
             language === "es" ? "font-bold underline" : "opacity-60"
           }`}
         >
-          {renderFlag("es")} Español
+          <div className="flex items-center">
+            <div className="flex items-center justify-center w-6 h-4">
+              <Image
+                src="/logos/MX.png"
+                alt="Mexico Flag"
+                width={20}
+                height={14}
+                className="object-contain"
+              />
+            </div>
+            <span className="ml-1 text-sm">Español</span>
+          </div>
         </button>
       </div>
 
       {/* Mobile */}
-      <div className="flex lg:hidden items-center space-x-1 mr-2">
+      <div className="flex lg:hidden items-center space-x-3 mr-2">
         <button
           onClick={() => setLanguage("en")}
-          className={`text-xs ${
+          className={`flex items-center h-6 ${
             language === "en" ? "font-bold underline" : "opacity-60"
           }`}
           aria-label="Switch to English"
         >
-          {renderFlag("en")} EN
+          <div className="flex items-center">
+            <div className="flex items-center justify-center w-5 h-4">
+              <Image
+                src="/logos/USA.png"
+                alt="USA Flag"
+                width={16}
+                height={11}
+                className="object-contain"
+              />
+            </div>
+            <span className="ml-1 text-xs">EN</span>
+          </div>
         </button>
         <button
           onClick={() => setLanguage("es")}
-          className={`text-xs ${
+          className={`flex items-center h-6 ${
             language === "es" ? "font-bold underline" : "opacity-60"
           }`}
           aria-label="Switch to Spanish"
         >
-          {renderFlag("es")} ES
+          <div className="flex items-center">
+            <div className="flex items-center justify-center w-5 h-4">
+              <Image
+                src="/logos/MX.png"
+                alt="Mexico Flag"
+                width={16}
+                height={11}
+                className="object-contain"
+              />
+            </div>
+            <span className="ml-1 text-xs">ES</span>
+          </div>
         </button>
       </div>
     </>
@@ -80,6 +111,8 @@ const LanguageSelector = () => {
 };
 
 export default LanguageSelector;
+
+
 
 
 

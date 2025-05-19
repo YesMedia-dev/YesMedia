@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const allImages = [
   "bear.webp", "group3.webp", "beds.webp", "rehab2.webp",
@@ -15,7 +16,7 @@ const allImages = [
   "group10.webp"
 ];
 
-const imageDetails = {
+const imageDetails: Record<string, "Team" | "Rooms" | "Comfort"> = {
   "bear.webp": "Comfort", "group3.webp": "Team", "beds.webp": "Rooms", "rehab2.webp": "Rooms",
   "biggroup.webp": "Team", "group9.webp": "Team", "chair.webp": "Comfort", "group1.webp": "Team",
   "chef.webp": "Comfort", "meetingroom.webp": "Rooms", "doctor1.webp": "Team", "event.webp": "Rooms",
@@ -29,13 +30,17 @@ const imageDetails = {
 const categories = ["All", "Team", "Rooms", "Comfort"] as const;
 
 export default function PhotoGallery() {
+  const { t } = useTranslation("common");
   const [filter, setFilter] = useState<(typeof categories)[number]>("All");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredImages = filter === "All"
-    ? allImages
-    : allImages.filter((img) => imageDetails[img as keyof typeof imageDetails] === filter);
+  const filteredImages =
+    filter === "All"
+      ? allImages
+      : allImages.filter(
+          (img) => imageDetails[img as keyof typeof imageDetails] === filter
+        );
 
   const IMAGES_PER_PAGE = 4;
   const totalPages = Math.ceil(filteredImages.length / IMAGES_PER_PAGE);
@@ -61,18 +66,17 @@ export default function PhotoGallery() {
   return (
     <section className="min-h-screen bg-gradient-to-b from-white to-green-50 py-12 px-4 relative">
       <div className="max-w-7xl mx-auto">
-
         {/* Title + Subtitle */}
         <div className="text-center mb-12 animate-drop-in">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#428f47] mb-3">
-            Photo Gallery
+            {t("galleryPage.title")}
           </h1>
           <p className="text-gray-600 text-lg italic">
-            Explore our facility and meet the vibrant Vineland community through pictures.
+            {t("galleryPage.subtitle")}
           </p>
         </div>
 
-        {/* Categories */}
+        {/* Category Buttons */}
         <div className="flex justify-center gap-4 flex-wrap mb-10 opacity-0 animate-fade-in-slow">
           {categories.map((cat) => (
             <button
@@ -82,15 +86,17 @@ export default function PhotoGallery() {
                 setCurrentPage(1);
               }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                filter === cat ? "bg-[#428f47] text-white" : "bg-white text-gray-700 hover:bg-green-100"
+                filter === cat
+                  ? "bg-[#428f47] text-white"
+                  : "bg-white text-gray-700 hover:bg-green-100"
               }`}
             >
-              {cat}
+              {t(`galleryPage.categories.${cat.toLowerCase()}`)}
             </button>
           ))}
         </div>
 
-        {/* Side Pagination Arrows */}
+        {/* Arrows */}
         {currentPage > 1 && (
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
@@ -108,7 +114,7 @@ export default function PhotoGallery() {
           </button>
         )}
 
-        {/* Grid */}
+        {/* Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
           {currentImages.map((img, i) => (
             <div
@@ -129,7 +135,7 @@ export default function PhotoGallery() {
           ))}
         </div>
 
-        {/* Pagination Indicators */}
+        {/* Pagination Dots */}
         <div className="flex justify-center gap-2">
           {Array.from({ length: totalPages }, (_, i) => (
             <button
@@ -179,7 +185,7 @@ export default function PhotoGallery() {
         </div>
       )}
 
-      {/* Animation */}
+      {/* Global Animations */}
       <style jsx global>{`
         @keyframes fadeIn {
           from {
@@ -223,6 +229,7 @@ export default function PhotoGallery() {
     </section>
   );
 }
+
 
 
 

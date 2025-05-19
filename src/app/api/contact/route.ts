@@ -7,17 +7,16 @@ interface ContactFormData {
   email: string;
   phone: string;
   comments: string;
+  lang?: "en" | "es";
 }
 
 export async function POST(req: Request): Promise<NextResponse> {
   try {
     const body = await req.json();
-    console.log("📨 Incoming POST body:", body);
-
-    const { firstName, lastName, email, phone, comments } = body as ContactFormData;
+    const { firstName, lastName, email, phone, comments, lang = "en" } = body as ContactFormData;
 
     if (!firstName || !lastName || !email) {
-      return NextResponse.json({ success: false, error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json({ success: false }, { status: 400 });
     }
 
     const transporter = nodemailer.createTransport({
@@ -28,12 +27,24 @@ export async function POST(req: Request): Promise<NextResponse> {
       },
     });
 
-    const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: email,
-      subject: "Thank you for reaching out to Vineland Post Acute",
-      text: `
-Hi ${firstName} ${lastName},
+    const subject =
+      lang === "es"
+        ? "Gracias por contactarnos – Vineland Post Acute"
+        : "Thank you for reaching out to Vineland Post Acute";
+
+    const message =
+      lang === "es"
+        ? `Hola ${firstName} ${lastName},
+
+Gracias por su mensaje. Hemos recibido su consulta y nos pondremos en contacto con usted pronto.
+
+Su mensaje:
+"${comments}"
+
+Podemos contactarlo al: ${phone || "N/A"}
+
+– Vineland Post Acute`
+        : `Hi ${firstName} ${lastName},
 
 Thank you for your message. We've received your inquiry and will get back to you shortly.
 
@@ -42,19 +53,22 @@ Your message:
 
 We may contact you at: ${phone || "N/A"}
 
-– Vineland Post Acute
-      `,
-    };
+– Vineland Post Acute`;
 
-    const info = await transporter.sendMail(mailOptions);
-    console.log("✅ Gmail sent:", info.response);
+    await transporter.sendMail({
+      from: process.env.GMAIL_USER,
+      to: email,
+      subject,
+      text: message,
+    });
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("❌ Gmail send error:", err);
-    return NextResponse.json({ success: false, error: "Email failed to send" }, { status: 500 });
+    console.error("❌ Email send error:", err);
+    return NextResponse.json({ success: false }, { status: 500 });
   }
 }
+
 
 
 
