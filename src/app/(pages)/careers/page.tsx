@@ -40,11 +40,11 @@ const Careers = () => {
   }, []);
 
   return (
-    <section className="bg-white pt-20 pb-16 px-6 overflow-hidden">
+    <section className="bg-white pt-4 pb-16 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto text-center">
         {/* Title */}
         <h1
-          className={`text-4xl md:text-5xl font-bold text-[#428f47] mb-2 transition-opacity duration-500 ${
+          className={`mt-6 text-4xl md:text-5xl font-bold text-[#428f47] mb-2 transition-opacity duration-500 ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
           style={{
@@ -57,7 +57,7 @@ const Careers = () => {
 
         {/* Subtitle */}
         <p
-          className={`text-[#000000] italic text-lg mb-10 transition-opacity duration-500 ${
+          className={`text-[#000000] italic text-lg mb-6 transition-opacity duration-500 ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
           style={{
@@ -71,24 +71,25 @@ const Careers = () => {
 
         {/* Hero Image */}
         <div
-          className={`rounded-xl overflow-hidden shadow-lg mb-12 transition-all duration-600 ${
+          className={`rounded-xl overflow-hidden shadow-lg mb-6 transition-all duration-600 ${
             isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}
         >
-          <div className="relative w-full h-[400px] md:h-[350px]">
+          <div className="relative w-full h-[570px]">
             <Image
-              src="/contact/welcome.jpeg"
+              src="/contact/chef.webp"
               alt="Welcome to Vineland"
               fill
-              className="object-cover rounded-xl"
               priority
+              className="object-cover rounded-xl"
+              style={{ objectPosition: "center 25%" }}
             />
           </div>
         </div>
 
         {/* Intro Paragraph */}
         <p
-          className={`text-md text-gray-700 leading-relaxed max-w-4xl mx-auto mb-8 transition-opacity delay-200 duration-600 ${
+          className={`text-md text-gray-700 leading-relaxed max-w-4xl mx-auto mb-6 transition-opacity delay-200 duration-600 ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -100,7 +101,7 @@ const Careers = () => {
           href="https://www2.appone.com/Search/Search.aspx?ServerVar=sunmarmanagementservices.appone.com"
           target="_blank"
           rel="noopener noreferrer"
-          className={`inline-block px-8 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition mb-16 ${
+          className={`inline-block px-8 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition mb-12 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{
@@ -113,7 +114,7 @@ const Careers = () => {
 
         {/* Benefits Heading */}
         <h2
-          className={`text-3xl md:text-4xl font-bold text-gray-800 mb-12 ${
+          className={`text-3xl md:text-4xl font-bold text-gray-800 mb-10 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{
@@ -153,7 +154,6 @@ const Careers = () => {
               </div>
             );
 
-            // Only wrap the card in a link if it's the EduTrack card (index 1)
             return benefitLinks[index] && index === 1 ? (
               <a
                 key={`benefit-${index}`}

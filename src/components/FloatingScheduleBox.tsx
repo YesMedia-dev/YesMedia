@@ -25,7 +25,7 @@ export default function FloatingScheduleBox() {
     };
     checkMobile();
 
-    // 💻 Desktop scroll-trigger only for homepage
+    // Desktop scroll-trigger only for homepage
     const handleScroll = () => {
       if (isHome && !isMobile) {
         setShowBox(window.scrollY > 300);
@@ -70,7 +70,7 @@ export default function FloatingScheduleBox() {
         </Link>
       </motion.div>
 
-      {/* 📱 Mobile Version (simplified, always visible) */}
+      {/*  Mobile Version (simplified, always visible) */}
       {isMobile && showBox && (
         <motion.div
           initial={{ opacity: 0, y: 40 }}

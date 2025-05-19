@@ -80,8 +80,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative bg-white py-20 px-6 overflow-hidden min-h-screen">
-     
+    <section className="relative bg-white pt-10 pb-20 px-6 overflow-hidden min-h-screen">
       <div className="max-w-5xl mx-auto relative z-10">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -108,7 +107,7 @@ const Contact = () => {
           className="rounded-xl overflow-hidden shadow-lg mb-12"
         >
           <div className="relative w-full h-[400px] md:h-[350px]">
-            <Image src="/assets/outside3.jpeg" alt="Facility" fill className="object-cover rounded-xl" priority />
+            <Image src="/gallery/bear.webp" alt="Facility" fill className="object-cover rounded-xl" priority />
           </div>
         </motion.div>
 
@@ -225,6 +224,7 @@ const Contact = () => {
 };
 
 export default Contact;
+
 
 
 
