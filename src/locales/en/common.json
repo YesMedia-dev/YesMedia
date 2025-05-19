@@ -333,7 +333,11 @@
     "success": "✅ Your tour request has been sent!",
     "error": "❌ Failed to schedule tour"
   }
-}
+},
+
+"visitTitle": "Come visit us!",
+  "visitText": "The best way to experience our community is in person. We would love to have you!",
+  "scheduleTour": "SCHEDULE A TOUR"
 }
 
 
