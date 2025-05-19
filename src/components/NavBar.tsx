@@ -25,7 +25,7 @@ const NavBar = () => {
       services: createRef(),
       contact: createRef(),
     }),
-    []
+    [],
   );
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const NavBar = () => {
     name: MenuKey,
     openNavMenu: MenuKey | null,
     setOpenNavMenu: (key: MenuKey | null) => void,
-    refs: Record<MenuKey, RefObject<HTMLDivElement | null>>
+    refs: Record<MenuKey, RefObject<HTMLDivElement | null>>,
   ) => ({
     isOpen: openNavMenu === name,
     setOpen: (open: boolean) => setOpenNavMenu(open ? name : null),
@@ -89,10 +89,10 @@ const NavBar = () => {
     const key: MenuKey | null = item.href.includes("about")
       ? "about"
       : item.href.includes("services")
-      ? "services"
-      : item.href.includes("contact")
-      ? "contact"
-      : null;
+        ? "services"
+        : item.href.includes("contact")
+          ? "contact"
+          : null;
 
     if (!item.children?.length || !key) {
       return (
@@ -127,8 +127,8 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="sticky top-0 w-full shadow-sm z-50 bg-white">
-      <div className="w-full h-2 bg-[#428f47]" />
+    <nav className="md:sticky top-0 w-full shadow-sm z-50 bg-white">
+      <div className="w-full h-2 bg-[#428f47]" /> {/* Line */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-24 items-center justify-between">
           {/* Logo */}
@@ -164,7 +164,6 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-
       {/* Mobile Dropdown */}
       <ul
         className={cn(
@@ -172,7 +171,7 @@ const NavBar = () => {
           {
             "translate-y-0 opacity-100": isMenuOpen,
             "translate-y-[-10px] opacity-0 pointer-events-none": !isMenuOpen,
-          }
+          },
         )}
       >
         {navLinks.map((item) => {
@@ -216,7 +215,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-
-
-
