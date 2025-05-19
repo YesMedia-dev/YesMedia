@@ -213,3 +213,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+@media (max-width: 767px) {
+  .mobile-banner {
+    background-image: url("/assets/mobileBanner.webp");
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-banner {
+    background-image: url("/assets/welcome.webp");
+  }
+}
