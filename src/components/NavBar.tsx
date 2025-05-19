@@ -25,7 +25,7 @@ const NavBar = () => {
       services: createRef(),
       contact: createRef(),
     }),
-    []
+    [],
   );
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const NavBar = () => {
     name: MenuKey,
     openNavMenu: MenuKey | null,
     setOpenNavMenu: (key: MenuKey | null) => void,
-    refs: Record<MenuKey, RefObject<HTMLDivElement | null>>
+    refs: Record<MenuKey, RefObject<HTMLDivElement | null>>,
   ) => ({
     isOpen: openNavMenu === name,
     setOpen: (open: boolean) => setOpenNavMenu(open ? name : null),
@@ -89,10 +89,10 @@ const NavBar = () => {
     const key: MenuKey | null = item.href.includes("about")
       ? "about"
       : item.href.includes("services")
-      ? "services"
-      : item.href.includes("contact")
-      ? "contact"
-      : null;
+        ? "services"
+        : item.href.includes("contact")
+          ? "contact"
+          : null;
 
     if (!item.children?.length || !key) {
       return (
@@ -127,8 +127,8 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="sticky top-0 w-full shadow-sm z-50 bg-white">
-      <div className="w-full h-2 bg-[#428f47]" />
+    <nav className="md:sticky top-0 w-full shadow-sm z-50 bg-white">
+      <div className="w-full h-2 bg-[#428f47]" /> {/* Line */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-24 items-center justify-between">
           {/* Logo */}
@@ -143,7 +143,7 @@ const NavBar = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-4 text-base font-medium text-gray-700">
+          <div className="hidden lg:flex items-center space-x-4 text-sm font-medium text-gray-700">
             {navLinks.map((item) => renderNavbar(item))}
             <LanguageSelector />
           </div>
@@ -164,15 +164,14 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-
       {/* Mobile Dropdown */}
       <ul
         className={cn(
-          "absolute left-4 right-4 z-50 px-2 py-2 border-t-4 border-t-[#428f47] bg-white shadow-lg md:hidden transform transition-all duration-300 ease-in-out origin-top",
+          "absolute left-4 right-4 z-50 px-2 py-2 border-t-4 border-t-[#428f47] bg-white shadow-lg lg:hidden transform transition-all duration-300 ease-in-out origin-top",
           {
             "translate-y-0 opacity-100": isMenuOpen,
             "translate-y-[-10px] opacity-0 pointer-events-none": !isMenuOpen,
-          }
+          },
         )}
       >
         {navLinks.map((item) => {
@@ -216,7 +215,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-
-
-

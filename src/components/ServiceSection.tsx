@@ -24,9 +24,10 @@ const ServicesSection = ({ variant = "grid", id }: ServicesSectionProps) => {
     description: t(`service${capitalize(service.key)}Desc`),
   }));
 
-  const filteredServices = variant === "list"
-    ? translatedServices.filter((s) => s.link !== pathname && s.key !== "overview")
-    : translatedServices;
+  const filteredServices =
+    variant === "list"
+      ? translatedServices.filter((s) => s.link !== pathname && s.key !== "overview")
+      : translatedServices;
 
   const mobileServices = translatedServices.filter((s) => s.key !== "overview");
   const isList = variant === "list";
@@ -38,20 +39,13 @@ const ServicesSection = ({ variant = "grid", id }: ServicesSectionProps) => {
           <p className={`text-[#428f47] text-2xl font-semibold ${isList ? "" : "uppercase tracking-widest"} mb-2`}>
             {isList ? t("servicesExplore") : t("servicesHeader")}
           </p>
-          {!isList && (
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
-              {t("servicesSubheader")}
-            </h2>
-          )}
+          {!isList && <h2 className="text-4xl md:text-5xl font-bold text-gray-800">{t("servicesSubheader")}</h2>}
         </div>
 
         {isList ? (
           <div className="grid gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 place-items-center">
             {filteredServices.map(({ title, image, link, size }, index) => {
-              const listSpecial =
-                filteredServices.length === 3 && index === 2
-                  ? "col-span-2 justify-self-center"
-                  : "";
+              const listSpecial = filteredServices.length === 3 && index === 2 ? "col-span-2 justify-self-center" : "";
 
               return (
                 <Link href={link} key={title} className={`text-center group w-full max-w-xs ${listSpecial}`}>
@@ -74,40 +68,26 @@ const ServicesSection = ({ variant = "grid", id }: ServicesSectionProps) => {
         ) : (
           <div className="flex flex-col items-center gap-8 w-full">
             {/* Top Row */}
-            <div className="hidden md:grid grid-cols-3 gap-8 w-full place-items-center">
-              {filteredServices.slice(0, 3).map(({ title, image, link, size }) => (
-                <Link href={link} key={title} className="group w-full max-w-xs text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 place-items-center w-full">
+              {filteredServices.map(({ title, image, link, size }, index) => (
+                <Link
+                  href={link}
+                  key={title}
+                  className={`text-center group w-full ${
+                    index === 3 ? "flex justify-end ml-40" : index === 4 ? "flex justify-end ml-30" : ""
+                  }`}
+                >
                   <div className="transition-transform duration-300 group-hover:scale-105 flex flex-col items-center">
-                    <div className="relative w-full flex justify-center">
+                    <div className={`relative ${index === 4 ? "flex justify-center w-full" : ""}`}>
                       <Image
                         src={image}
                         alt={title}
                         width={size}
                         height={size}
-                        className="transition duration-300 ease-in-out group-hover:scale-105 group-hover:drop-shadow-xl"
+                        className="mx-auto transition duration-300 ease-in-out group-hover:scale-105 group-hover:drop-shadow-xl"
                       />
                     </div>
-                    <p className="text-blue-900 font-semibold text-lg">{title}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            {/* Bottom Row */}
-            <div className="hidden md:grid grid-cols-2 gap-8 w-full place-items-center">
-              {filteredServices.slice(3, 5).map(({ title, image, link, size }) => (
-                <Link href={link} key={title} className="group w-full max-w-xs text-center">
-                  <div className="transition-transform duration-300 group-hover:scale-105 flex flex-col items-center">
-                    <div className="relative w-full flex justify-center">
-                      <Image
-                        src={image}
-                        alt={title}
-                        width={size}
-                        height={size}
-                        className="transition duration-300 ease-in-out group-hover:scale-105 group-hover:drop-shadow-xl"
-                      />
-                    </div>
-                    <p className="text-blue-900 font-semibold text-lg">{title}</p>
+                    <p className="text-blue-900 font-semibold text-lg mt-4">{title}</p>
                   </div>
                 </Link>
               ))}
@@ -126,6 +106,3 @@ const ServicesSection = ({ variant = "grid", id }: ServicesSectionProps) => {
 };
 
 export default ServicesSection;
-
-
-
