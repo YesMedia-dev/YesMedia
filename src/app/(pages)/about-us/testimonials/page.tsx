@@ -9,32 +9,32 @@ const testimonials = [
   {
     name: "Jeanine A.",
     sourceKey: "reviewGoogle",
-    full: `I was at the facility a little over three weeks with a fractured bone in my hip.`,
+    full: "testimonial_jeanine",
   },
   {
     name: "Peter F.",
     sourceKey: "reviewYelp",
-    full: `Very good quality! They have enough staff and there's not too many people.`,
+    full: "testimonial_peter",
   },
   {
     name: "Jodi C.",
     sourceKey: "reviewYelp",
-    full: `I was sent to this facility to recover from a health emergency...`,
+    full: "testimonial_jodi",
   },
   {
     name: "Norma S.",
     sourceKey: "reviewYelp",
-    full: `My respect for all CNAs at Vineland Post Acute...`,
+    full: "testimonial_norma",
   },
   {
     name: "Marie C.",
     sourceKey: "reviewYelp",
-    full: `My sister always had positive comments regarding this facility...`,
+    full: "testimonial_marie",
   },
   {
-    name: "Janelle R.",
+    name: "Luis L.",
     sourceKey: "reviewGoogle",
-    full: `I can't say enough about how much this place helped my mother...`,
+    full: "testimonial_luis",
   },
 ];
 
@@ -132,10 +132,10 @@ export default function TestimonialsPage() {
               className="bg-gray-100 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition w-60 xs:w-70 md:w-80"
               onClick={() => setModalIndex(visibleIndex + i)}
             >
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center">
                 <Image src="/assets/quotes.png" alt="Quotes" width={80} height={80} />
               </div>
-              <p className="text-gray-700 text-sm mb-4 line-clamp-3">{testimonial.full}</p>
+              <p className="text-gray-700 text-sm mb-4 line-clamp-3">{t(testimonial.full)}</p>
               <p className="font-semibold">{testimonial.name}</p>
               <p className="text-sm text-gray-500">{t(testimonial.sourceKey)}</p>
             </motion.div>
@@ -171,7 +171,7 @@ export default function TestimonialsPage() {
               <Image src="/assets/quotes.png" alt="Quotes" width={60} height={60} />
             </div>
 
-            <div className="text-gray-700 mb-4 max-h-60 overflow-y-auto pr-2">{testimonials[modalIndex].full}</div>
+            <div className="text-gray-700 mb-4 max-h-60 overflow-y-auto pr-2">{t(testimonials[modalIndex].full)}</div>
             <p className="font-semibold">{testimonials[modalIndex].name}</p>
             <p className="text-sm text-gray-500">{t(testimonials[modalIndex].sourceKey)}</p>
 
