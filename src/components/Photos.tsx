@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { useTranslation } from "react-i18next";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import "swiper/css";
@@ -130,14 +130,14 @@ const Photos = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative flex items-center justify-center">
-              {/* Image */}
-              <img
+              <Image
                 src={photos[activePhoto].image}
                 alt={photos[activePhoto].alt}
+                width={1200}
+                height={800}
                 className="max-h-[80vh] mx-auto object-contain rounded-lg"
               />
 
-              {/* Arrows */}
               <button
                 onClick={handlePrev}
                 className="absolute left-10 top-1/2 transform -translate-y-1/2 bg-black/70 p-3 rounded-full hover:bg-black/90"
@@ -151,7 +151,6 @@ const Photos = () => {
                 <ChevronRight className="w-8 h-8 text-[#39d462]" />
               </button>
 
-              {/* Close */}
               <button
                 onClick={closeModal}
                 className="absolute top-4 right-8 p-2 bg-black/70 rounded-full hover:bg-black/90"
@@ -167,6 +166,7 @@ const Photos = () => {
 };
 
 export default Photos;
+
 
 
 
