@@ -18,8 +18,8 @@ const HeroSection = () => {
   const { t } = useTranslation("common");
 
   return (
-    <section className="relative w-full h-screen">
-      <div className="relative w-full h-screen">
+    <section className="relative w-full h-[625px] md:h-screen">
+      <div className="relative w-full h-[650px] md:h-screen">
         <Image src={hero.image} alt="Vineland Facility" fill className="object-cover" priority />
 
         {/* Title & Subtitle */}
@@ -30,10 +30,10 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-2 [text-shadow:3px_3px_5px_rgba(0,0,0,0.7)]">
+          <h2 className="text-xl md:text-5xl font-bold mb-2 [text-shadow:3px_3px_5px_rgba(0,0,0,0.7)]">
             {t("heroTitle")}
           </h2>
-          <h3 className="text-xl md:text-2xl font-medium mb-2 [text-shadow:3px_3px_5px_rgba(0,0,0,0.7)]">
+          <h3 className="text-md md:text-2xl font-medium mb-2 [text-shadow:3px_3px_5px_rgba(0,0,0,0.7)]">
             {t("heroSubtitle")}
           </h3>
         </motion.div>
@@ -55,7 +55,7 @@ const HeroSection = () => {
                 });
               }
             }}
-            className="flex justify-center bg-white text-[#428f47] px-6 py-2 rounded-md font-semibold shadow hover:bg-gray-100 transition"
+            className="flex justify-center bg-white text-[#428f47] px-6 py-2 rounded-md font-semibold shadow-xl/20 hover:bg-gray-100 transition"
           >
             {t("heroButton")}
           </button>
