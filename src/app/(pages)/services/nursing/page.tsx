@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import ServicesSection from "@/components/ServiceSection";
 
 const listItemVariants = {
@@ -10,20 +11,9 @@ const listItemVariants = {
 };
 
 const SkilledNursingPage = () => {
-  const bullets = [
-    "IV therapy, including TPN",
-    "Wound care, wound vac, and wound debridement by a wound specialist",
-    "Pain management",
-    "Cardiac wellness and stroke rehabilitation",
-    "Nutrition & hydration programs",
-    "Stroke rehabilitation",
-    "Joint replacement recovery program",
-    "Tracheostomy and respiratory care",
-    "Chest tube management",
-    "Restorative nursing",
-    "Diabetic management & education",
-    "Coordinated care from medical director and director of nurses",
-  ];
+  const { t } = useTranslation("common");
+
+  const bullets = t("nursingPage.bullets", { returnObjects: true }) as string[];
 
   return (
     <main className="max-w-screen-xl mx-auto px-4 py-16">
@@ -33,8 +23,12 @@ const SkilledNursingPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-5xl font-bold text-[#428f47] mb-2">Skilled Nursing</h1>
-        <p className="text-gray-600 text-lg italic">Vineland Post Acute</p>
+        <h1 className="text-5xl font-bold text-[#428f47] mb-2">
+          {t("nursingPage.title")}
+        </h1>
+        <p className="text-gray-600 text-lg italic">
+          {t("nursingPage.subtitle")}
+        </p>
       </motion.section>
 
       <motion.div
@@ -60,11 +54,7 @@ const SkilledNursingPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            We take a holistic approach to developing a comprehensive care plan. We assemble a team that includes
-            administration, clinical, therapy, dietary, social service, and case management professionals. We provide
-            individualized 24-hour skilled care and rehabilitation services in a comfortable and family-friendly
-            environment. Our team works together with the patients and their family members to determine the optimal
-            treatment plan for each situation.
+            {t("nursingPage.intro")}
           </motion.p>
 
           <motion.div
@@ -74,8 +64,9 @@ const SkilledNursingPage = () => {
             transition={{ delay: 0.6, duration: 0.4 }}
           >
             <p className="font-semibold text-[#428f47] text-lg mb-4">
-              We offer comprehensive clinical disciplines that include:
+              {t("nursingPage.sectionTitle")}
             </p>
+
             <motion.ul
               initial="hidden"
               animate="visible"
@@ -98,7 +89,6 @@ const SkilledNursingPage = () => {
           </motion.div>
         </div>
 
-        {/* ADDED FADE-IN ANIMATION HERE */}
         <motion.div
           className="flex-1"
           initial={{ opacity: 0, y: 20 }}
@@ -113,3 +103,4 @@ const SkilledNursingPage = () => {
 };
 
 export default SkilledNursingPage;
+

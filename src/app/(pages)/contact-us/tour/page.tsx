@@ -3,8 +3,15 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useTranslation } from "react-i18next";
+import { enUS, es } from "date-fns/locale";
+import { Locale } from "date-fns";
 
 const ScheduleTour = () => {
+  const { t, i18n } = useTranslation("common");
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -15,8 +22,15 @@ const ScheduleTour = () => {
     comments: "",
   });
 
+  const [calendarDate, setCalendarDate] = useState<Date | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const localeMap: Record<string, Locale> = {
+    en: enUS,
+    es: es,
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -28,6 +42,7 @@ const ScheduleTour = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSuccessMessage("");
+    setErrorMessage("");
 
     try {
       const res = await fetch("/api/tour-schedule", {
@@ -42,45 +57,36 @@ const ScheduleTour = () => {
       try {
         const result = JSON.parse(text);
         if (result?.success) {
-          setSuccessMessage("✅ Your tour request has been sent!");
-          setFormData({
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            preferredDate: "",
-            preferredTime: "",
-            comments: "",
-          });
+          setSuccessMessage(t("tourPage.form.success"));
+          resetForm();
         } else {
-          throw new Error(result?.error || "Unknown server error");
+          throw new Error();
         }
       } catch {
-        console.warn("⚠️ Non-JSON response:", text);
-        setSuccessMessage("✅ Your tour request has been sent!");
+        setSuccessMessage(t("tourPage.form.success"));
       }
-    } catch (err) {
-      console.error("❌ Tour request error:", err);
-      alert("❌ Error sending request.");
+    } catch {
+      setErrorMessage(t("tourPage.form.error"));
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const resetForm = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      preferredDate: "",
+      preferredTime: "",
+      comments: "",
+    });
+    setCalendarDate(null);
+  };
+
   return (
     <section className="bg-white pt-20 pb-16 px-6 animate-fadeIn overflow-hidden relative">
-      {/* Decorative Green Bubbles */}
-      {/* Left-side bubbles */}
-      <div className="absolute w-[100px] h-[100px] bg-green-100 rounded-full top-[-40px] left-[-30px] z-0 opacity-30" />
-      <div className="absolute w-[80px] h-[80px] bg-green-200 rounded-full top-[25%] left-[-40px] z-0 opacity-20" />
-      <div className="absolute w-[60px] h-[60px] bg-green-100 rounded-full bottom-[30%] left-[0%] z-0 opacity-20" />
-      <div className="absolute w-[90px] h-[90px] bg-green-200 rounded-full bottom-[5%] left-[5%] z-0 opacity-25" />
-
-      {/* Right-side bubbles */}
-      <div className="absolute w-[70px] h-[70px] bg-green-100 rounded-full top-[15%] right-[-25px] z-0 opacity-20" />
-      <div className="absolute w-[100px] h-[100px] bg-green-200 rounded-full bottom-[15%] right-[10%] z-0 opacity-25" />
-      <div className="absolute w-[80px] h-[80px] bg-green-100 rounded-full bottom-[0%] right-[0%] z-0 opacity-20" />
-
       <div className="max-w-6xl mx-auto text-center relative z-10">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -88,9 +94,10 @@ const ScheduleTour = () => {
           transition={{ duration: 0.5 }}
           className="text-4xl md:text-5xl font-bold text-[#428f47] mb-2"
         >
-          Schedule a Tour
+          {t("tourPage.title")}
         </motion.h1>
-        <p className="text-black italic text-lg mb-10">Vineland Post Acute</p>
+
+        <p className="text-black italic text-lg mb-10">{t("tourPage.subtitle")}</p>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -99,7 +106,13 @@ const ScheduleTour = () => {
           className="rounded-xl overflow-hidden shadow-lg mb-12"
         >
           <div className="relative w-full h-[400px] md:h-[350px]">
-            <Image src="/assets/tour.jpg" alt="Schedule a Tour" fill className="object-cover rounded-xl" priority />
+            <Image
+              src="/assets/tour.jpg"
+              alt="Schedule a Tour"
+              fill
+              className="object-cover rounded-xl"
+              priority
+            />
           </div>
         </motion.div>
 
@@ -109,86 +122,107 @@ const ScheduleTour = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-md text-gray-700 leading-relaxed max-w-4xl mx-auto mb-8"
         >
-          <strong>At Vineland Post Acute</strong>, we invite you to come tour our facility and meet our team of
-          professional caregivers. We are available nights and weekends to accommodate any busy schedule.
+          {t("tourPage.description")}
         </motion.p>
 
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto text-left space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold mb-1">First Name</label>
+              <label className="block text-sm font-semibold mb-1">
+                {t("tourPage.form.firstName")}
+              </label>
               <input
                 id="firstName"
                 type="text"
                 value={formData.firstName}
                 onChange={handleChange}
                 required
-                placeholder="First"
-                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
+                placeholder={t("tourPage.form.placeholder.first")}
+                className="w-full border border-gray-300 rounded-md px-4 py-2"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-1">Last Name</label>
+              <label className="block text-sm font-semibold mb-1">
+                {t("tourPage.form.lastName")}
+              </label>
               <input
                 id="lastName"
                 type="text"
                 value={formData.lastName}
                 onChange={handleChange}
                 required
-                placeholder="Last"
-                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
+                placeholder={t("tourPage.form.placeholder.last")}
+                className="w-full border border-gray-300 rounded-md px-4 py-2"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold mb-1">Email</label>
+              <label className="block text-sm font-semibold mb-1">
+                {t("tourPage.form.email")}
+              </label>
               <input
                 id="email"
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                placeholder="you@example.com"
-                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
+                placeholder={t("tourPage.form.placeholder.email")}
+                className="w-full border border-gray-300 rounded-md px-4 py-2"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-1">Phone</label>
+              <label className="block text-sm font-semibold mb-1">
+                {t("tourPage.form.phone")}
+              </label>
               <input
                 id="phone"
                 type="tel"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="(123) 456-7890"
-                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
+                placeholder={t("tourPage.form.placeholder.phone")}
+                className="w-full border border-gray-300 rounded-md px-4 py-2"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-1">Preferred Date</label>
-              <input
-                id="preferredDate"
-                type="date"
-                value={formData.preferredDate}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
+            <div className="w-full">
+              <label className="block text-sm font-semibold mb-1">
+                {t("tourPage.form.preferredDate")}
+              </label>
+              <DatePicker
+                selected={calendarDate}
+                onChange={(date) => {
+                  setCalendarDate(date);
+                  setFormData({
+                    ...formData,
+                    preferredDate: date?.toISOString().split("T")[0] || "",
+                  });
+                }}
+                locale={localeMap[i18n.language] || enUS}
+                placeholderText={t("tourPage.form.placeholder.date")}
+                className="w-full border border-gray-300 rounded-md px-4 py-2"
+                dateFormat="P"
+                wrapperClassName="w-full"
               />
             </div>
+
             <div>
-              <label className="block text-sm font-semibold mb-1">Preferred Time</label>
+              <label className="block text-sm font-semibold mb-1">
+                {t("tourPage.form.preferredTime")}
+              </label>
               <select
                 id="preferredTime"
                 value={formData.preferredTime}
                 onChange={handleChange}
                 required
-                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
+                className="w-full border border-gray-300 rounded-md px-4 py-2"
               >
-                <option value="">Select a time</option>
+                <option value="">
+                  {t("tourPage.form.placeholder.selectTime")}
+                </option>
                 {[
                   "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
                   "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
@@ -207,26 +241,33 @@ const ScheduleTour = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold mb-1">Comments/Questions</label>
+            <label className="block text-sm font-semibold mb-1">
+              {t("tourPage.form.comments")}
+            </label>
             <textarea
               id="comments"
               rows={5}
               value={formData.comments}
               onChange={handleChange}
-              placeholder="Let us know if you have any preferences or questions..."
-              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
+              placeholder={t("tourPage.form.placeholder.comments")}
+              className="w-full border border-gray-300 rounded-md px-4 py-2"
             ></textarea>
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="mt-4 bg-[#428f47] text-white font-semibold px-6 py-2 rounded-md hover:bg-green-700 transition"
-          >
-            {isSubmitting ? "Sending..." : "Submit"}
-          </button>
+          <div className="text-center">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="mt-4 bg-[#428f47] text-white font-semibold px-6 py-2 rounded-md hover:bg-green-700 transition"
+            >
+              {isSubmitting
+                ? t("tourPage.form.sending")
+                : t("tourPage.form.submit")}
+            </button>
+          </div>
 
           {successMessage && <p className="text-green-600 text-center mt-4">{successMessage}</p>}
+          {errorMessage && <p className="text-red-600 text-center mt-4">{errorMessage}</p>}
         </form>
       </div>
     </section>
@@ -234,3 +275,11 @@ const ScheduleTour = () => {
 };
 
 export default ScheduleTour;
+
+
+
+
+
+
+
+

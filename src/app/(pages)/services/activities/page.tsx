@@ -2,20 +2,16 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import ServicesSection from "@/components/ServiceSection";
 
-const activityPoints = [
-  "Musical performances",
-  "Fitness activities",
-  "Stretching exercises",
-  "Religious meetings",
-  "Outside entertainment",
-  "Trivia & history",
-  "Gardening",
-  "Field trips/outings",
-];
-
 export default function ActivitiesPage() {
+  const { t } = useTranslation("common");
+
+  const activityPoints = t("activitiesPage.bullets", {
+    returnObjects: true,
+  }) as string[];
+
   return (
     <main className="max-w-screen-xl mx-auto px-4 py-16">
       {/* Title */}
@@ -25,11 +21,15 @@ export default function ActivitiesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-5xl font-bold text-[#428f47] mb-2">Activities</h1>
-        <p className="text-gray-600 text-lg italic">Vineland Post Acute</p>
+        <h1 className="text-5xl font-bold text-[#428f47] mb-2">
+          {t("activitiesPage.title")}
+        </h1>
+        <p className="text-gray-600 text-lg italic">
+          {t("activitiesPage.subtitle")}
+        </p>
       </motion.section>
 
-      {/* Image */}
+      {/* Hero Image */}
       <motion.div
         className="mb-12 rounded-xl overflow-hidden"
         initial={{ opacity: 0 }}
@@ -45,30 +45,30 @@ export default function ActivitiesPage() {
         />
       </motion.div>
 
-      {/* Paragraph */}
+      {/* Description and List */}
       <div className="flex flex-col md:flex-row gap-12">
         <div>
+          {/* Paragraph */}
           <motion.p
             className="text-gray-700 max-w-2xl mx-auto mb-8 text-left text-[17px] leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            We create positive and uplifting social programs and individualized activities to match patient needs and
-            capabilities.
+            {t("activitiesPage.intro")}
           </motion.p>
 
-          {/* Bullet point header */}
+          {/* Section Header */}
           <motion.p
             className="text-lg text-[#428f47] font-semibold mb-4 max-w-2xl mx-auto text-left"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
-            Specific activities can include:
+            {t("activitiesPage.sectionTitle")}
           </motion.p>
 
-          {/* Bullet List */}
+          {/* List */}
           <ul className="max-w-2xl mx-auto text-gray-700 text-left space-y-2 pl-5 list-disc">
             {activityPoints.map((point, index) => (
               <motion.li
@@ -83,7 +83,7 @@ export default function ActivitiesPage() {
           </ul>
         </div>
 
-        {/* ServicesList with fade-in only */}
+        {/* Sidebar */}
         <motion.div
           className="flex-1"
           initial={{ opacity: 0, y: 20 }}

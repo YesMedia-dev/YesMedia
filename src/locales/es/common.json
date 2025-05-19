@@ -132,7 +132,8 @@
   "faq.a23": "Compare centros de enfermería especializada en su área\nPágina principal de Medicare\nElegibilidad para Medicare\nPreguntas frecuentes sobre Medicare\nPágina principal de Medicaid\nPreguntas frecuentes sobre Medi-Cal\nAARP\nAsociación Americana de Diabetes\nAsociación de Alzheimer\nEncuentre un médico\nComisión Conjunta (JCAHO)\nMudanza a un centro de vida asistida\nConsejos de mudanza para personas mayores\nRecursos de salud para personas mayores\nGuía de nutrición para personas mayores\nGuía para envejecer en casa\nRecursos financieros para personas mayores\nBeneficios para veteranos\nPlanificación legal para Alzheimer y demencia",
   "faq.q24": "¿Qué pasa si tengo otras preguntas?",
   "faq.a24": "Si tiene otras preguntas que no se respondieron aquí, comuníquese con nuestra recepción o llámenos directamente. ¡Estamos aquí para ayudarlo!",
-    "overviewPageTitle": "Resumen de Servicios",
+
+  "overviewPageTitle": "Resumen de Servicios",
   "overviewPageSubtitle": "Vineland Post Acute",
   "overviewPageImageAlt": "Resumen de Servicios",
   "rehabCardTitle": "Rehabilitación",
@@ -143,9 +144,198 @@
   "socialCardDesc": "Los Servicios Sociales proporcionan información esencial, gestionan solicitudes y preocupaciones, y ayudan en la planificación del cuidado y del alta.",
   "activitiesCardTitle": "Actividades",
   "activitiesCardDesc": "Creamos programas sociales positivos y actividades individualizadas para satisfacer las necesidades y capacidades de los pacientes.",
-  "overviewLearnMore": "Aprende más aquí."
- 
+  "overviewLearnMore": "Aprende más aquí.",
+
+  "serviceOverview": "Resumen",
+  "serviceRehab": "Rehabilitación",
+  "serviceNursing": "Enfermería especializada",
+  "serviceSocial": "Servicios sociales",
+  "serviceActivities": "Actividades",
+
+  "nursingPage": {
+    "title": "Enfermería especializada",
+    "subtitle": "Vineland Post Acute",
+    "intro": "Ofrecemos un enfoque integral para desarrollar planes de atención personalizados. Nuestro equipo incluye profesionales en administración, enfermería, terapia, nutrición, servicios sociales y gestión de casos. Brindamos atención especializada y servicios de rehabilitación las 24 horas en un entorno cómodo y familiar. Trabajamos de cerca con los pacientes y sus familias para definir el mejor plan de tratamiento para cada caso.",
+    "sectionTitle": "Nuestros servicios clínicos incluyen:",
+    "bullets": [
+      "Terapia intravenosa (incluyendo TPN)",
+      "Cuidado de heridas, vacío de heridas y desbridamiento por un especialista",
+      "Manejo del dolor",
+      "Bienestar cardíaco y rehabilitación post-derrame cerebral",
+      "Programas de nutrición e hidratación",
+      "Rehabilitación por derrame cerebral",
+      "Recuperación tras reemplazo articular",
+      "Cuidado respiratorio y manejo de traqueostomías",
+      "Manejo de tubos torácicos",
+      "Enfermería restaurativa",
+      "Manejo y educación sobre la diabetes",
+      "Atención coordinada por el director médico y la directora de enfermería"
+    ]
+  },
+  "rehabPage": {
+    "title": "Rehabilitación",
+    "subtitle": "Vineland Post Acute",
+    "intro": "Nuestro equipo de terapia cuenta con una amplia experiencia y se compromete a brindar servicios superiores de fisioterapia, terapia ocupacional y del habla en un entorno que favorece la recuperación. Los pacientes son empoderados a través de programas individualizados para trabajar en la restauración de su funcionalidad, independencia y capacidades después de una hospitalización.",
+    "sectionTitle": "Nuestros servicios de terapia incluyen:",
+    "bullets": [
+      "Rehabilitación ortopédica y neurológica",
+      "Manejo del dolor crónico",
+      "Recuperación post-derrame cerebral",
+      "Entrenamiento de fuerza y acondicionamiento físico",
+      "Movilidad aumentada",
+      "Coordinación y equilibrio",
+      "Prevención de lesiones y caídas",
+      "Conciencia sobre seguridad",
+      "Enseñanza de mecánicas corporales adecuadas para prevenir lesiones futuras"
+    ]
+  },
+  "socialPage": {
+    "title": "Servicios sociales",
+    "subtitle": "Vineland Post Acute",
+    "intro": "Los Servicios Sociales brindan apoyo tanto a los pacientes como a sus familias. También ofrecemos información esencial, gestionamos solicitudes y preocupaciones, y ayudamos con la planificación del cuidado y del alta para cada paciente.",
+    "sectionTitle": "Podemos coordinar servicios profesionales como:",
+    "bullets": [
+      "Servicios dentales",
+      "Servicios de visión",
+      "Podología",
+      "Audiología",
+      "Evaluación de demencia",
+      "Evaluación psicosocial y psiquiátrica",
+      "Terapia individual",
+      "Coordinación de transporte a citas",
+      "Acompañamiento a citas médicas por solicitud",
+      "Poder legal (Power of Attorney)"
+    ]
+  },
+  "activitiesPage": {
+    "title": "Actividades",
+    "subtitle": "Vineland Post Acute",
+    "intro": "Creamos programas sociales positivos y actividades personalizadas que se adaptan a las necesidades y capacidades de cada paciente.",
+    "sectionTitle": "Algunas actividades incluyen:",
+    "bullets": [
+      "Presentaciones musicales",
+      "Actividades físicas",
+      "Ejercicios de estiramiento",
+      "Reuniones religiosas",
+      "Entretenimiento al aire libre",
+      "Trivia e historia",
+      "Jardinería",
+      "Excursiones y salidas"
+    ]
+  },
+
+  "galleryPage": {
+    "title": "Galería de fotos",
+    "subtitle": "Explora nuestras instalaciones y conoce a la vibrante comunidad de Vineland a través de imágenes.",
+    "categories": {
+      "all": "Todas",
+      "team": "Equipo",
+      "rooms": "Habitaciones",
+      "comfort": "Comodidad"
+    }
+  },
+
+"mapPage": {
+    "title": "Ver nuestras ubicaciones",
+    "placeholder": "Ciudad, estado o código postal",
+    "clear": "×",
+    "buttons": {
+      "list": "Lista",
+      "map": "Mapa"
+    },
+    "moreInfo": "Más información",
+    "miles": "{{count}} millas"
+  },
+
+  "careersPage": {
+  "title": "Empleos",
+  "subtitle": "Vineland Post Acute",
+  "intro": "Vineland Post Acute siempre está contratando personas dedicadas. Tenemos vacantes en enfermería, terapia, marketing, limpieza, lavandería, servicios sociales y más. Somos un empleador que ofrece igualdad de oportunidades y ofrecemos capacitación como CNA y oportunidades de crecimiento profesional.",
+  "apply": "SOLICITAR AHORA",
+  "benefitsTitle": "Beneficios para empleados",
+  "benefits": [
+    {
+      "title": "Nuevas contrataciones",
+      "description": "Las nuevas contrataciones de tiempo completo califican para seguro médico, dental, visión, Aflac, LegalZoom y PHMP."
+    },
+    {
+      "title": "Clases gratuitas de CNA",
+      "description": "Formación gratuita como asistente de enfermería con colocación laboral."
+    },
+    {
+      "title": "Sorteo anual de autos",
+      "description": "Durante doce años consecutivos, dos empleados han ganado autos nuevos. La elegibilidad depende de asistencia y seguridad ejemplares."
+    },
+    {
+      "title": "Bono mensual de seguridad",
+      "description": "Cada mes se celebran logros de seguridad con rifas de dinero en efectivo y premios."
+    },
+    {
+      "title": "Plan PHMP",
+      "description": "Incluye telemedicina, asesoramiento, ayuda dietética y más — diseñado para mejorar la salud y reducir impuestos."
+    },
+    {
+      "title": "Boletos con descuento",
+      "description": "Parques, conciertos, cines y más — disfruta de grandes descuentos como parte del equipo Vineland."
+    }
+  ]
+},
+
+"contactPage": {
+  "title": "Envíanos un correo",
+  "subtitle": "Vineland Post Acute",
+  "description": "Nos encantaría mostrarte qué nos hace diferentes. Puedes tener confianza al elegir a Vineland Post Acute. Estamos comprometidos a brindarte a ti o a tu ser querido una atención excelente y personalizada durante su estancia.",
+  "form": {
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "comments": "Comentarios / Preguntas",
+    "placeholder": {
+      "first": "Nombre",
+      "last": "Apellido",
+      "email": "tu@correo.com",
+      "phone": "(555) 555-5555",
+      "message": "Escribe tu mensaje aquí..."
+    },
+    "submit": "Enviar",
+    "sending": "Enviando...",
+    "success": "✅ ¡Tu mensaje ha sido enviado! Nos pondremos en contacto pronto.",
+    "error": "Error al enviar el mensaje"
+  }
+},
+
+"tourPage": {
+  "title": "Programar una visita",
+  "subtitle": "Vineland Post Acute",
+  "description": "En Vineland Post Acute, lo invitamos a recorrer nuestras instalaciones y conocer a nuestro equipo de cuidadores profesionales. Estamos disponibles por las noches y los fines de semana para adaptarnos a cualquier horario ocupado.",
+  "form": {
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "preferredDate": "Fecha preferida",
+    "preferredTime": "Hora preferida",
+    "comments": "Comentarios / Preguntas",
+    "placeholder": {
+      "date": "Seleccione una fecha",
+      "first": "Nombre",
+      "last": "Apellido",
+      "email": "usted@ejemplo.com",
+      "phone": "(123) 456-7890",
+      "comments": "Háganos saber si tiene alguna preferencia o pregunta...",
+      "selectTime": "Seleccione una hora"
+    },
+    "submit": "Enviar",
+    "sending": "Enviando...",
+    "success": "✅ ¡Su solicitud de visita ha sido enviada!",
+    "error": "❌ No se pudo programar la visita"
+  }
 }
+}
+
+
+
 
 
 

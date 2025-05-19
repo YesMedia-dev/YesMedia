@@ -3,8 +3,14 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { FacilityList } from "@/types/facility";
+import { useTranslation } from "react-i18next";
 
-export default function FacilitiesList({ facilities, closestLocations, handleFacilityClick }: FacilityList) {
+export default function FacilitiesList({
+  facilities,
+  closestLocations,
+  handleFacilityClick,
+}: FacilityList) {
+  const { t } = useTranslation("common");
   const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -21,7 +27,11 @@ export default function FacilitiesList({ facilities, closestLocations, handleFac
       {(closestLocations ?? facilities).map((item, index) => {
         const facility = "facility" in item ? item.facility : item;
         const distance =
-          "distanceMiles" in item ? <p className="text-sm text-gray-600">{`${item.distanceMiles} Miles`}</p> : null;
+          "distanceMiles" in item ? (
+            <p className="text-sm text-gray-600">
+              {t("mapPage.miles", { count: item.distanceMiles })}
+            </p>
+          ) : null;
 
         return (
           <li
@@ -44,7 +54,10 @@ export default function FacilitiesList({ facilities, closestLocations, handleFac
                 {facility.address}, {facility.city}, {facility.state} {facility.zip}
               </p>
               <div className="flex items-center gap-4">
-                <a href={`tel:${facility.phone.replace(/\D/g, "")}`} className="text-sm text-blue-600 hover:underline">
+                <a
+                  href={`tel:${facility.phone.replace(/\D/g, "")}`}
+                  className="text-sm text-blue-600 hover:underline"
+                >
                   {facility.phone}
                 </a>
                 <a
@@ -53,7 +66,7 @@ export default function FacilitiesList({ facilities, closestLocations, handleFac
                   rel="noopener noreferrer"
                   className="text-sm text-blue-600 hover:underline"
                 >
-                  More Info
+                  {t("mapPage.moreInfo")}
                 </a>
               </div>
             </div>
@@ -63,3 +76,5 @@ export default function FacilitiesList({ facilities, closestLocations, handleFac
     </ul>
   );
 }
+
+
