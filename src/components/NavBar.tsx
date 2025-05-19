@@ -143,7 +143,7 @@ const NavBar = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-4 text-base font-medium text-gray-700">
+          <div className="hidden lg:flex items-center space-x-4 text-sm font-medium text-gray-700">
             {navLinks.map((item) => renderNavbar(item))}
             <LanguageSelector />
           </div>
@@ -167,7 +167,7 @@ const NavBar = () => {
       {/* Mobile Dropdown */}
       <ul
         className={cn(
-          "absolute left-4 right-4 z-50 px-2 py-2 border-t-4 border-t-[#428f47] bg-white shadow-lg md:hidden transform transition-all duration-300 ease-in-out origin-top",
+          "absolute left-4 right-4 z-50 px-2 py-2 border-t-4 border-t-[#428f47] bg-white shadow-lg lg:hidden transform transition-all duration-300 ease-in-out origin-top",
           {
             "translate-y-0 opacity-100": isMenuOpen,
             "translate-y-[-10px] opacity-0 pointer-events-none": !isMenuOpen,
