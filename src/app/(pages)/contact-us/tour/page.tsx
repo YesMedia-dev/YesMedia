@@ -86,7 +86,7 @@ const ScheduleTour = () => {
   };
 
   return (
-    <section className="bg-white pt-20 pb-16 px-6 animate-fadeIn overflow-hidden relative">
+    <section className="bg-white pt-10 pb-16 px-6 animate-fadeIn overflow-hidden relative">
       <div className="max-w-6xl mx-auto text-center relative z-10">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -107,7 +107,7 @@ const ScheduleTour = () => {
         >
           <div className="relative w-full h-[400px] md:h-[350px]">
             <Image
-              src="/assets/tour.jpg"
+              src="/gallery/hall.webp"
               alt="Schedule a Tour"
               fill
               className="object-cover rounded-xl"

@@ -30,7 +30,7 @@ const Photos = () => {
 
   const photos = [
     { image: "/assets/house.webp", alt: t("photo1Alt") },
-    { image: "/assets/bear.webp", alt: t("photo2Alt") },
+    { image: "/gallery/beds.webp", alt: t("photo2Alt") },
     { image: "/assets/room.webp", alt: t("photo3Alt") },
   ];
 
