@@ -331,7 +331,11 @@
     "success": "✅ ¡Su solicitud de visita ha sido enviada!",
     "error": "❌ No se pudo programar la visita"
   }
-}
+},
+
+"visitTitle": "¡Ven a visitarnos!",
+  "visitText": "La mejor manera de conocer nuestra comunidad es en persona. ¡Nos encantaría tenerte con nosotros!",
+  "scheduleTour": "AGENDA UNA VISITA"
 }
 
 

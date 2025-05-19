@@ -78,7 +78,6 @@ const Video = () => {
           playsInline
           loop
           autoPlay
-          poster="/assets/video-poster.jpg"
           src="/assets/test2.mp4"
         >
           <source src="/assets/test2.mp4" type="video/mp4" />
