@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { useTranslation } from "react-i18next";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -41,6 +42,14 @@ const Photos = () => {
 
   const closeModal = () => setShowModal(false);
 
+  const handlePrev = () => {
+    setActivePhoto((prev) => (prev - 1 + photos.length) % photos.length);
+  };
+
+  const handleNext = () => {
+    setActivePhoto((prev) => (prev + 1) % photos.length);
+  };
+
   return (
     <section className="pt-20 pb-0 bg-white px-6 animate-fadeIn relative z-0 overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
@@ -48,7 +57,7 @@ const Photos = () => {
           {t("photosSectionTitle")}
         </h2>
 
-        {/* Top 3 photos: hidden on mobile */}
+        {/* Top 3 photos */}
         <div className="hidden sm:grid grid-cols-6 gap-4 auto-rows-[200px] mb-4">
           {photos.map((photo, index) => (
             <div
@@ -68,7 +77,7 @@ const Photos = () => {
           ))}
         </div>
 
-        {/* Carousel: adapts based on screen size */}
+        {/* Carousel */}
         <div className="col-span-6 row-span-3 relative rounded-xl overflow-hidden shadow-md mt-4 h-[250px] sm:h-[300px] md:h-[400px]">
           <Swiper
             modules={[Autoplay]}
@@ -78,15 +87,9 @@ const Photos = () => {
             spaceBetween={20}
             allowTouchMove={false}
             breakpoints={{
-              0: {
-                slidesPerView: 1,
-              },
-              640: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
+              0: { slidesPerView: 1 },
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
             }}
             className="h-full w-full"
           >
@@ -116,38 +119,46 @@ const Photos = () => {
         </div>
       </div>
 
-      {/* Modal Viewer */}
+      {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-gray-800/70 backdrop-blur-sm z-50 flex items-center justify-center">
-          <div className="relative w-full max-w-5xl h-[90vh] mx-auto">
-            <Swiper
-              modules={[Pagination, Navigation]}
-              pagination={{ clickable: true }}
-              navigation
-              initialSlide={activePhoto}
-              className="h-full"
-            >
-              {photos.map((photo, idx) => (
-                <SwiperSlide key={idx} className="flex items-center justify-center bg-transparent">
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    <Image
-                      src={photo.image}
-                      alt={photo.alt}
-                      fill
-                      className="object-contain rounded-lg"
-                      priority
-                    />
-                    <button
-                      onClick={closeModal}
-                      className="absolute bg-white text-gray-700 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200 z-50"
-                      style={{ top: "230px", right: "5px" }}
-                    >
-                      &times;
-                    </button>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+        <div
+          className="fixed inset-0 bg-gray-800/70 backdrop-blur-sm z-50 flex items-center justify-center"
+          onClick={closeModal}
+        >
+          <div
+            className="relative w-full max-w-6xl mx-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative flex items-center justify-center">
+              {/* Image */}
+              <img
+                src={photos[activePhoto].image}
+                alt={photos[activePhoto].alt}
+                className="max-h-[80vh] mx-auto object-contain rounded-lg"
+              />
+
+              {/* Arrows */}
+              <button
+                onClick={handlePrev}
+                className="absolute left-10 top-1/2 transform -translate-y-1/2 bg-black/70 p-3 rounded-full hover:bg-black/90"
+              >
+                <ChevronLeft className="w-8 h-8 text-[#39d462]" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="absolute right-10 top-1/2 transform -translate-y-1/2 bg-black/70 p-3 rounded-full hover:bg-black/90"
+              >
+                <ChevronRight className="w-8 h-8 text-[#39d462]" />
+              </button>
+
+              {/* Close */}
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-8 p-2 bg-black/70 rounded-full hover:bg-black/90"
+              >
+                <X className="w-6 h-6 text-[#39d462]" />
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -156,6 +167,10 @@ const Photos = () => {
 };
 
 export default Photos;
+
+
+
+
 
 
 

@@ -100,7 +100,7 @@ export default function PhotoGallery() {
         {currentPage > 1 && (
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            className="absolute left-4 top-[55%] transform -translate-y-1/2 bg-white shadow-md p-2 rounded-full text-[#428f47] hover:bg-green-100 z-10"
+            className="absolute left-33 top-[55%] transform -translate-y-1/2 bg-white shadow-md p-2 rounded-full text-[#39d462] hover:bg-green-100 z-10"
           >
             <ChevronLeft />
           </button>
@@ -108,7 +108,7 @@ export default function PhotoGallery() {
         {currentPage < totalPages && (
           <button
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-            className="absolute right-4 top-[55%] transform -translate-y-1/2 bg-white shadow-md p-2 rounded-full text-[#428f47] hover:bg-green-100 z-10"
+            className="absolute right-35 top-[55%] transform -translate-y-1/2 bg-white shadow-md p-2 rounded-full text-[#39d462] hover:bg-green-100 z-10"
           >
             <ChevronRight />
           </button>
@@ -119,7 +119,7 @@ export default function PhotoGallery() {
           {currentImages.map((img, i) => (
             <div
               key={img}
-              className="overflow-hidden rounded-xl shadow-md hover:shadow-xl border-2 border-transparent hover:border-[#428f47] transition-all duration-300 cursor-pointer"
+              className="overflow-hidden rounded-xl shadow-md hover:shadow-xl border-2 border-transparent hover:border-[#39d462] transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage(img)}
               style={{ animation: `fadeIn 0.3s ease-out ${i * 0.1}s both` }}
             >
@@ -164,22 +164,22 @@ export default function PhotoGallery() {
               className="max-h-[80vh] mx-auto object-contain"
             />
             <button
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 p-3 rounded-full text-white hover:bg-white/30"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/70 p-3 rounded-full hover:bg-black/90"
               onClick={handlePrev}
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-8 h-8 text-[#39d462]" />
             </button>
             <button
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 p-3 rounded-full text-white hover:bg-white/30"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/70 p-3 rounded-full hover:bg-black/90"
               onClick={handleNext}
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-8 h-8 text-[#39d462]" />
             </button>
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 p-2 bg-white/20 rounded-full text-white hover:bg-white/30"
+              className="absolute top-4 right-4 p-2 bg-black/70 rounded-full hover:bg-black/90"
             >
-              <X className="w-6 h-6" />
+              <X className="w-6 h-6 text-[#39d462]" />
             </button>
           </div>
         </div>
@@ -229,6 +229,9 @@ export default function PhotoGallery() {
     </section>
   );
 }
+
+
+
 
 
 
