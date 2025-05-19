@@ -68,7 +68,7 @@ const ServicesSection = ({ variant = "grid", id }: ServicesSectionProps) => {
         ) : (
           <div className="flex flex-col items-center gap-8 w-full">
             {/* Top Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 place-items-center w-full">
+            <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 place-items-center w-full">
               {filteredServices.map(({ title, image, link, size }, index) => (
                 <Link
                   href={link}
