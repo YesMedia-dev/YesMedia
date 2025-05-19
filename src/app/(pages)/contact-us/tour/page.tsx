@@ -48,7 +48,10 @@ const ScheduleTour = () => {
       const res = await fetch("/api/tour-schedule", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          language: i18n.language // ✅ send current language
+        }),
       });
 
       const text = await res.text();
@@ -275,6 +278,7 @@ const ScheduleTour = () => {
 };
 
 export default ScheduleTour;
+
 
 
 
