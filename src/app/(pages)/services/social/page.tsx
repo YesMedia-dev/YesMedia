@@ -2,22 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import ServicesSection from "@/components/ServiceSection";
 
-const services = [
-  "Dental",
-  "Vision",
-  "Podiatry",
-  "Audiology",
-  "Dementia assessment",
-  "Psychosocial and Psychiatric Evaluation",
-  "Individual therapy",
-  "Arrange transportation to appointments",
-  "Accompanying patients to appointments upon request",
-  "Power of Attorney",
-];
-
 export default function SocialServicesPage() {
+  const { t } = useTranslation("common");
+
+  const services = t("socialPage.bullets", { returnObjects: true }) as string[];
+
   return (
     <main className="max-w-screen-xl mx-auto px-4 py-16">
       {/* Title */}
@@ -27,8 +19,12 @@ export default function SocialServicesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-5xl font-bold text-[#428f47] mb-2">Social Services</h1>
-        <p className="text-gray-600 text-lg italic">Vineland Post Acute</p>
+        <h1 className="text-5xl font-bold text-[#428f47] mb-2">
+          {t("socialPage.title")}
+        </h1>
+        <p className="text-gray-600 text-lg italic">
+          {t("socialPage.subtitle")}
+        </p>
       </motion.section>
 
       {/* Image */}
@@ -56,8 +52,7 @@ export default function SocialServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            Social Services assist both patients and their families. We also provide essential information, manage
-            requests and concerns, and help in care planning and discharge planning for each patient.
+            {t("socialPage.intro")}
           </motion.p>
 
           {/* List of Services */}
@@ -67,7 +62,7 @@ export default function SocialServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.4 }}
           >
-            We can arrange professional services for:
+            {t("socialPage.sectionTitle")}
           </motion.h2>
 
           <ul className="list-disc text-gray-700 pl-8 max-w-3xl mx-auto">
@@ -85,7 +80,7 @@ export default function SocialServicesPage() {
           </ul>
         </div>
 
-        {/* Fade-in added below */}
+        {/* Fade-in services sidebar */}
         <motion.div
           className="flex-1"
           initial={{ opacity: 0, y: 20 }}
@@ -98,3 +93,4 @@ export default function SocialServicesPage() {
     </main>
   );
 }
+

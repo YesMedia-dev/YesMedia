@@ -146,7 +146,201 @@
   "socialCardDesc": "Social Services provide essential information, manage requests and concerns, and help in care planning and discharge planning.",
   "activitiesCardTitle": "Activities",
   "activitiesCardDesc": "We create positive and uplifting social programs and individualized activities to match patient needs and capabilities.",
-  "overviewLearnMore": "Learn More Here."
+  "overviewLearnMore": "Learn More Here.",
 
+  "serviceOverview": "Overview",
+  "serviceRehab": "Rehabilitation",
+  "serviceNursing": "Skilled Nursing",
+  "serviceSocial": "Social Services",
+  "serviceActivities": "Activities",
+
+  "nursingPage": {
+    "title": "Skilled Nursing",
+    "subtitle": "Vineland Post Acute",
+    "intro": "We take a comprehensive approach to developing personalized care plans. Our team includes professionals in administration, nursing, therapy, nutrition, social services, and case management. We provide 24-hour skilled care and rehabilitation services in a comfortable, family-friendly environment. We work closely with patients and their families to create the best treatment plan for each individual.",
+    "sectionTitle": "Our clinical services include:",
+    "bullets": [
+      "IV therapy (including TPN)",
+      "Wound care, wound vac, and debridement by a specialist",
+      "Pain management",
+      "Cardiac wellness and stroke recovery",
+      "Nutrition and hydration programs",
+      "Stroke rehabilitation",
+      "Joint replacement recovery",
+      "Respiratory care and tracheostomy management",
+      "Chest tube care",
+      "Restorative nursing",
+      "Diabetes management and education",
+      "Coordinated care from the medical director and director of nursing"
+    ]
+  },
+  "rehabPage": {
+    "title": "Rehabilitation",
+    "subtitle": "Vineland Post Acute",
+    "intro": "Our experienced therapy team is committed to providing superior physical, occupational and speech therapy in an environment conducive to healing. Patients are empowered through individualized programs to work toward restoring maximum functionality, independence, and ability following hospitalization.",
+    "sectionTitle": "Our therapy services include:",
+    "bullets": [
+      "Orthopedic and neurological rehabilitation",
+      "Chronic pain management",
+      "Stroke recovery",
+      "Strength training and conditioning",
+      "Increased Mobility",
+      "Coordination and balance",
+      "Injury and fall prevention",
+      "Safety awareness",
+      "Teaching proper body mechanics to prevent future injury"
+    ]
+  },
+  "socialPage": {
+    "title": "Social Services",
+    "subtitle": "Vineland Post Acute",
+    "intro": "Social Services assist both patients and their families. We also provide essential information, manage requests and concerns, and help in care planning and discharge planning for each patient.",
+    "sectionTitle": "We can arrange professional services for:",
+    "bullets": [
+      "Dental",
+      "Vision",
+      "Podiatry",
+      "Audiology",
+      "Dementia assessment",
+      "Psychosocial and Psychiatric Evaluation",
+      "Individual therapy",
+      "Arrange transportation to appointments",
+      "Accompanying patients to appointments upon request",
+      "Power of Attorney"
+    ]
+  },
+  "activitiesPage": {
+    "title": "Activities",
+    "subtitle": "Vineland Post Acute",
+    "intro": "We create positive and uplifting social programs and individualized activities to match patient needs and capabilities.",
+    "sectionTitle": "Specific activities can include:",
+    "bullets": [
+      "Musical performances",
+      "Fitness activities",
+      "Stretching exercises",
+      "Religious meetings",
+      "Outside entertainment",
+      "Trivia & history",
+      "Gardening",
+      "Field trips/outings"
+    ]
+  },
+
+  "galleryPage": {
+    "title": "Photo Gallery",
+    "subtitle": "Explore our facility and meet the vibrant Vineland community through pictures.",
+    "categories": {
+      "all": "All",
+      "team": "Team",
+      "rooms": "Rooms",
+      "comfort": "Comfort"
+    }
+  },
+
+"mapPage": {
+    "title": "View our locations",
+    "placeholder": "City, State, or Zip Code",
+    "clear": "×",
+    "buttons": {
+      "list": "List",
+      "map": "Map"
+    },
+    "moreInfo": "More Info",
+    "miles": "{{count}} Miles"
+  },
+
+  "careersPage": {
+  "title": "Careers",
+  "subtitle": "Vineland Post Acute",
+  "intro": "Vineland Post Acute is always hiring dedicated team members. We have openings in Nursing, Therapy, Marketing, Housekeeping, Laundry, Social Services, and more. We are an equal opportunity employer and offer CNA training and career growth paths.",
+  "apply": "APPLY NOW",
+  "benefitsTitle": "Employee Benefits",
+  "benefits": [
+    {
+      "title": "New Hires",
+      "description": "Full-time new hires are eligible for Medical, Dental, Vision, Aflac, LegalZoom, PHMP."
+    },
+    {
+      "title": "Free CNA Classes",
+      "description": "Free CNA schooling and job placement."
+    },
+    {
+      "title": "Annual Car Giveaway",
+      "description": "Twelve years in a row, two employees drive away in brand new cars. Employees are eligible based on stellar attendance and safety record."
+    },
+    {
+      "title": "Monthly Safety Bonus",
+      "description": "The facility celebrates safety compliance monthly, raffling away cash and prizes."
+    },
+    {
+      "title": "PHMP Plan",
+      "description": "Includes telemedicine, coaching, dietary assistance, and more — designed to improve health and lower taxes."
+    },
+    {
+      "title": "Tickets at Work",
+      "description": "Theme parks, concerts, movies & more — enjoy big discounts as a Vineland team member."
+    }
+  ]
+},
+
+"contactPage": {
+  "title": "Email Us",
+  "subtitle": "Vineland Post Acute",
+  "description": "We would love to show you what makes us different. You can be confident when choosing Vineland Post Acute. We are committed to providing you or your loved one with excellent and personalized care during your stay.",
+  "form": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "comments": "Comment / Questions",
+    "placeholder": {
+      "first": "First",
+      "last": "Last",
+      "email": "your@email.com",
+      "phone": "(555) 555-5555",
+      "message": "Type your message here..."
+    },
+    "submit": "Submit",
+    "sending": "Sending...",
+    "success": "✅ Your message has been sent! We'll be in touch shortly.",
+    "error": "Failed to send message"
+  }
+},
+
+"tourPage": {
+  "title": "Schedule a Tour",
+  "subtitle": "Vineland Post Acute",
+  "description": "At Vineland Post Acute, we invite you to come tour our facility and meet our team of professional caregivers. We are available nights and weekends to accommodate any busy schedule.",
+  "form": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "preferredDate": "Preferred Date",
+    "preferredTime": "Preferred Time",
+    "comments": "Comments / Questions",
+    "placeholder": {
+      "date": "Select a date",
+      "first": "First",
+      "last": "Last",
+      "email": "you@example.com",
+      "phone": "(123) 456-7890",
+      "comments": "Let us know if you have any preferences or questions...",
+      "selectTime": "Select a time"
+    },
+    "submit": "Submit",
+    "sending": "Sending...",
+    "success": "✅ Your tour request has been sent!",
+    "error": "❌ Failed to schedule tour"
+  }
 }
+}
+
+
+
+
+
+
+
+
 

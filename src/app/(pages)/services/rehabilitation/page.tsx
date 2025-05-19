@@ -2,24 +2,15 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import ServicesSection from "@/components/ServiceSection";
 
-const paragraph =
-  "Our experienced therapy team is committed to providing superior physical, occupational and speech therapy in an environment conducive to healing. Patients are empowered through individualized programs to work toward restoring maximum functionality, independence, and ability following hospitalization.";
-
-const listItems = [
-  "Orthopedic and neurological rehabilitation",
-  "Chronic pain management",
-  "Stroke recovery",
-  "Strength training and conditioning",
-  "Increased Mobility",
-  "Coordination and balance",
-  "Injury and fall prevention",
-  "Safety awareness",
-  "Teaching proper body mechanics to prevent future injury",
-];
-
 export default function RehabilitationPage() {
+  const { t } = useTranslation("common");
+
+  const paragraph = t("rehabPage.intro");
+  const bullets = t("rehabPage.bullets", { returnObjects: true }) as string[];
+
   return (
     <main className="max-w-screen-xl mx-auto px-4 py-16">
       {/* Title */}
@@ -29,8 +20,8 @@ export default function RehabilitationPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-5xl font-bold text-[#428f47] mb-2">Rehabilitation</h1>
-        <p className="text-gray-600 text-lg italic">Vineland Post Acute</p>
+        <h1 className="text-5xl font-bold text-[#428f47] mb-2">{t("rehabPage.title")}</h1>
+        <p className="text-gray-600 text-lg italic">{t("rehabPage.subtitle")}</p>
       </motion.section>
 
       {/* Hero Image */}
@@ -89,7 +80,7 @@ export default function RehabilitationPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.4 }}
             >
-              Our therapy services include:
+              {t("rehabPage.sectionTitle")}
             </motion.p>
 
             {/* Bullet list with staggered appearance */}
@@ -106,7 +97,7 @@ export default function RehabilitationPage() {
               }}
               className="list-disc pl-6 space-y-2"
             >
-              {listItems.map((item, idx) => (
+              {bullets.map((item, idx) => (
                 <motion.li
                   key={idx}
                   variants={{
@@ -134,3 +125,4 @@ export default function RehabilitationPage() {
     </main>
   );
 }
+

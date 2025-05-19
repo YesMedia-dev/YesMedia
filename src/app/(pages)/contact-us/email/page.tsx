@@ -3,14 +3,18 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import i18n from "@/i18n"; // Ensure this is correctly imported based on your setup
 
 const Contact = () => {
+  const { t } = useTranslation("common");
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    comments: "",
+    comments: ""
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,86 +31,57 @@ const Contact = () => {
     setSuccessMessage("");
     setErrorMessage("");
 
-    console.log("🚀 Submitting form data:", formData);
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          lang: i18n.language // send the current language
+        })
       });
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        console.error("❌ Server error response:", errorText || res.statusText);
-        throw new Error(errorText || `Server error: ${res.status} ${res.statusText}`);
-      }
-
-      const responseText = await res.text();
-
-      if (!responseText) {
-        console.log("✅ Request successful but empty response received");
-        setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          comments: "",
-        });
-        return;
-      }
-
+      const text = await res.text();
       let result;
+
       try {
-        result = JSON.parse(responseText);
-        console.log("📬 Server response:", result);
+        result = JSON.parse(text);
       } catch {
-        console.warn("⚠️ Response is not valid JSON:", responseText);
         if (res.ok) {
-          setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
-          setFormData({
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            comments: "",
-          });
+          setSuccessMessage(t("contactPage.form.success"));
+          resetForm();
           return;
+        } else {
+          throw new Error();
         }
-        throw new Error("Invalid server response format");
       }
 
       if (result?.success) {
-        setSuccessMessage("✅ Your message has been sent! We'll be in touch shortly.");
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          comments: "",
-        });
+        setSuccessMessage(t("contactPage.form.success"));
+        resetForm();
       } else {
-        throw new Error(result?.error || "Unknown error occurred");
+        throw new Error();
       }
-    } catch (err) {
-      console.error("❌ Form submission error:", err);
-      setErrorMessage(`Failed to send message: ${err instanceof Error ? err.message : "Unknown error"}`);
+    } catch {
+      setErrorMessage(t("contactPage.form.error"));
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const resetForm = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      comments: ""
+    });
+  };
+
   return (
     <section className="relative bg-white py-20 px-6 overflow-hidden min-h-screen">
-      {/* Decorative Bubbles */}
-      <div className="absolute w-[100px] h-[100px] bg-green-100 rounded-full top-[-40px] left-[-30px] z-0 opacity-30" />
-      <div className="absolute w-[80px] h-[80px] bg-green-200 rounded-full top-[30%] left-0 z-0 opacity-30" />
-      <div className="absolute w-[110px] h-[110px] bg-green-100 rounded-full bottom-[10%] left-[5%] z-0 opacity-20" />
-      <div className="absolute w-[100px] h-[100px] bg-green-200 rounded-full top-[10%] right-[80px] z-0 opacity-25" />
-      <div className="absolute w-[90px] h-[90px] bg-green-100 rounded-full top-[50%] right-0 z-0 opacity-20" />
-      <div className="absolute w-[110px] h-[110px] bg-green-200 rounded-full bottom-[5%] right-[5%] z-0 opacity-20" />
-
+     
       <div className="max-w-5xl mx-auto relative z-10">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -114,15 +89,16 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="text-4xl md:text-5xl font-bold text-[#428f47] mb-2 text-center"
         >
-          Email Us
+          {t("contactPage.title")}
         </motion.h1>
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-black italic text-lg mb-10 text-center"
         >
-          Vineland Post Acute
+          {t("contactPage.subtitle")}
         </motion.p>
 
         <motion.div
@@ -142,9 +118,7 @@ const Contact = () => {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-gray-700 text-center max-w-3xl mx-auto mb-12 leading-relaxed"
         >
-          We would love to show you what makes us different. You can be confident when choosing{" "}
-          <strong>Vineland Post Acute</strong>. We are committed to providing you or your loved one with excellent and
-          personalized care during your stay.
+          {t("contactPage.description")}
         </motion.p>
 
         <motion.form
@@ -156,7 +130,7 @@ const Contact = () => {
         >
           <div className="flex flex-col">
             <label htmlFor="firstName" className="font-semibold text-sm mb-1">
-              First Name
+              {t("contactPage.form.firstName")}
             </label>
             <input
               id="firstName"
@@ -165,13 +139,13 @@ const Contact = () => {
               onChange={handleChange}
               required
               className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
-              placeholder="First"
+              placeholder={t("contactPage.form.placeholder.first")}
             />
           </div>
 
           <div className="flex flex-col">
             <label htmlFor="lastName" className="font-semibold text-sm mb-1">
-              Last Name
+              {t("contactPage.form.lastName")}
             </label>
             <input
               id="lastName"
@@ -180,13 +154,13 @@ const Contact = () => {
               onChange={handleChange}
               required
               className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
-              placeholder="Last"
+              placeholder={t("contactPage.form.placeholder.last")}
             />
           </div>
 
           <div className="flex flex-col">
             <label htmlFor="email" className="font-semibold text-sm mb-1">
-              Email
+              {t("contactPage.form.email")}
             </label>
             <input
               id="email"
@@ -195,13 +169,13 @@ const Contact = () => {
               onChange={handleChange}
               required
               className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
-              placeholder="your@email.com"
+              placeholder={t("contactPage.form.placeholder.email")}
             />
           </div>
 
           <div className="flex flex-col">
             <label htmlFor="phone" className="font-semibold text-sm mb-1">
-              Phone
+              {t("contactPage.form.phone")}
             </label>
             <input
               id="phone"
@@ -209,13 +183,13 @@ const Contact = () => {
               value={formData.phone}
               onChange={handleChange}
               className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
-              placeholder="(555) 555-5555"
+              placeholder={t("contactPage.form.placeholder.phone")}
             />
           </div>
 
           <div className="flex flex-col sm:col-span-2">
             <label htmlFor="comments" className="font-semibold text-sm mb-1">
-              Comment / Questions
+              {t("contactPage.form.comments")}
             </label>
             <textarea
               id="comments"
@@ -223,7 +197,7 @@ const Contact = () => {
               onChange={handleChange}
               rows={5}
               className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#428f47]"
-              placeholder="Type your message here..."
+              placeholder={t("contactPage.form.placeholder.message")}
             ></textarea>
           </div>
 
@@ -233,14 +207,14 @@ const Contact = () => {
               disabled={isSubmitting}
               className="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition"
             >
-              {isSubmitting ? "Sending..." : "Submit"}
+              {isSubmitting ? t("contactPage.form.sending") : t("contactPage.form.submit")}
             </button>
           </div>
 
           {successMessage && (
             <p className="text-green-600 text-center sm:col-span-2 mt-4">{successMessage}</p>
           )}
-          
+
           {errorMessage && (
             <p className="text-red-600 text-center sm:col-span-2 mt-4">{errorMessage}</p>
           )}
@@ -251,6 +225,9 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+
 
 
 
