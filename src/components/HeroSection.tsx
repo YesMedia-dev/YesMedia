@@ -20,13 +20,7 @@ const HeroSection = () => {
   return (
     <section className="relative w-full h-screen">
       <div className="relative w-full h-screen">
-        <Image
-          src={hero.image}
-          alt="Vineland Facility"
-          fill
-          className="object-cover"
-          priority
-        />
+        <Image src={hero.image} alt="Vineland Facility" fill className="object-cover" priority />
 
         {/* Title & Subtitle */}
         <motion.div
@@ -76,9 +70,7 @@ const HeroSection = () => {
         transition={{ duration: 1, delay: 1.5 }}
       >
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white text-center px-2 w-[450px]">
-          <p className="text-md md:text-lg drop-shadow font-bold break-words">
-            {t("heroMapTitle")}
-          </p>
+          <p className="text-md md:text-lg drop-shadow font-bold break-words">{t("heroMapTitle")}</p>
         </div>
 
         <div className="w-full h-full rounded-lg overflow-hidden border border-white shadow-lg">
@@ -90,7 +82,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
-
-
-
