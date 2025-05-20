@@ -94,6 +94,8 @@
 
 @theme {
   --breakpoint-xs: 25rem;
+  --breakpoint-lg: initial;
+  --breakpoint-lg: 64.0625rem;
   --breakpoint-2xl: 100rem;
   --breakpoint-3xl: 120rem;
 }
@@ -214,13 +216,13 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .mobile-banner {
     background-image: url("/assets/mobileBanner.webp");
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1025px) {
   .mobile-banner {
     background-image: url("/assets/welcome.webp");
   }
