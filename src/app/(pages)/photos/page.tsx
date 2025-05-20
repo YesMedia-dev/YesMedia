@@ -1,30 +1,72 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 
 const allImages = [
-  "bear.webp", "group3.webp", "beds.webp", "rehab2.webp",
-  "biggroup.webp", "group9.webp", "chair.webp", "group1.webp",
-  "chef.webp", "meetingroom.webp", "doctor1.webp", "event.webp",
-  "group7.webp", "group2.webp", "patio.webp", "doctor2.webp",
-  "outside1.webp", "hall.webp", "group6.webp", "letter.webp",
-  "rehab.webp", "flower.webp", "lobby.webp", "house.webp",
-  "group4.webp", "group5.webp", "welcome.webp", "group8.webp",
-  "group10.webp"
+  "bear.webp",
+  "group3.webp",
+  "beds.webp",
+  "rehab2.webp",
+  "biggroup.webp",
+  "group9.webp",
+  "chair.webp",
+  "group1.webp",
+  "chef.webp",
+  "meetingroom.webp",
+  "doctor1.webp",
+  "event.webp",
+  "group7.webp",
+  "group2.webp",
+  "patio.webp",
+  "doctor2.webp",
+  "outside1.webp",
+  "hall.webp",
+  "group6.webp",
+  "letter.webp",
+  "rehab.webp",
+  "flower.webp",
+  "lobby.webp",
+  "house.webp",
+  "group4.webp",
+  "group5.webp",
+  "welcome.webp",
+  "group8.webp",
+  "group10.webp",
 ];
 
 const imageDetails: Record<string, "Team" | "Rooms" | "Comfort"> = {
-  "bear.webp": "Comfort", "group3.webp": "Team", "beds.webp": "Rooms", "rehab2.webp": "Rooms",
-  "biggroup.webp": "Team", "group9.webp": "Team", "chair.webp": "Comfort", "group1.webp": "Team",
-  "chef.webp": "Comfort", "meetingroom.webp": "Rooms", "doctor1.webp": "Team", "event.webp": "Rooms",
-  "group7.webp": "Team", "group2.webp": "Team", "patio.webp": "Rooms", "doctor2.webp": "Team",
-  "outside1.webp": "Rooms", "hall.webp": "Rooms", "group6.webp": "Team", "letter.webp": "Comfort",
-  "rehab.webp": "Rooms", "flower.webp": "Comfort", "lobby.webp": "Rooms", "house.webp": "Rooms",
-  "group4.webp": "Team", "group5.webp": "Team", "welcome.webp": "Rooms", "group8.webp": "Team",
-  "group10.webp": "Team"
+  "bear.webp": "Comfort",
+  "group3.webp": "Team",
+  "beds.webp": "Rooms",
+  "rehab2.webp": "Rooms",
+  "biggroup.webp": "Team",
+  "group9.webp": "Team",
+  "chair.webp": "Comfort",
+  "group1.webp": "Team",
+  "chef.webp": "Comfort",
+  "meetingroom.webp": "Rooms",
+  "doctor1.webp": "Team",
+  "event.webp": "Rooms",
+  "group7.webp": "Team",
+  "group2.webp": "Team",
+  "patio.webp": "Rooms",
+  "doctor2.webp": "Team",
+  "outside1.webp": "Rooms",
+  "hall.webp": "Rooms",
+  "group6.webp": "Team",
+  "letter.webp": "Comfort",
+  "rehab.webp": "Rooms",
+  "flower.webp": "Comfort",
+  "lobby.webp": "Rooms",
+  "house.webp": "Rooms",
+  "group4.webp": "Team",
+  "group5.webp": "Team",
+  "welcome.webp": "Rooms",
+  "group8.webp": "Team",
+  "group10.webp": "Team",
 };
 
 const categories = ["All", "Team", "Rooms", "Comfort"] as const;
@@ -33,21 +75,35 @@ export default function PhotoGallery() {
   const { t } = useTranslation("common");
   const [filter, setFilter] = useState<(typeof categories)[number]>("All");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [numImages, setNumImages] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredImages =
-    filter === "All"
-      ? allImages
-      : allImages.filter(
-          (img) => imageDetails[img as keyof typeof imageDetails] === filter
-        );
+  useEffect(() => {
+    const updateGroupSize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      if (width < 768) {
+        // Mobile
+        setNumImages(2);
+      } else if (width < 1280 && height > 1080) {
+        // Tablet
+        setNumImages(6);
+      } else {
+        setNumImages(4);
+      }
+    };
 
-  const IMAGES_PER_PAGE = 4;
+    updateGroupSize(); // set on initial render
+    window.addEventListener("resize", updateGroupSize);
+    return () => window.removeEventListener("resize", updateGroupSize);
+  }, []);
+
+  const filteredImages =
+    filter === "All" ? allImages : allImages.filter((img) => imageDetails[img as keyof typeof imageDetails] === filter);
+
+  const IMAGES_PER_PAGE = numImages;
   const totalPages = Math.ceil(filteredImages.length / IMAGES_PER_PAGE);
-  const currentImages = filteredImages.slice(
-    (currentPage - 1) * IMAGES_PER_PAGE,
-    currentPage * IMAGES_PER_PAGE
-  );
+  const currentImages = filteredImages.slice((currentPage - 1) * IMAGES_PER_PAGE, currentPage * IMAGES_PER_PAGE);
 
   const handleNext = () => {
     setSelectedImage((curr) => {
@@ -68,12 +124,8 @@ export default function PhotoGallery() {
       <div className="max-w-7xl mx-auto">
         {/* Title + Subtitle */}
         <div className="text-center mb-12 animate-drop-in">
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#428f47] mb-3">
-            {t("galleryPage.title")}
-          </h1>
-          <p className="text-gray-600 text-lg italic">
-            {t("galleryPage.subtitle")}
-          </p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-[#428f47] mb-3">{t("galleryPage.title")}</h1>
+          <p className="text-gray-600 text-lg italic">{t("galleryPage.subtitle")}</p>
         </div>
 
         {/* Category Buttons */}
@@ -86,9 +138,7 @@ export default function PhotoGallery() {
                 setCurrentPage(1);
               }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                filter === cat
-                  ? "bg-[#428f47] text-white"
-                  : "bg-white text-gray-700 hover:bg-green-100"
+                filter === cat ? "bg-[#428f47] text-white" : "bg-white text-gray-700 hover:bg-green-100"
               }`}
             >
               {t(`galleryPage.categories.${cat.toLowerCase()}`)}
@@ -96,26 +146,8 @@ export default function PhotoGallery() {
           ))}
         </div>
 
-        {/* Arrows */}
-        {currentPage > 1 && (
-          <button
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            className="absolute left-33 top-[55%] transform -translate-y-1/2 bg-white shadow-md p-2 rounded-full text-[#39d462] hover:bg-green-100 z-10"
-          >
-            <ChevronLeft />
-          </button>
-        )}
-        {currentPage < totalPages && (
-          <button
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-            className="absolute right-35 top-[55%] transform -translate-y-1/2 bg-white shadow-md p-2 rounded-full text-[#39d462] hover:bg-green-100 z-10"
-          >
-            <ChevronRight />
-          </button>
-        )}
-
         {/* Image Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           {currentImages.map((img, i) => (
             <div
               key={img}
@@ -137,19 +169,57 @@ export default function PhotoGallery() {
 
         {/* Pagination Dots */}
         <div className="flex justify-center gap-2">
-          {Array.from({ length: totalPages }, (_, i) => (
+          {currentPage > 1 && (
             <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                currentPage === i + 1
-                  ? "bg-[#428f47] text-white"
-                  : "bg-white text-gray-700 hover:bg-green-100"
-              }`}
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              className="flex xl:absolute xl:left-33 xl:top-[55%] xl:transform xl:-translate-y-1/2 bg-white shadow-md p-1 xl:p-2 rounded-full text-[#39d462] hover:bg-green-100 z-10"
             >
-              {i + 1}
+              <ChevronLeft />
             </button>
-          ))}
+          )}
+          {(totalPages > 10
+            ? Array.from({ length: totalPages }, (_, i) => i + 1)
+                .filter((page) => {
+                  return (
+                    page === 1 || // First page
+                    page === totalPages - 1 || // Last page
+                    Math.abs(page - currentPage) <= 1 // Current ±1
+                  );
+                })
+                .reduce((acc: (number | string)[], page, idx, arr) => {
+                  if (idx > 0 && page !== arr[idx - 1] + 1) {
+                    acc.push("ellipsis");
+                  }
+                  acc.push(page);
+                  return acc;
+                }, [])
+            : Array.from({ length: totalPages }, (_, i) => i + 1)
+          ).map((item, i) =>
+            item === "ellipsis" ? (
+              <span key={`ellipsis-${i}`} className="px-2 text-gray-500">
+                ...
+              </span>
+            ) : (
+              <button
+                key={item}
+                onClick={() => setCurrentPage(item as number)}
+                className={`w-8 h-8 flex items-center justify-center rounded-full ${
+                  currentPage === item ? "bg-[#428f47] text-white" : "bg-white text-gray-700 hover:bg-green-100"
+                }`}
+              >
+                {item}
+              </button>
+            ),
+          )}
+
+          {currentPage < totalPages && (
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              className="flex xl:absolute xl:right-35 xl:top-[55%] xl:transform xl:-translate-y-1/2 bg-white shadow-md p-1 xl:p-2 rounded-full text-[#39d462] hover:bg-green-100 z-10"
+            >
+              <ChevronRight />
+            </button>
+          )}
         </div>
       </div>
 
@@ -158,11 +228,7 @@ export default function PhotoGallery() {
         <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4">
           <div className="absolute inset-0" onClick={() => setSelectedImage(null)} />
           <div className="relative max-w-6xl mx-auto">
-            <img
-              src={`/gallery/${selectedImage}`}
-              alt=""
-              className="max-h-[80vh] mx-auto object-contain"
-            />
+            <img src={`/gallery/${selectedImage}`} alt="" className="max-h-[80vh] mx-auto object-contain" />
             <button
               className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/70 p-3 rounded-full hover:bg-black/90"
               onClick={handlePrev}
@@ -229,20 +295,3 @@ export default function PhotoGallery() {
     </section>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
