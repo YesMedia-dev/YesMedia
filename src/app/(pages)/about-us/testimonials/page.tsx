@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 const testimonials = [
@@ -44,22 +44,21 @@ export default function TestimonialsPage() {
   const [modalIndex, setModalIndex] = useState<number | null>(null);
   const [visibleIndex, setVisibleIndex] = useState(0);
   const [groupSize, setGroupSize] = useState(3);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const updateGroupSize = () => {
       const width = window.innerWidth;
       if (width < 768) {
-        // < sm
         setGroupSize(1);
       } else if (width < 1280) {
-        // < lg
         setGroupSize(2);
       } else {
         setGroupSize(3);
       }
     };
 
-    updateGroupSize(); // set on initial render
+    updateGroupSize();
     window.addEventListener("resize", updateGroupSize);
     return () => window.removeEventListener("resize", updateGroupSize);
   }, []);
@@ -71,12 +70,20 @@ export default function TestimonialsPage() {
   if (!mounted) return null;
 
   const showNextGroup = () => {
+    if (isAnimating) return;
     const maxStart = testimonials.length - groupSize;
+    if (visibleIndex >= maxStart) return;
+    setIsAnimating(true);
     setVisibleIndex((prev) => Math.min(prev + groupSize, maxStart));
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   const showPrevGroup = () => {
+    if (isAnimating) return;
+    if (visibleIndex <= 0) return;
+    setIsAnimating(true);
     setVisibleIndex((prev) => Math.max(prev - groupSize, 0));
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   const modalNext = () => {
@@ -89,6 +96,10 @@ export default function TestimonialsPage() {
     if (modalIndex !== null && modalIndex > 0) {
       setModalIndex(modalIndex - 1);
     }
+  };
+
+  const openModal = (index: number) => {
+    setModalIndex(index);
   };
 
   return (
@@ -110,7 +121,7 @@ export default function TestimonialsPage() {
         transition={{ delay: 0.2, duration: 0.6 }}
       >
         <Image
-          src="/about/bear.jpg"
+          src="/gallery/flower.webp"
           alt="Facility"
           width={1400}
           height={350}
@@ -119,84 +130,114 @@ export default function TestimonialsPage() {
       </motion.div>
 
       <div className="flex justify-center mb-4">
-        <button onClick={showPrevGroup} className="text-3xl px-4 text-gray-600 hover:text-black">
+        <button
+          onClick={showPrevGroup}
+          disabled={visibleIndex === 0 || isAnimating}
+          className="text-3xl px-4 text-[#428f47] hover:text-[#44f26d] disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           ❮
         </button>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {testimonials.slice(visibleIndex, visibleIndex + groupSize).map((testimonial, i) => (
-            <motion.div
-              key={visibleIndex + i}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2, duration: 0.5 }}
-              className="bg-gray-100 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition w-60 xs:w-70 md:w-80"
-              onClick={() => setModalIndex(visibleIndex + i)}
-            >
-              <div className="flex justify-center">
-                <Image src="/assets/quotes.png" alt="Quotes" width={80} height={80} />
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`group-${visibleIndex}`}
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {testimonials.slice(visibleIndex, visibleIndex + groupSize).map((testimonial, i) => (
+              <div
+                key={visibleIndex + i}
+                className="bg-gray-100 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition w-60 xs:w-70 md:w-80"
+                onClick={() => openModal(visibleIndex + i)}
+              >
+                <div className="flex justify-center">
+                  <Image src="/assets/quotes.png" alt="Quotes" width={80} height={80} />
+                </div>
+                <p className="text-gray-700 text-sm mb-4 line-clamp-3">{t(testimonial.full)}</p>
+                <p className="font-semibold">{testimonial.name}</p>
+                <p className="text-sm text-gray-500">{t(testimonial.sourceKey)}</p>
               </div>
-              <p className="text-gray-700 text-sm mb-4 line-clamp-3">{t(testimonial.full)}</p>
-              <p className="font-semibold">{testimonial.name}</p>
-              <p className="text-sm text-gray-500">{t(testimonial.sourceKey)}</p>
-            </motion.div>
-          ))}
-        </div>
-        <button onClick={showNextGroup} className="text-3xl px-4 text-gray-600 hover:text-black">
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        <button
+          onClick={showNextGroup}
+          disabled={(visibleIndex + groupSize >= testimonials.length) || isAnimating}
+          className="text-3xl px-4 text-[#428f47] hover:text-[#44f26d] disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           ❯
         </button>
       </div>
 
-      {modalIndex !== null && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/30"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setModalIndex(null);
-          }}
-        >
-          <motion.div
-            className="bg-white max-w-lg w-full p-6 rounded-lg relative shadow-xl text-center"
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
+      <AnimatePresence>
+        {modalIndex !== null && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/30"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setModalIndex(null);
+            }}
           >
-            <button
-              onClick={() => setModalIndex(null)}
-              className="absolute top-2 right-3 text-gray-500 text-xl hover:text-black"
+            <motion.div
+              className="bg-white max-w-lg w-full p-6 rounded-lg relative shadow-xl text-center"
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
             >
-              ×
-            </button>
-
-            <div className="flex justify-center mb-4">
-              <Image src="/assets/quotes.png" alt="Quotes" width={60} height={60} />
-            </div>
-
-            <div className="text-gray-700 mb-4 max-h-60 overflow-y-auto pr-2">{t(testimonials[modalIndex].full)}</div>
-            <p className="font-semibold">{testimonials[modalIndex].name}</p>
-            <p className="text-sm text-gray-500">{t(testimonials[modalIndex].sourceKey)}</p>
-
-            {/* Nav arrows */}
-            <div className="absolute bottom-4 left-4 lg:left-[-60px] lg:top-1/2 lg:transform lg:-translate-y-1/2">
               <button
-                onClick={modalPrev}
-                disabled={modalIndex === 0}
-                className="w-9 h-9 flex items-center justify-center bg-white text-blue-700 rounded-full shadow-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={() => setModalIndex(null)}
+                className="absolute top-2 right-3 text-gray-500 text-xl hover:text-black"
               >
-                &#x276E;
+                ×
               </button>
-            </div>
-            <div className="absolute bottom-4 right-4 lg:right-[-60px] lg:top-1/2 lg:transform lg:-translate-y-1/2">
-              <button
-                onClick={modalNext}
-                disabled={modalIndex === testimonials.length - 1}
-                className="w-9 h-9 flex items-center justify-center bg-white text-blue-700 rounded-full shadow-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                &#x276F;
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      )}
+
+              <div className="flex justify-center mb-4">
+                <Image src="/assets/quotes.png" alt="Quotes" width={60} height={60} />
+              </div>
+
+              <div className="text-gray-700 mb-4 max-h-60 overflow-y-auto pr-2">
+                {t(testimonials[modalIndex].full)}
+              </div>
+              <p className="font-semibold">{testimonials[modalIndex].name}</p>
+              <p className="text-sm text-gray-500">{t(testimonials[modalIndex].sourceKey)}</p>
+
+              {/* ⬅ Left Arrow */}
+              <div className="absolute bottom-4 left-4 lg:left-[-60px] lg:top-[60%] lg:transform lg:-translate-y-1/2">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    modalPrev();
+                  }}
+                  disabled={modalIndex === 0}
+                  className="w-9 h-9 flex items-center justify-center bg-white text-[#428f47] rounded-full shadow-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  &#x276E;
+                </button>
+              </div>
+
+              {/* ➡ Right Arrow */}
+              <div className="absolute bottom-4 right-4 lg:right-[-60px] lg:top-[60%] lg:transform lg:-translate-y-1/2">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    modalNext();
+                  }}
+                  disabled={modalIndex === testimonials.length - 1}
+                  className="w-9 h-9 flex items-center justify-center bg-white text-[#428f47] rounded-full shadow-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  &#x276F;
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
+
+
