@@ -7,7 +7,7 @@ const Banner = () => {
   const { t } = useTranslation("common");
 
   return (
-    <section className="mobile-banner relative h-[400px] bg-cover bg-center md:bg-fixed md:bg-cover text-white flex items-center justify-center px-4 text-center mt-20">
+    <section className="mobile-banner relative h-[400px] bg-cover bg-center lg:bg-fixed lg:bg-cover text-white flex items-center justify-center px-4 text-center mt-20">
       <div className="bg-black/50 w-full h-full absolute top-0 left-0"></div>
 
       <div className="relative z-10 text-white max-w-3xl -mt-8 md:mt-0">

@@ -13,9 +13,13 @@ export default function FloatingScheduleBox() {
   const isTourPage = pathname === "/contact-us/tour";
 
   const [showBox, setShowBox] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" && window.innerWidth < 768);
+  const [isTablet, setIsTablet] = useState(
+    () => typeof window !== "undefined" && 768 <= window.innerWidth && window.innerWidth <= 1024,
+  );
   const [mediaViewerOpen, setMediaViewerOpen] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(() => typeof window !== "undefined" && window.innerWidth < 768);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const [allowIcon, setAllowIcon] = useState(false);
 
   const { t } = useTranslation("common");
@@ -23,13 +27,26 @@ export default function FloatingScheduleBox() {
   useEffect(() => {
     if (isTourPage) return;
 
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+    const isDesktop = !isMobile && !isTablet;
+
+    const checkSizes = () => {
+      if (window.innerWidth < 768) {
+        setIsMobile(true);
+        setIsTablet(false);
+      } else if (window.innerWidth <= 1024) {
+        setIsMobile(false);
+        setIsTablet(true);
+      } else {
+        setIsMobile(false);
+        setIsTablet(false);
+      }
     };
 
     const checkMediaOpen = () => {
       const photoModalOpen = document.querySelector(".fixed.inset-0.bg-gray-800\\/70.backdrop-blur-sm.z-50");
-      const videoPopupOpen = document.querySelector(".fixed.inset-0.z-50.flex.items-center.justify-center.bg-black\\/90");
+      const videoPopupOpen = document.querySelector(
+        ".fixed.inset-0.z-50.flex.items-center.justify-center.bg-black\\/90",
+      );
       const photoGalleryOverlayOpen = document.querySelector(".fixed.inset-0.z-50.bg-black.bg-opacity-90");
 
       const portalExists =
@@ -55,11 +72,11 @@ export default function FloatingScheduleBox() {
 
       setMediaViewerOpen(
         Boolean(photoModalOpen) ||
-        Boolean(videoPopupOpen) ||
-        Boolean(photoGalleryOverlayOpen) ||
-        Boolean(portalExists) ||
-        Boolean(hasActiveIframe) ||
-        bodyHasOverlayClass
+          Boolean(videoPopupOpen) ||
+          Boolean(photoGalleryOverlayOpen) ||
+          Boolean(portalExists) ||
+          Boolean(hasActiveIframe) ||
+          bodyHasOverlayClass,
       );
     };
 
@@ -71,40 +88,39 @@ export default function FloatingScheduleBox() {
       }
     };
 
-    checkMobile();
+    checkSizes();
     checkMediaOpen();
 
-    // ✅ Homepage: scroll-based visibility
-    if (isHome) {
+    // scroll-based visibility
+    if (isHome && isDesktop) {
       handleScroll();
       window.addEventListener("scroll", handleScroll);
     } else {
-      // ✅ Other pages: show icon immediately
       setShowBox(true);
       setAllowIcon(true);
     }
 
-    window.addEventListener("resize", checkMobile);
+    window.addEventListener("resize", checkSizes);
 
     const mediaCheckInterval = setInterval(checkMediaOpen, 500);
 
     const observer = new MutationObserver(() => {
       checkMediaOpen();
-      if (isHome) handleScroll();
+      if (isHome && isDesktop) handleScroll();
     });
 
     observer.observe(document.body, {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ["class"]
+      attributeFilter: ["class"],
     });
 
     return () => {
-      if (isHome) {
+      if (isHome && isDesktop) {
         window.removeEventListener("scroll", handleScroll);
       }
-      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("resize", checkSizes);
       clearInterval(mediaCheckInterval);
       observer.disconnect();
     };
@@ -120,8 +136,12 @@ export default function FloatingScheduleBox() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          onClick={() => setIsMinimized(false)}
-          className="fixed bottom-6 right-6 z-50 bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-lg"
+          onClick={() => {
+            setIsMinimized(false);
+            setHasInteracted(true);
+          }}
+          className={`fixed bottom-6 right-6 z-50 bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-lg
+      ${isMobile && !hasInteracted ? "animate-bounce" : ""}`}
         >
           <CalendarDays className="w-5 h-5" />
         </motion.button>
@@ -159,21 +179,3 @@ export default function FloatingScheduleBox() {
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
